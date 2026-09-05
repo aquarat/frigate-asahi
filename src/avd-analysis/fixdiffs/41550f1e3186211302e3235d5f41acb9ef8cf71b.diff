@@ -1,0 +1,314 @@
+diff --git a/drivers/media/platform/apple/avd/avd-av1.c b/drivers/media/platform/apple/avd/avd-av1.c
+index a7a5bc76aaae36..ffc532a549e9c9 100644
+--- a/drivers/media/platform/apple/avd/avd-av1.c
++++ b/drivers/media/platform/apple/avd/avd-av1.c
+@@ -193,9 +193,6 @@ struct avd_av1_run {
+ 	struct avd_run base;
+ 
+ 	struct {
+-		dma_addr_t y;
+-		dma_addr_t uv;
+-		dma_addr_t sl;
+ 		dma_addr_t rvra;
+ 		dma_addr_t probs_out;
+ 		dma_addr_t priv_tlb;
+@@ -927,9 +924,9 @@ static void set_header(struct avd_ctx *ctx, struct avd_av1_run *run)
+ 	push(0, "mark_section");
+ 
+ 	bytesperline = ctx->decoded_fmt.fmt.pix_mp.plane_fmt[0].bytesperline;
+-	pusha(run->addresses.y, "y", 0);
++	pusha(run->base.y_out, "y", 0);
+ 	push(bytesperline, "bytesperline_y");
+-	pusha(run->addresses.uv, "uv", 0);
++	pusha(run->base.uv_out, "uv", 0);
+ 	push(bytesperline, "bytesperline_uv");
+ 
+ 	push(0, "mark_section");
+@@ -966,11 +963,11 @@ static void set_tiles(struct avd_ctx *ctx, struct avd_av1_run *run)
+ 
+ 			push(AVD_OP_CODED_DATA |
+ 				     AVD_OP_CODED_DATA_ADDR(
+-					     (run->addresses.sl +
++					     (run->base.coded_in +
+ 					      tile_group->tile_offset) >>
+ 					     32),
+ 			     "tile_start");
+-			push((u32)((run->addresses.sl +
++			push((u32)((run->base.coded_in +
+ 				    tile_group->tile_offset) &
+ 				   0xffffffff),
+ 			     "tile_addr");
+@@ -1114,21 +1111,10 @@ static int avd_av1_run_preamble(struct avd_ctx *ctx, struct avd_av1_run *run)
+ 		return -EINVAL;
+ 	run->grain = ctrl->p_cur.p;
+ 
+-	run->addresses.sl =
+-		vb2_dma_contig_plane_dma_addr(&run->base.bufs.src->vb2_buf, 0);
+-
+ 	dst_len = run->base.bufs.dst->vb2_buf.planes[0].length;
+ 	tlb_len = avd_priv_tlb_size(run->frame->frame_width_minus_1 + 1,
+ 				    run->frame->frame_height_minus_1 + 1);
+ 
+-	run->addresses.y =
+-		vb2_dma_contig_plane_dma_addr(&run->base.bufs.dst->vb2_buf, 0);
+-
+-	run->addresses.uv =
+-		run->addresses.y +
+-		ctx->decoded_fmt.fmt.pix_mp.plane_fmt[0].bytesperline *
+-			ALIGN(ctx->decoded_fmt.fmt.pix_mp.height, 16);
+-
+ 	run->addresses.rvra =
+ 		run->addresses.y + AVD_AV1_RVRA_OFFSET(dst_len, ctx->rvra.size);
+ 
+diff --git a/drivers/media/platform/apple/avd/avd-h264.c b/drivers/media/platform/apple/avd/avd-h264.c
+index 3e0da7fd2a6aed..2a63ebbbddfcac 100644
+--- a/drivers/media/platform/apple/avd/avd-h264.c
++++ b/drivers/media/platform/apple/avd/avd-h264.c
+@@ -43,9 +43,6 @@ struct avd_h264_run {
+ 	const struct v4l2_ctrl_h264_pred_weights *pred_weights;
+ 
+ 	struct run_addr {
+-		dma_addr_t y;
+-		dma_addr_t uv;
+-		dma_addr_t sl;
+ 		dma_addr_t rvra;
+ 		dma_addr_t sps;
+ 	} addresses;
+@@ -288,9 +285,9 @@ static void stream_hdr(struct avd_ctx *ctx, struct avd_h264_run *run)
+ 	if (avd->variant->quirks & AVD_QUIRK_LSR)
+ 		bytesperline = bytesperline >> 4;
+ 
+-	pusha(run->addresses.y, "hdr_210_y_addr_lsb8", 0);
++	pusha(run->base.y_out, "hdr_210_y_addr_lsb8", 0);
+ 	push(bytesperline, "hdr_218_width_align");
+-	pusha(run->addresses.uv, "hdr_214_uv_addr_lsb8", 0);
++	pusha(run->base.uv_out, "hdr_214_uv_addr_lsb8", 0);
+ 	push(bytesperline, "hdr_21c_width_align");
+ 
+ 	push(0, "cm3_mark_end_section");
+@@ -418,7 +415,7 @@ static u32 stream_slice(struct avd_ctx *ctx, struct avd_h264_run *run)
+ 		off++;
+ 	}
+ 
+-	dma_addr_t slc_a84 = run->addresses.sl + off;
++	dma_addr_t slc_a84 = run->base.coded_in + off;
+ 
+ 	push(AVD_OP_CODED_DATA |
+ 		     AVD_OP_CODED_DATA_BIT_OFF(
+@@ -678,22 +675,12 @@ static void avd_h264_run_preamble(struct avd_ctx *ctx, struct avd_h264_run *run)
+ 
+ 	dst_len = run->base.bufs.dst->vb2_buf.planes[0].length;
+ 
+-	run->addresses.y =
+-		vb2_dma_contig_plane_dma_addr(&run->base.bufs.dst->vb2_buf, 0);
+-
+-	run->addresses.uv =
+-		run->addresses.y +
+-		ctx->decoded_fmt.fmt.pix_mp.plane_fmt[0].bytesperline *
+-			ALIGN(ctx->decoded_fmt.fmt.pix_mp.height, 16);
+-
+-	run->addresses.sl =
+-		vb2_dma_contig_plane_dma_addr(&run->base.bufs.src->vb2_buf, 0);
+ 	sps_len = sps_size(fmt_width(ctx), fmt_height(ctx));
+ 
+ 	run->addresses.rvra =
+ 		run->addresses.y + (dst_len - sps_len - ctx->rvra.size);
+ 
+-	run->addresses.sps = run->addresses.y + (dst_len - sps_len);
++	run->addresses.sps = run->base.y_out + (dst_len - sps_len);
+ }
+ 
+ static int avd_h264_run(struct avd_ctx *ctx)
+diff --git a/drivers/media/platform/apple/avd/avd-hevc.c b/drivers/media/platform/apple/avd/avd-hevc.c
+index bf5bc366640c96..1faddc0a24c25a 100644
+--- a/drivers/media/platform/apple/avd/avd-hevc.c
++++ b/drivers/media/platform/apple/avd/avd-hevc.c
+@@ -71,9 +71,6 @@ struct avd_hevc_run {
+ 	int num_slices;
+ 
+ 	struct run_addr {
+-		dma_addr_t y;
+-		dma_addr_t uv;
+-		dma_addr_t sl;
+ 		dma_addr_t rvra;
+ 		dma_addr_t sps;
+ 	} addresses;
+@@ -395,9 +392,9 @@ static void set_header(struct avd_ctx *ctx, struct avd_hevc_run *run)
+ 	if (avd->variant->quirks & AVD_QUIRK_LSR)
+ 		bytesperline = bytesperline >> 4;
+ 
+-	pusha(run->addresses.y, "hdr_1b4_y_addr_lsb8", 0);
++	pusha(run->base.y_out, "hdr_1b4_y_addr_lsb8", 0);
+ 	push(bytesperline, "hdr_1bc_width_align");
+-	pusha(run->addresses.uv, "hdr_1b8_uv_addr_lsb8", 0);
++	pusha(run->base.uv_out, "hdr_1b8_uv_addr_lsb8", 0);
+ 	push(bytesperline, "hdr_1c0_width_align");
+ 	push(0, "");
+ 	push(AVD_HDR_HEIGHT(height - 1) | AVD_HDR_WIDTH(width - 1),
+@@ -660,7 +657,8 @@ static void set_slice(struct avd_ctx *ctx, struct avd_hevc_run *run,
+ 		      u32 offset, u32 flags)
+ {
+ 	struct avd_dev *avd = ctx->dev;
+-	dma_addr_t slc_addr = run->addresses.sl + offset + sl->data_byte_offset;
++	dma_addr_t slc_addr =
++		run->base.coded_in + offset + sl->data_byte_offset;
+ 	push(AVD_OP_CODED_DATA | flags | AVD_OP_CODED_DATA_ADDR(slc_addr >> 32),
+ 	     "cm3_cmd_set_coded_slice");
+ 	push((u32)(slc_addr & 0xffffffff), "slc_bd8_slice_addr");
+@@ -1221,23 +1219,12 @@ static int avd_hevc_run_preamble(struct avd_ctx *ctx, struct avd_hevc_run *run)
+ 
+ 	dst_len = run->base.bufs.dst->vb2_buf.planes[0].length;
+ 
+-	run->addresses.y =
+-		vb2_dma_contig_plane_dma_addr(&run->base.bufs.dst->vb2_buf, 0);
+-
+-	run->addresses.uv =
+-		run->addresses.y +
+-		ctx->decoded_fmt.fmt.pix_mp.plane_fmt[0].bytesperline *
+-			ALIGN(ctx->decoded_fmt.fmt.pix_mp.height, 16);
+-
+-	run->addresses.sl =
+-		vb2_dma_contig_plane_dma_addr(&run->base.bufs.src->vb2_buf, 0);
+-
+ 	sps_len = sps_size(fmt_width(ctx), fmt_height(ctx));
+ 
+ 	run->addresses.rvra =
+ 		run->addresses.y + (dst_len - sps_len - ctx->rvra.size);
+ 
+-	run->addresses.sps = run->addresses.y + (dst_len - sps_len);
++	run->addresses.sps = run->base.y_out + (dst_len - sps_len);
+ 	return 0;
+ }
+ 
+diff --git a/drivers/media/platform/apple/avd/avd-v4l2.c b/drivers/media/platform/apple/avd/avd-v4l2.c
+index 4eebc2bb51cb77..4cd7606cb352ac 100644
+--- a/drivers/media/platform/apple/avd/avd-v4l2.c
++++ b/drivers/media/platform/apple/avd/avd-v4l2.c
+@@ -15,6 +15,7 @@
+ 
+ #include <media/v4l2-event.h>
+ #include <media/v4l2-mem2mem.h>
++#include <media/videobuf2-dma-contig.h>
+ 
+ #include "avd.h"
+ 
+@@ -259,7 +260,6 @@ static const struct avd_ctrl_desc avd_h264_ctrl_descs[] = {
+ 		.cfg.min = V4L2_STATELESS_H264_START_CODE_NONE,
+ 		.cfg.max = V4L2_STATELESS_H264_START_CODE_NONE,
+ 		.cfg.def = V4L2_STATELESS_H264_START_CODE_NONE,
+-		/* annex b is also possibly but a bit more painfull */
+ 	},
+ 	{
+ 		.cfg.id = V4L2_CID_MPEG_VIDEO_H264_PROFILE,
+@@ -953,6 +953,13 @@ void avd_run_preamble(struct avd_ctx *ctx, struct avd_run *run)
+ 	run->bufs.src = v4l2_m2m_next_src_buf(ctx->fh.m2m_ctx);
+ 	run->bufs.dst = v4l2_m2m_next_dst_buf(ctx->fh.m2m_ctx);
+ 
++	run->coded_in =
++		vb2_dma_contig_plane_dma_addr(&run->bufs.src->vb2_buf, 0);
++	run->y_out = vb2_dma_contig_plane_dma_addr(&run->bufs.dst->vb2_buf, 0);
++	run->uv_out = run->y_out +
++		      ctx->decoded_fmt.fmt.pix_mp.plane_fmt[0].bytesperline *
++			      ctx->decoded_fmt.fmt.pix_mp.height;
++
+ 	dst = vb2_to_avd_decoded_buf(&run->bufs.dst->vb2_buf);
+ 	memcpy(&dst->rvra, &ctx->rvra, sizeof(ctx->rvra));
+ 
+diff --git a/drivers/media/platform/apple/avd/avd-vp9.c b/drivers/media/platform/apple/avd/avd-vp9.c
+index be0e7d021f36f4..4f0c066d4477ac 100644
+--- a/drivers/media/platform/apple/avd/avd-vp9.c
++++ b/drivers/media/platform/apple/avd/avd-vp9.c
+@@ -138,9 +138,6 @@ struct avd_vp9_run {
+ 	struct avd_run base;
+ 
+ 	struct run_addr {
+-		dma_addr_t y;
+-		dma_addr_t uv;
+-		dma_addr_t sl;
+ 		dma_addr_t rvra;
+ 	} addresses;
+ 
+@@ -397,9 +394,9 @@ static void set_header(struct avd_ctx *ctx, struct avd_vp9_run *run)
+ 	if (avd->variant->quirks & AVD_QUIRK_LSR)
+ 		bytesperline = bytesperline >> 4;
+ 
+-	pusha(run->addresses.y, "hdr_168_y_addr_lsb8", 0);
++	pusha(run->base.y_out, "hdr_168_y_addr_lsb8", 0);
+ 	push(bytesperline, "hdr_170_width_align");
+-	pusha(run->addresses.uv, "hdr_16c_uv_addr_lsb8", 0);
++	pusha(run->base.uv_out, "hdr_16c_uv_addr_lsb8", 0);
+ 	push(bytesperline, "hdr_174_width_align");
+ 	push(0, "");
+ 	push(AVD_HDR_HEIGHT(frame->frame_height_minus_1) |
+@@ -446,10 +443,10 @@ static void set_tiles(struct avd_ctx *ctx, struct avd_vp9_run *run)
+ 				size -= 4;
+ 			}
+ 			push(AVD_OP_CODED_DATA |
+-				     AVD_OP_CODED_DATA_ADDR(run->addresses.sl >>
+-							    32),
++				     AVD_OP_CODED_DATA_ADDR(
++					     run->base.coded_in >> 32),
+ 			     "cm3_cmd_set_slice_data");
+-			push((u32)((run->addresses.sl + offset) & 0xffffffff),
++			push((u32)((run->base.coded_in + offset) & 0xffffffff),
+ 			     "til_ab4_tile_addr_low");
+ 			push(tile_size, "til_ab8_tile_size");
+ 			push(AVD_OP_SL_DIM_START |
+@@ -701,7 +698,6 @@ static int avd_vp9_run_preamble(struct avd_ctx *ctx, struct avd_vp9_run *run)
+ 	const struct v4l2_ctrl_vp9_frame *dec_params;
+ 	struct avd_vp9_ctx *vp9_ctx = ctx->priv;
+ 	unsigned int fctx_idx;
+-	u32 dst_len;
+ 	int ret;
+ 
+ 	avd_run_preamble(ctx, &run->base);
+@@ -732,18 +728,6 @@ static int avd_vp9_run_preamble(struct avd_ctx *ctx, struct avd_vp9_run *run)
+ 	v4l2_vp9_fw_update_probs(&vp9_ctx->probability_tables,
+ 				 run->prob_updates, dec_params);
+ 
+-	run->addresses.sl =
+-		vb2_dma_contig_plane_dma_addr(&run->base.bufs.src->vb2_buf, 0);
+-
+-	dst_len = run->base.bufs.dst->vb2_buf.planes[0].length;
+-
+-	run->addresses.y =
+-		vb2_dma_contig_plane_dma_addr(&run->base.bufs.dst->vb2_buf, 0);
+-
+-	run->addresses.uv =
+-		run->addresses.y +
+-		ctx->decoded_fmt.fmt.pix_mp.plane_fmt[0].bytesperline *
+-			ALIGN(ctx->decoded_fmt.fmt.pix_mp.height, 16);
+ 
+ 	run->addresses.rvra = run->addresses.y + (dst_len - ctx->rvra.size);
+ 
+diff --git a/drivers/media/platform/apple/avd/avd.h b/drivers/media/platform/apple/avd/avd.h
+index bf4a4814a8b301..a40e5c59d36cf2 100644
+--- a/drivers/media/platform/apple/avd/avd.h
++++ b/drivers/media/platform/apple/avd/avd.h
+@@ -56,6 +56,10 @@ struct avd_run {
+ 		struct vb2_v4l2_buffer *src; /* OUTPUT coded */
+ 		struct vb2_v4l2_buffer *dst; /* CAPTURE decoded */
+ 	} bufs;
++
++	dma_addr_t coded_in;
++	dma_addr_t y_out;
++	dma_addr_t uv_out;
+ };
+ 
+ struct avd_ctrl_desc {
+@@ -98,7 +102,6 @@ struct avd_rvra {
+ 	u32 size;
+ };
+ 
+-/* TODO: change and use this */
+ struct avd_decoded_buffer {
+ 	/* Must be the first field in this struct. */
+ 	struct v4l2_m2m_buffer base;
+@@ -118,6 +121,7 @@ vb2_to_avd_decoded_buf(struct vb2_buffer *buf)
+ {
+ 	return container_of(buf, struct avd_decoded_buffer, base.vb.vb2_buf);
+ }
++
+ struct avd_decoded_buffer *
+ avd_get_ref_buf(struct avd_ctx *ctx, struct vb2_v4l2_buffer *dst, u64 timestamp);
+ 

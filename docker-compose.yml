@@ -1,0 +1,61 @@
+# Frigate NVR on <nvr-host> (<nvr-ip>, Fedora Asahi, M1 Mac mini).
+# Recreated 2026-09-05 from the OrbStack deployment on the Mac at <mac-ip>.
+# See DEPLOYMENT.md in this directory for the full picture.
+# STAGED COPY (staging/docker-compose.yml): adds the Apple AVD + Vulkan decode/rescale pipeline. Apply with staging/APPLY.md.
+services:
+  frigate:
+    container_name: frigate
+    # Same image as the Mac: built from aquarat/frigate dev (0.18.0-32daf6f4) via
+    # `make local` there and transferred with `docker save | docker load`.
+    # It is NOT in any registry — see DEPLOYMENT.md "Image" before upgrading.
+    image: frigate:latest
+    restart: unless-stopped
+    stop_grace_period: 30s
+    shm_size: "512mb"
+    # --- Apple AVD hardware decode + Vulkan (Honeykrisp) rescale, see research/AVD_FRIGATE_INTEGRATION.md ---
+    devices:
+      - /dev/video0:/dev/video0             # Apple AVD (V4L2 stateless decoder), root:video 0660; the container runs as root
+      - /dev/media0:/dev/media0             # Request API node the v4l2request hwaccel needs alongside /dev/video0
+      - /dev/dri/renderD128:/dev/dri/renderD128   # GPU render node for Vulkan (world rw on this host)
+    volumes:
+      - ./config:/config:z
+      # ffmpeg with v4l2request + Vulkan (static bookworm build, research/GPU_RESCALE.md); /opt/ffmpeg-vk is
+      # already labelled container_file_t from the build mounts, :z keeps it that way.
+      - /opt/ffmpeg-vk:/opt/ffmpeg-vk:ro,z
+      # ffmpeg.path wrapper (config.yaml `ffmpeg.path: /opt/ffmpeg-avd-vk`): runs the binary above under the
+      # host loader and rewrites the detect-role scaler to the zero-copy Vulkan chain. See ffmpeg-avd-vk/bin/ffmpeg.
+      - ./ffmpeg-avd-vk:/opt/ffmpeg-avd-vk:ro,z
+      # Host userspace for Mesa's Honeykrisp ICD (needs glibc 2.38+ and Fedora's libstdc++, the image is
+      # bookworm/glibc 2.36): the host's /usr/lib64 and dynamic loader, read-only. NEVER add :z/:Z here,
+      # that would relabel the host's system libraries; container_t may read lib_t/ld_so_t as they are.
+      - /usr/lib64:/host-lib64:ro
+      - /usr/lib/ld-linux-aarch64.so.1:/host-lib64-ld.so:ro
+      # Vulkan ICD json whose library_path is /host-lib64/libvulkan_asahi.so (VK_DRIVER_FILES below pins it,
+      # otherwise the image's own Mesa 22 lvp/llvmpipe ICD would be picked and "GPU" scaling would run on the CPU)
+      - ./src/ffmpeg-vulkan/icd:/etc/vulkan-asahi:ro,z
+      - ./recordings:/media/frigate/recordings:z
+      - ./clips:/media/frigate/clips:z
+      - ./exports:/media/frigate/exports:z
+      # Local patch: ZMQ detector plugin retries the model handshake instead of
+      # giving up forever when the host detector was not up at start. See patches/.
+      - ./patches/zmq_ipc.py:/opt/frigate/frigate/detectors/plugins/zmq_ipc.py:ro,z
+      # In-progress recording segments. tmpfs, as Frigate recommends; the Mac
+      # used a host dir only because its host-side ffmpeg had to write there.
+      - type: tmpfs
+        target: /tmp/cache
+        tmpfs:
+          size: 1073741824
+    ports:
+      - "8971:8971"            # authenticated UI/API (the only port to expose beyond the LAN)
+      - "127.0.0.1:5000:5000"  # unauthenticated internal API, loopback only
+      - "8554:8554"            # go2rtc RTSP restreams
+      - "8555:8555/tcp"        # WebRTC
+      - "8555:8555/udp"
+    extra_hosts:
+      # Lets the container reach the host-side ZMQ detector (tcp://host.docker.internal:5555)
+      - "host.docker.internal:host-gateway"
+    env_file: .env
+    environment:
+      - TZ=Europe/London
+      - VK_DRIVER_FILES=/etc/vulkan-asahi/asahi_icd.container.json   # Honeykrisp ICD for the ffmpeg wrapper
+      - VK_ICD_FILENAMES=/etc/vulkan-asahi/asahi_icd.container.json  # same, for older Vulkan loaders

@@ -1,0 +1,14 @@
+Experiment: the PPS transform_8x8_mode flag (0x40) is fed unshifted into a
+2-bit field (bits 8:7) and masked away, so the hardware never learns the
+stream uses 8x8 transforms.  Try value 1 in that field when the flag is set.
+--- a/avd-h264.c
++++ b/avd-h264.c
+@@ -216,7 +216,7 @@
+ 		| AVD_HDR_COMMON_BIT_DEPTH_C(sps->bit_depth_chroma_minus8)
+ 		| AVD_HDR_COMMON_MIN_LUMA_CBS(1)
+ 		| AVD_HDR_COMMON_LUMA_CBS(1)
+-		| AVD_HDR_COMMON_LUMA_TBS(pps->flags & V4L2_H264_PPS_FLAG_TRANSFORM_8X8_MODE)
++		| AVD_HDR_COMMON_LUMA_TBS(!!(pps->flags & V4L2_H264_PPS_FLAG_TRANSFORM_8X8_MODE))
+ 		| AVD_HDR_COMMON_FLAG0(sps->flags & V4L2_H264_SPS_FLAG_DIRECT_8X8_INFERENCE),
+ 		"hdr_2c_sps_param");
+ 

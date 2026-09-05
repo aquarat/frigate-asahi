@@ -1,0 +1,50 @@
+From fc98941a729038e5d280717bfd68799f1b541c5a Mon Sep 17 00:00:00 2001
+From: Aquarat <blue@aquarat.co.uk>
+Date: Sat, 5 Sep 2026 18:58:19 +0100
+Subject: [PATCH 3/5] media: apple: avd: t8103: set VP_INSN_FIFO_MASK to 0
+
+t8103_configure_stream() writes 0x100000 to AVD_V3_VP_INSN_FIFO_MASK
+while the t8112/t8122 paths write 0. With 0x100000 the VP stalls in the
+middle of large frames on T8103: no error IRQ is raised, the per-VP
+"slice bytes parsed" counter stops short of the slice size (e.g.
+303915 of 358341 bytes for a 2304x1296 Baseline IDR, 273060 of 290627
+for a 1920x1080 CABAC IDR, 202426 of 218230 for a cam1 camera's
+2304x1296 High IDR) and the 2 s watchdog fires ("Frame processing timed
+out! Vp: 2 (00)"). Small or low-bitrate frames of the same geometry
+decode fine, which is why this looked like a buffer sizing problem.
+
+Writing 0, like the other variants do, makes every such frame decode
+bit-identically to software.
+
+Backport of asahi-7.1.12-1 commit ca9a850f237f ("fixup! media: apple:
+add avd driver") by Janne Grunau to asahi-7.1.6-1, now with the
+observed effect on T8103 documented.
+
+Tested on Apple M1 (T8103): 1920x1080 Main/High (CABAC, B-frames),
+2304x1296 Baseline/Main/High at 2-4 Mbit/s including a real cam1
+camera stream (150 frames, PPS scaling lists) all go from watchdog
+timeout on the first frame to bit-identical output; the whole
+26-clip matrix is bit-identical. Also verified with only this patch on
+top of the two H.264 fixes and with all other experiments disabled.
+
+Signed-off-by: Aquarat <blue@aquarat.co.uk>
+---
+ avd-hw.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/media/platform/apple/avd/avd-hw.c b/drivers/media/platform/apple/avd/avd-hw.c
+index 168d68c..a3987ac 100644
+--- a/drivers/media/platform/apple/avd/avd-hw.c
++++ b/drivers/media/platform/apple/avd/avd-hw.c
+@@ -78,7 +78,7 @@ void t8103_configure_stream(struct avd_dev *avd, dma_addr_t addr, u8 fifo_idx,
+ 			  u32 vp_slot)
+ {
+ 	w32(AVD_V3_VP_INSN_FIFO_IOVA + (fifo_idx * 4), addr >> 8);
+-	w32(AVD_V3_VP_INSN_FIFO_MASK + (fifo_idx * 4), 0x100000);
++	w32(AVD_V3_VP_INSN_FIFO_MASK + (fifo_idx * 4), 0);
+ 	w32(AVD_V3_VP_INSN_FIFO_CACH + (fifo_idx * 4), 0);
+ 	w32(AVD_V3_VP_INSN_FIFO_XFER + (fifo_idx * 4), 0);
+ 
+-- 
+2.55.0
+

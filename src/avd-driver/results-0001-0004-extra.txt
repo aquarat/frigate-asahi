@@ -1,0 +1,5 @@
+cam2-10s.h264             OK-identical   0
+w_360_main_weightp2.h264     OK-identical   0
+m_1080_high_slices4.h264     FAIL(hw-timeout) 6
+m_1296_high_slices8.h264     FAIL(hw-timeout) 6
+IMPROVED: cam2-10s.h264 was FAIL(hw-timeout), now OK-identical

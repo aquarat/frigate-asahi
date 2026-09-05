@@ -1,0 +1,97 @@
+diff --git a/avd-drv.c b/avd-drv.c
+index 6ba94ef..49a0c4e 100644
+--- a/avd-drv.c
++++ b/avd-drv.c
+@@ -166,6 +166,7 @@ static void avd_watchdog_func(struct work_struct *work)
+ 
+ 	free_vp_slot(avd, ctx);
+ 	free_inst_slot(avd, ctx);
++	ctx->submitted = false;
+ 
+ 	writel(0, avd->mbox + AVD_REG_MBOX_IRQ_ENABLE);
+ 	ret = avd_reset(avd);
+@@ -200,10 +201,18 @@ static irqreturn_t avd_irq_handler(int irq, void *data)
+ 		state = VB2_BUF_STATE_DONE;
+ 
+ 		free_inst_slot(avd, ctx);
++		/* with an early submit the vp-done IRQ may still be pending */
++		if (ctx->submitted && ctx->vp_slot != VP_SLOT_NONE)
++			free_vp_slot(avd, ctx);
++		ctx->submitted = false;
+ 	} else if (status & 0x100) {
+ 		free_vp_slot(avd, ctx);
+-		/* a vp is done, kick the pp and hope for the best */
+-		if(ctx->coded_fmt_desc->ops->submit)
++		/*
++		 * a vp is done, kick the pp and hope for the best -- unless the
++		 * codec already submitted right after pushing the instruction
++		 * stream (the order the firmware-traced sequence uses).
++		 */
++		if (!ctx->submitted && ctx->coded_fmt_desc->ops->submit)
+ 			ctx->coded_fmt_desc->ops->submit(ctx);
+ 
+ 		goto done;
+diff --git a/avd-h264.c b/avd-h264.c
+index 3496002..2428d0b 100644
+--- a/avd-h264.c
++++ b/avd-h264.c
+@@ -20,6 +20,8 @@
+ #include <media/v4l2-h264.h>
+ #include <media/videobuf2-dma-contig.h>
+ 
++#include <linux/moduleparam.h>
++
+ #include "avd.h"
+ #include "avd-inst.h"
+ 
+@@ -74,6 +76,13 @@ struct avd_h264_ctx {
+ 	} bufs;
+ };
+ 
++static bool avd_h264_early_submit = true;
++module_param_named(h264_early_submit, avd_h264_early_submit, bool, 0644);
++MODULE_PARM_DESC(h264_early_submit,
++		 "write the H.264 decode command right after the instruction stream instead of after VP done (default: Y)");
++
++static void avd_h264_submit(struct avd_ctx *ctx);
++
+ /* ffmpeg submits wrong timestamp, use first_mb_in_slice as a workaround */
+ #define is_new_frame(sl) (sl->first_mb_in_slice == 0) /* (ctx->fh.m2m_ctx->new_frame) */
+ 
+@@ -712,6 +721,22 @@ static int avd_h264_run(struct avd_ctx *ctx)
+ 
+ 	slice_size = stream_slice(ctx, &run);
+ 
++	/*
++	 * Write the decode command as soon as the first slice of the frame
++	 * is in the instruction FIFO instead of waiting for the VP done IRQ.
++	 * Waiting serialises the VP and PP stages; on T8103 the VP then
++	 * stalls mid-frame (no error IRQ, "slice bytes parsed" stuck short of
++	 * the slice size) on frames whose residual output exceeds its
++	 * internal buffering (high bitrate, CABAC, >= 1080p). eiln's
++	 * hardware-verified T8103 H.264 flow writes exactly one command
++	 * (with the START flag) per frame right after the instruction words,
++	 * so do the same: one command per frame, none for further slices.
++	 */
++	if (avd_h264_early_submit && is_new_frame(run.slice_params)) {
++		avd_h264_submit(ctx);
++		ctx->submitted = true;
++	}
++
+ 	if (run.base.bufs.src->flags & V4L2_BUF_FLAG_M2M_HOLD_CAPTURE_BUF) {
+ 		if (avd->variant->revision == 3)
+ 			reg = (0x18 | ctx->vp_slot << 12);
+diff --git a/avd.h b/avd.h
+index f29598b..ae0c98c 100644
+--- a/avd.h
++++ b/avd.h
+@@ -216,6 +216,9 @@ struct avd_ctx {
+ 
+ 	u8 fifo_idx;
+ 	u8 vp_slot;
++
++	/* codec already wrote the submit/decode command for this job */
++	bool submitted;
+ };
+ 
+ struct avd_buf {

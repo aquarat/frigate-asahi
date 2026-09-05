@@ -1,0 +1,42 @@
+The Meson build system
+Version: 1.11.2
+Source dir: ~/frigate/src/libva-v4l2_request
+Build dir: ~/frigate/src/libva-v4l2_request/build
+Build type: native build
+Project name: libva-v4l2_request
+Project version: 1.2
+C compiler for the host machine: cc (gcc 16.1.1 "cc (GCC) 16.1.1 20260515 (Red Hat 16.1.1-2)")
+C linker for the host machine: cc ld.bfd 2.46.1-1
+Host machine cpu family: aarch64
+Host machine cpu: aarch64
+Found pkg-config: YES (/usr/bin/pkg-config) 2.5.1
+Run-time dependency libva found: YES 1.23.0
+Run-time dependency libdrm found: YES 2.4.134
+Run-time dependency threads found: YES
+Checking if "kernel supports stateless h264" compiles: YES 
+Checking if "kernel supports stateless hevc" compiles: YES 
+Checking if "kernel supports stateless mpeg2" compiles: YES 
+Checking if "kernel supports stateless vp8" compiles: YES 
+Checking if "kernel supports stateless vp9" compiles: YES 
+Checking if "kernel supports stateless av1" compiles: YES 
+Checking whether type "struct v4l2_ctrl_hevc_decode_params" has member "num_delta_pocs_of_ref_rps_idx" : YES 
+Configuring config.h using configuration
+Build targets in project: 1
+
+Found ninja-1.13.2 at /usr/bin/ninja
+ninja: Entering directory `build'
+[1/15] Compiling C object src/v4l2_request_drv_video.so.p/image.c.o
+[2/15] Compiling C object src/v4l2_request_drv_video.so.p/surface.c.o
+[3/15] Compiling C object src/v4l2_request_drv_video.so.p/handles.c.o
+[4/15] Compiling C object src/v4l2_request_drv_video.so.p/codec_vp8.c.o
+[5/15] Compiling C object src/v4l2_request_drv_video.so.p/buffer.c.o
+[6/15] Compiling C object src/v4l2_request_drv_video.so.p/codec_mpeg2.c.o
+[7/15] Compiling C object src/v4l2_request_drv_video.so.p/convert.c.o
+[8/15] Compiling C object src/v4l2_request_drv_video.so.p/driver.c.o
+[9/15] Compiling C object src/v4l2_request_drv_video.so.p/decode.c.o
+[10/15] Compiling C object src/v4l2_request_drv_video.so.p/codec_av1.c.o
+[11/15] Compiling C object src/v4l2_request_drv_video.so.p/context.c.o
+[12/15] Compiling C object src/v4l2_request_drv_video.so.p/codec_vp9.c.o
+[13/15] Compiling C object src/v4l2_request_drv_video.so.p/codec_h264.c.o
+[14/15] Compiling C object src/v4l2_request_drv_video.so.p/codec_hevc.c.o
+[15/15] Linking target src/v4l2_request_drv_video.so

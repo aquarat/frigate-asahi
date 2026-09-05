@@ -1,0 +1,12 @@
+[ 6161.205595] avd 269080000.avd: run: first_mb=0 hold=1 vp=2 fifo=0 size=4124
+[ 6161.211144] avd 269080000.avd: run: first_mb=240 hold=1 vp=2 fifo=0 size=7827
+[ 6161.218282] avd 269080000.avd: run: first_mb=480 hold=1 vp=2 fifo=0 size=6048
+[ 6161.225423] avd 269080000.avd: run: first_mb=680 hold=0 vp=2 fifo=0 size=6845
+[ 6161.225506] avd 269080000.avd: IRQ status=00102 ctx=00000000088b48c5 vp=2 fifo=0 submitted=1
+[ 6161.241045] avd 269080000.avd: IRQ status=01000 ctx=00000000088b48c5 vp=255 fifo=0 submitted=1
+[ 6161.249716] avd 269080000.avd: run: first_mb=0 hold=1 vp=2 fifo=0 size=71
+[ 6161.256482] avd 269080000.avd: run: first_mb=240 hold=1 vp=2 fifo=0 size=30
+[ 6161.269467] avd 269080000.avd: run: first_mb=480 hold=1 vp=2 fifo=0 size=30
+[ 6161.275027] avd 269080000.avd: run: first_mb=680 hold=0 vp=2 fifo=0 size=113
+[ 6161.282072] avd 269080000.avd: IRQ status=00102 ctx=00000000088b48c5 vp=2 fifo=0 submitted=1
+[ 6163.335446] avd 269080000.avd: Frame processing timed out! Vp: 255 (00)

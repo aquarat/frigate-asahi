@@ -1,0 +1,58 @@
+From 91e5bef8b46a7c872fbb724bcd164c4a23f9c6e5 Mon Sep 17 00:00:00 2001
+From: Aquarat <blue@aquarat.co.uk>
+Date: Sat, 5 Sep 2026 19:29:48 +0100
+Subject: [PATCH] [RFC] arm64: dts: apple: t8103: mark the AVD as dma-coherent
+
+Without dma-coherent the AVD's V4L2 buffers are mapped Normal-NC, and
+reading decoded frames back through that mapping runs at ~250 MB/s on
+the M1 (one serialised uncached transaction per load), i.e. ~18 ms of
+CPU per 2304x1296 NV12 frame for any client that copies frames to
+system memory (ffmpeg v4l2request -> swscale, GStreamer videoconvert).
+
+Testing suggests the decoder's DMA is coherent with the CPU caches on
+the T8103. With the driver forcing dev->dma_coherent = true (which is
+exactly what this property does for a device behind a DART: cacheable
+dma_alloc mappings, no dma_sync maintenance), an instrumented driver
+pulled the first 2 MiB of every destination buffer into the caches
+right before starting the decode and compared, on the same CPU after
+the decode-done interrupt, the cached view with the contents after
+"dc civac": 0 stale lines in 450 frames (3 x 150-frame 2304x1296 High
+CABAC decodes), and every decode was bit-identical to software decode
+per frame. The driver's own CPU-written instruction and firmware
+buffers were cacheable in the same test and the decoder consumed them
+correctly, so device reads are coherent as well.
+
+With the property the read-back costs the same as a memcpy from RAM
+(~20 GB/s) for every client and without any cache maintenance:
+ffmpeg -hwaccel v4l2request 2304x1296, 150 frames, decode + copy to
+system memory: 2.75 s user -> 0.08 s user + 0.03 s sys (the
+non-coherent/allow_cache_hints alternative in the driver gives 0.08 s
+user + 0.12 s sys because videobuf2 cleans and invalidates the 13 MB
+planes on every buffer).
+
+Marked RFC: the coherency was established empirically on one T8103,
+not from documentation. It should be confirmed (and checked for the
+T6000/T8112 AVDs) before this is merged; the same result was not
+verified with a rebuilt DTB, only with the equivalent driver-side
+override.
+
+Signed-off-by: <fill in>
+---
+ arch/arm64/boot/dts/apple/t8103.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
+index dfb5f73..63f8bd8 100644
+--- a/arch/arm64/boot/dts/apple/t8103.dtsi
++++ b/arch/arm64/boot/dts/apple/t8103.dtsi
+@@ -1419,6 +1419,7 @@
+ 				<0x2 0x69100000 0x0 0x10000>;
+ 			reg-names = "code", "sram", "mbox", "ctrl";
+ 			iommus = <&avd_dart 0>;
++			dma-coherent;
+ 		};
+ 
+ 		avd_dart: iommu@269010000 {
+-- 
+2.55.0
+

@@ -1,0 +1,82 @@
+ffmpeg version 8765283-vk-b57fbbe Copyright (c) 2000-2026 the FFmpeg developers
+  built with gcc 12 (Debian 12.2.0-14+deb12u1)
+  configuration: --prefix=/opt/ffmpeg-vk --enable-gpl --enable-version3 --enable-static --disable-shared --disable-doc --disable-debug --enable-pic --enable-openssl --enable-libx264 --enable-libopus --enable-libdrm --enable-libudev --enable-v4l2-request --enable-vulkan --enable-libshaderc --pkg-config-flags=--static --extra-cflags='-I/uapi -I/src/vk-headers' --extra-libs='-lstdc++ -lm -lpthread' --extra-version=vk-b57fbbe
+  libavutil      60. 26.100 / 60. 26.100
+  libavcodec     62. 28.100 / 62. 28.100
+  libavformat    62. 12.100 / 62. 12.100
+  libavdevice    62.  3.100 / 62.  3.100
+  libavfilter    11. 14.100 / 11. 14.100
+  libswscale      9.  5.100 /  9.  5.100
+  libswresample   6.  3.100 /  6.  3.100
+[Vulkan @ 0xaaaad03c84d0] Supported layers:
+[Vulkan @ 0xaaaad03c84d0] 	VK_LAYER_MESA_device_select
+[Vulkan @ 0xaaaad03c84d0] 	VK_LAYER_MESA_overlay
+[Vulkan @ 0xaaaad03c84d0] GPU listing:
+[Vulkan @ 0xaaaad03c84d0]     0: Apple M1 (G13G B1) (integrated) (0x0)
+[Vulkan @ 0xaaaad03c84d0] Device 0 selected: Apple M1 (G13G B1) (integrated) (0x0)
+[Vulkan @ 0xaaaad03c84d0] Using device extension VK_KHR_push_descriptor
+[Vulkan @ 0xaaaad03c84d0] Using device extension VK_EXT_physical_device_drm
+[Vulkan @ 0xaaaad03c84d0] Using device extension VK_EXT_shader_object
+[Vulkan @ 0xaaaad03c84d0] Using device extension VK_KHR_shader_subgroup_rotate
+[Vulkan @ 0xaaaad03c84d0] Using device extension VK_EXT_host_image_copy
+[Vulkan @ 0xaaaad03c84d0] Using device extension VK_KHR_workgroup_memory_explicit_layout
+[Vulkan @ 0xaaaad03c84d0] Using device extension VK_KHR_shader_relaxed_extended_instruction
+[Vulkan @ 0xaaaad03c84d0] Using device extension VK_EXT_shader_replicated_composites
+[Vulkan @ 0xaaaad03c84d0] Using device extension VK_KHR_shader_expect_assume
+[Vulkan @ 0xaaaad03c84d0] Using device extension VK_KHR_external_memory_fd
+[Vulkan @ 0xaaaad03c84d0] Using device extension VK_EXT_external_memory_dma_buf
+[Vulkan @ 0xaaaad03c84d0] Using device extension VK_EXT_image_drm_format_modifier
+[Vulkan @ 0xaaaad03c84d0] Using device extension VK_KHR_external_semaphore_fd
+[Vulkan @ 0xaaaad03c84d0] Queue families:
+[Vulkan @ 0xaaaad03c84d0]     0: graphics compute transfer sparse (queues: 1)
+[Vulkan @ 0xaaaad03c84d0] Using device: Apple M1 (G13G B1)
+[Vulkan @ 0xaaaad03c84d0] Alignments:
+[Vulkan @ 0xaaaad03c84d0]     optimalBufferCopyRowPitchAlignment: 1
+[Vulkan @ 0xaaaad03c84d0]     minMemoryMapAlignment:              16384
+[Vulkan @ 0xaaaad03c84d0]     nonCoherentAtomSize:                64
+[Vulkan @ 0xaaaad03c84d0] Using queue family 0 (queues: 1) for graphics compute transfers
+[h264 @ 0xaaaad04194f0] Reinit context to 2304x1296, pix_fmt: yuv420p
+[vist#0:0/h264 @ 0xaaaad040ee90] Selecting decoder 'h264' because of requested hwaccel method v4l2request
+Input #0, h264, from '/research/cam2-10s.h264':
+  Duration: N/A, bitrate: N/A
+  Stream #0:0: Video: h264 (High), 1 reference frame, yuv420p(progressive, left), 2304x1296, 25 fps, 30 tbr, 1200k tbn
+[out#0/rawvideo @ 0xaaaad03d3ff0] No explicit maps, mapping streams automatically...
+[vost#0:0/rawvideo @ 0xaaaad040f300] Created video stream from input stream 0:0
+[Parsed_fps_0 @ 0xaaaad03eaee0] 0 frames in, 0 frames out; 0 frames dropped, 0 frames duplicated.
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> rawvideo (native))
+[vost#0:0/rawvideo @ 0xaaaad040f300] Starting thread...
+[vf#0:0 @ 0xaaaad0420a00] Starting thread...
+[vist#0:0/h264 @ 0xaaaad040ee90] [dec:h264 @ 0xaaaad0421520] Starting thread...
+[in#0/h264 @ 0xaaaad0458460] Starting thread...
+Press [q] to stop, [?] for help
+[AVHWFramesContext @ 0xffff4007e570] Using V4L2 media driver avd (7.1.6) for S264
+[AVHWFramesContext @ 0xffff4007e570] Using CAPTURE buffer format NV12 (2304x1296)
+[h264 @ 0xaaaad041ffa0] Reinit context to 2304x1296, pix_fmt: drm_prime
+[graph -1 input from stream 0:0 @ 0xffff54007bd0] w:2304 h:1296 pixfmt:drm_prime tb:1/1200000 fr:15/1 sar:0/1 csp:unknown range:unknown alpha:unspecified
+[auto_scale_0 @ 0xffff54008870] w:iw h:ih flags:'' interl:0
+[Parsed_format_6 @ 0xffff54007060] auto-inserting filter 'auto_scale_0' between the filter 'Parsed_format_5' and the filter 'Parsed_format_6'
+[Parsed_fps_0 @ 0xffff54002840] fps=5/1
+[Parsed_hwmap_1 @ 0xffff54002ad0] Failed to created derived device context: -38.
+[Parsed_hwmap_1 @ 0xffff54002ad0] Failed to configure output pad on Parsed_hwmap_1
+[Parsed_fps_0 @ 0xffff54002840] 0 frames in, 0 frames out; 0 frames dropped, 0 frames duplicated.
+[vf#0:0 @ 0xaaaad0420a00] Error reinitializing filters!
+[vf#0:0 @ 0xaaaad0420a00] Task finished with error code: -38 (Function not implemented)
+[vf#0:0 @ 0xaaaad0420a00] Terminating thread with return code -38 (Function not implemented)
+[vost#0:0/rawvideo @ 0xaaaad040f300] [enc:rawvideo @ 0xaaaad0420510] Encoder thread received EOF
+[vost#0:0/rawvideo @ 0xaaaad040f300] [enc:rawvideo @ 0xaaaad0420510] Could not open encoder before EOF
+[vost#0:0/rawvideo @ 0xaaaad040f300] Task finished with error code: -22 (Invalid argument)
+[vost#0:0/rawvideo @ 0xaaaad040f300] Terminating thread with return code -22 (Invalid argument)
+[in#0/h264 @ 0xaaaad0458460] Terminating thread with return code 0 (success)
+[vist#0:0/h264 @ 0xaaaad040ee90] [dec:h264 @ 0xaaaad0421520] Decoder returned EOF, finishing
+[vist#0:0/h264 @ 0xaaaad040ee90] [dec:h264 @ 0xaaaad0421520] Terminating thread with return code 0 (success)
+[out#0/rawvideo @ 0xaaaad03d3ff0] Nothing was written into output file, because at least one of its streams received no packets.
+frame=    0 fps=0.0 q=0.0 Lsize=       0KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:00.04    
+[AVIOContext @ 0xaaaad057e960] Statistics: 0 bytes written, 0 seeks, 0 writeouts
+[in#0/h264 @ 0xaaaad0458460] Input file #0 (/research/cam2-10s.h264):
+[in#0/h264 @ 0xaaaad0458460]   Input stream #0:0 (video): 11 packets read (244341 bytes); 2 frames decoded; 0 decode errors; 
+[in#0/h264 @ 0xaaaad0458460]   Total: 11 packets (244341 bytes) demuxed
+[AVIOContext @ 0xaaaad04589c0] Statistics: 524288 bytes read, 0 seeks
+Conversion failed!
+
+Exiting with exit code -38

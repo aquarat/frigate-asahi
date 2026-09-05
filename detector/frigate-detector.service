@@ -1,0 +1,41 @@
+# Host-side Frigate ZMQ object detector (ncnn on the GPU via Vulkan; --backend cpu = ONNX Runtime).
+# Installed copy: /etc/systemd/system/frigate-detector.service
+# Source copy:    /home/<user>/frigate/detector/frigate-detector.service
+# EXAMPLE: replace /home/<user>/frigate with the checkout path and <user> with the account that owns
+# it (systemd system units do not expand $HOME/$FRIGATE_HOME), then copy to /etc/systemd/system/.
+[Unit]
+Description=Frigate ZMQ object detector (Vulkan GPU / ONNX Runtime CPU)
+Documentation=file:///home/<user>/frigate/detector/README-linux.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=<user>
+Group=<user>
+WorkingDirectory=/home/<user>/frigate/detector
+Environment=PYTHONUNBUFFERED=1
+# Backend/endpoint/threads can also be set via DETECTOR_* env vars; CLI flags win.
+# Backends: vulkan (alias -> ncnn-vulkan, GPU, auto-falls back to cpu if Vulkan fails), ncnn-vulkan,
+#           mnn-vulkan, ncnn-cpu, cpu (ONNX Runtime). To revert to CPU: change --backend to cpu.
+ExecStart=/home/<user>/frigate/detector/venv/bin/python /home/<user>/frigate/detector/detector/zmq_onnx_client.py \
+    --backend vulkan \
+    --threads 4 \
+    --endpoint tcp://0.0.0.0:5555 \
+    --models-dir /home/<user>/frigate/detector/models \
+    --model AUTO
+Restart=always
+RestartSec=3
+Nice=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=frigate-detector
+# Hardening (light: the service needs to write models/ when Frigate pushes a model)
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/home/<user>/frigate/detector/models
+
+[Install]
+WantedBy=multi-user.target

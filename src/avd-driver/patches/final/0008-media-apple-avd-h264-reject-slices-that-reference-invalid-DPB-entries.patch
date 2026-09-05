@@ -1,0 +1,116 @@
+From 511eae1308dd4e5fe96ab125269a3db3097db273 Mon Sep 17 00:00:00 2001
+From: Aquarat <blue@aquarat.co.uk>
+Date: Sat, 5 Sep 2026 20:07:31 +0100
+Subject: [PATCH] media: apple: avd: h264: reject slices that reference invalid
+ DPB entries
+
+stream_refs() pushes a reference header and its RVRA addresses only for
+the DPB entries flagged V4L2_H264_DPB_ENTRY_FLAG_VALID, and the slice
+commands index the references by DPB index. Nothing checks that the
+indices in ref_pic_list0/1 point at VALID entries, so a slice that
+references any other entry makes the VP dereference an uninitialised
+reference slot:
+
+  apple-dart 269010000.iommu: translation fault: status:0x80000002
+      stream:0 code:0x2 (NO PMD FOR IOVA) at 0x8080800
+  avd 269080000.avd: Frame processing timed out! Vp: 255 (00)
+
+i.e. a DART fault, a frame that never completes and, two seconds later,
+a watchdog reset of the VP, which also disturbs the other contexts that
+are decoding at the time.
+
+This is what happens every time a client starts decoding on a non-IDR
+frame, e.g. ffmpeg's v4l2request hwaccel joining a live RTSP stream
+mid-GOP: the decoder has no reference pictures yet, the DPB control is
+empty, and the hwaccel leaves the index of a reference it cannot find
+at 0.
+
+Validate the ref lists of P and B slices before anything is pushed to
+the hardware and fail the request with -EINVAL, so the client gets the
+capture buffer back with V4L2_BUF_FLAG_ERROR just like for corrupt
+input and the hardware is never programmed with the bogus references.
+Other stateless drivers (hantro, rkvdec) handle missing references by
+substituting the destination buffer; here the safe choice is to reject
+the slice, since the reference slot table cannot be filled for an entry
+that has no buffer.
+
+Signed-off-by: <fill in>
+---
+ avd-h264.c | 54 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+
+diff --git a/drivers/media/platform/apple/avd/avd-h264.c b/drivers/media/platform/apple/avd/avd-h264.c
+index d61266f..9341c00 100644
+--- a/drivers/media/platform/apple/avd/avd-h264.c
++++ b/drivers/media/platform/apple/avd/avd-h264.c
+@@ -667,6 +667,54 @@ static void avd_h264_run_preamble(struct avd_ctx *ctx, struct avd_h264_run *run)
+ 	run->addresses.sps = run->addresses.y + (dst_len - sps_len);
+ }
+ 
++/*
++ * Check that every reference in the slice's ref lists points at a DPB entry
++ * that is VALID. stream_refs() only pushes a reference header (and its RVRA
++ * addresses) for VALID entries and the slice command indexes those by DPB
++ * index, so a reference to any other entry makes the VP dereference an
++ * uninitialised reference slot: that ends in a DART translation fault, a
++ * frame that never completes and a watchdog reset of the VP, which also
++ * disturbs the other contexts. It happens whenever a client starts decoding
++ * on a non-IDR frame (joining a live RTSP stream mid-GOP): ffmpeg's
++ * v4l2request hwaccel leaves the index of a missing reference at 0 and the
++ * DPB is empty. Refuse such slices before anything is pushed; the client gets
++ * the capture buffer back with V4L2_BUF_FLAG_ERROR, as for corrupt input.
++ */
++static bool avd_h264_refs_valid(const struct avd_h264_run *run)
++{
++	const struct v4l2_ctrl_h264_slice_params *sl = run->slice_params;
++	const struct v4l2_h264_dpb_entry *dpb = run->decode_params->dpb;
++	const struct v4l2_h264_reference *lists[2] = {
++		sl->ref_pic_list0, sl->ref_pic_list1
++	};
++	u32 num[2] = {
++		sl->num_ref_idx_l0_active_minus1 + 1,
++		sl->num_ref_idx_l1_active_minus1 + 1
++	};
++	int nlists;
++
++	if (sl->slice_type == V4L2_H264_SLICE_TYPE_P)
++		nlists = 1;
++	else if (sl->slice_type == V4L2_H264_SLICE_TYPE_B)
++		nlists = 2;
++	else
++		return true;
++
++	for (int l = 0; l < nlists; l++) {
++		if (num[l] > V4L2_H264_REF_LIST_LEN)
++			return false;
++		for (u32 i = 0; i < num[l]; i++) {
++			u8 idx = lists[l][i].index;
++
++			if (idx >= V4L2_H264_NUM_DPB_ENTRIES ||
++			    !(dpb[idx].flags & V4L2_H264_DPB_ENTRY_FLAG_VALID))
++				return false;
++		}
++	}
++
++	return true;
++}
++
+ static int avd_h264_run(struct avd_ctx *ctx)
+ {
+ 	struct avd_dev *avd = ctx->dev;
+@@ -691,6 +739,12 @@ static int avd_h264_run(struct avd_ctx *ctx)
+ 
+ 	avd_run_postamble(ctx, &run.base);
+ 
++	if (!avd_h264_refs_valid(&run)) {
++		dev_dbg_ratelimited(avd->dev,
++				    "slice references an invalid DPB entry, dropping frame\n");
++		return -EINVAL;
++	}
++
+ 	if (is_new_frame(run.slice_params)) {
+ 		ret = alloc_slots(avd, ctx, AVD_CODEC_H264);
+ 		if (ret) {
+-- 
+2.55.0
+

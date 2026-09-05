@@ -1,0 +1,267 @@
+# SANITISED EXAMPLE exported from the live config.yaml: every <placeholder> and the cam1..cam5 names must be
+# replaced with real values; the go2rtc onvif:// lines carry the camera credentials.
+# Frigate config for <nvr-host> (<nvr-ip>) — ported 2026-09-05 from the Mac
+# (<mac-ip>) config; the original is kept alongside as config.yaml.mac-20260905.
+# Differences from the Mac are commented inline. Everything else is verbatim.
+# STAGED COPY (staging/config.yaml): adds ffmpeg.path + hwaccel_args for AVD/Vulkan. Apply with staging/APPLY.md.
+mqtt:
+  enabled: true
+  host: <mqtt-host>
+  # While the Mac instance is still live, publish under a separate prefix and
+  # client id so the home-automation frigate integration (which listens on
+  # `frigate/`) is not fed by two NVRs at once. When this box takes over,
+  # remove these two lines to return to the defaults (`frigate`).
+  topic_prefix: frigate2
+  client_id: frigate2
+
+# No `networking.listen.internal` here: 5000 was only moved to 5050 on the Mac
+# because macOS AirPlay holds port 5000. docker-compose binds 5000 to 127.0.0.1.
+
+# Hardware decode on the Apple AVD (V4L2 Request API) + zero-copy Vulkan
+# rescale for the detect stream. `path` is the wrapper directory mounted by
+# docker-compose.yml (ffmpeg-avd-vk/bin/ffmpeg): it runs /opt/ffmpeg-vk under
+# the host's loader and turns `-hwaccel v4l2request` + `fps=5,scale=640:360`
+# into the hwmap/scale_vulkan chain. Frigate's own preset names cannot express
+# this chain (its `preset-vulkan` is Vulkan *video decode*, which Honeykrisp
+# does not have); patches/frigate/ has the upstream-style preset instead.
+# Requires the patched apple_avd module (src/avd-driver, `apple-avd-fixed.ko`).
+# Rollback: delete these 4 lines (ffmpeg falls back to CPU decode automatically
+# if /dev/video0 is missing, but the wrapper path must exist).
+# See research/AVD_FRIGATE_INTEGRATION.md.
+ffmpeg:
+  path: /opt/ffmpeg-avd-vk
+  hwaccel_args:
+    - -hwaccel
+    - v4l2request
+
+cameras:
+  cam1:
+    ffmpeg:
+      inputs:
+        - path: rtsp://127.0.0.1:8554/cam1
+          input_args: preset-rtsp-restream
+          roles:
+            - record
+            - detect
+    detect:
+      enabled: true
+      fps: 5
+      width: 640
+      height: 360
+    record:
+      enabled: true
+      motion:
+        days: 1
+      alerts:
+        retain:
+          days: 14
+          mode: motion
+      detections:
+        retain:
+          days: 14
+          mode: motion
+    snapshots:
+      enabled: true
+      retain:
+        default: 14
+    objects:
+      track:
+        - person
+        - cat
+        - fox
+        - bird
+  cam2:
+    ffmpeg:
+      inputs:
+        - path: rtsp://127.0.0.1:8554/cam2
+          input_args: preset-rtsp-restream
+          roles:
+            - record
+            - detect
+    detect:
+      enabled: true
+      fps: 5
+      width: 640
+      height: 360
+    record:
+      enabled: true
+      motion:
+        days: 1
+      alerts:
+        retain:
+          days: 14
+          mode: motion
+      detections:
+        retain:
+          days: 14
+          mode: motion
+    snapshots:
+      enabled: true
+      retain:
+        default: 14
+    objects:
+      track:
+        - person
+        - cat
+        - fox
+        - bird
+    onvif:
+      host: <camera-2-ip>
+      port: 2020
+      user: <onvif-user>
+      password: <onvif-password>
+  cam3:
+    ffmpeg:
+      inputs:
+        - path: rtsp://127.0.0.1:8554/cam3
+          input_args: preset-rtsp-restream
+          roles:
+            - record
+            - detect
+    detect:
+      enabled: true
+      fps: 5
+      width: 640
+      height: 360
+    record:
+      enabled: true
+      motion:
+        days: 1
+      alerts:
+        retain:
+          days: 14
+          mode: motion
+      detections:
+        retain:
+          days: 14
+          mode: motion
+    snapshots:
+      enabled: true
+      retain:
+        default: 14
+    objects:
+      track:
+        - person
+        - cat
+        - fox
+        - bird
+  cam4:
+    ffmpeg:
+      inputs:
+        - path: rtsp://127.0.0.1:8554/cam4
+          input_args: preset-rtsp-restream
+          roles:
+            - record
+            - detect
+    detect:
+      enabled: true
+      fps: 5
+      width: 640
+      height: 360
+    record:
+      enabled: true
+      motion:
+        days: 1
+      alerts:
+        retain:
+          days: 14
+          mode: motion
+      detections:
+        retain:
+          days: 14
+          mode: motion
+    snapshots:
+      enabled: true
+      retain:
+        default: 14
+    objects:
+      track:
+        - person
+        - cat
+        - fox
+        - bird
+  cam5:
+    ffmpeg:
+      inputs:
+        - path: rtsp://127.0.0.1:8554/cam5
+          input_args: preset-rtsp-restream
+          roles:
+            - record
+            - detect
+    detect:
+      enabled: true
+      fps: 5
+      width: 640
+      height: 360
+    record:
+      enabled: true
+      motion:
+        days: 1
+      alerts:
+        retain:
+          days: 14
+          mode: motion
+      detections:
+        retain:
+          days: 14
+          mode: motion
+    snapshots:
+      enabled: true
+      retain:
+        default: 14
+    objects:
+      track:
+        - person
+        - cat
+        - fox
+        - bird
+
+version: 0.18-0
+semantic_search:
+  enabled: true
+  model_size: large
+face_recognition:
+  enabled: true
+  model_size: large
+lpr:
+  enabled: false
+classification:
+  bird:
+    enabled: false
+
+detectors:
+  # Host-side ZMQ detector (systemd unit frigate-detector.service), same
+  # protocol and code lineage as the Mac's Apple Silicon detector, but running
+  # ONNX Runtime on the CPU for now. The Vulkan/OpenCL backend slots in here.
+  host_zmq:
+    type: zmq
+    endpoint: tcp://host.docker.internal:5555
+
+model:
+  model_type: yolo-generic
+  width: 320
+  height: 320
+  input_tensor: nchw
+  input_dtype: float
+  path: /config/model_cache/fox-person-cat-320.onnx
+  labelmap_path: /config/model_cache/fox-person-cat-labelmap.txt
+go2rtc:
+  webrtc:
+    candidates:
+      - <nvr-ip>:8555   # this host's LAN IP (was the Mac's <mac-ip>)
+  streams:
+    cam1:
+      - onvif://<onvif-user>:<onvif-password>@<camera-1-ip>:2020
+      - ffmpeg:cam1#audio=opus
+    cam2:
+      - onvif://<onvif-user>:<onvif-password>@<camera-2-ip>:2020
+      - ffmpeg:cam2#audio=opus
+    cam3:
+      - onvif://<onvif-user>:<onvif-password>@<camera-3-ip>:2020
+      - ffmpeg:cam3#audio=opus
+    cam4:
+      - onvif://<onvif-user>:<onvif-password>@<camera-4-ip>:2020
+      - ffmpeg:cam4#audio=opus
+    cam5:
+      - onvif://<onvif-user>:<onvif-password>@<camera-5-ip>:2020
+      - ffmpeg:cam5#audio=opus

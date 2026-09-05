@@ -1,0 +1,6 @@
+== hw (zero-copy chain, full rate, framemd5)
+rc=0
+0
+== sw reference (same scaler chain on the CPU-decoded frames is not bit-identical; compare frame counts and hw-vs-hw md5 instead)
+hw frames out: 120   sw frames out: 120
+--- dmesg since start:

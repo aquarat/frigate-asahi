@@ -1,0 +1,100 @@
+From fbc65f8ece6f9ab640148c3edacbbfad7976afde Mon Sep 17 00:00:00 2001
+From: Aquarat <blue@aquarat.co.uk>
+Date: Sat, 5 Sep 2026 20:02:08 +0100
+Subject: [PATCH] Add ffmpeg presets for Apple silicon (AVD via v4l2request,
+ Vulkan scaling)
+
+On Apple silicon running Asahi Linux the video decoder (AVD) is exposed as a
+V4L2 stateless decoder that ffmpeg drives through the Request API (`-hwaccel
+v4l2request`, Kwiboo's v4l2-request branch), and the GPU is available through
+Vulkan (Mesa Honeykrisp). Add two presets:
+
+* preset-apple-avd: hardware decode, decoded frames read back to system
+  memory, the usual `fps=N,scale=W:H` swscale chain. Decode itself is
+  essentially free; with cacheable capture buffers the read-back + swscale
+  costs ~0.5 s CPU per 150 frames of 2304x1296 vs ~0.6 s for software decode
+  with -threads 2.
+* preset-apple-avd-vulkan: `-hwaccel_output_format drm_prime` keeps the
+  frames in the decoder's dma-bufs, `hwmap` imports them into Vulkan, two
+  `scale_vulkan` steps (halve, then to detect size: bilinear is exact at 2x,
+  ~31 dB luma PSNR vs swscale bicubic instead of ~25 dB for a single step)
+  scale on the GPU and only the 640x360 result is downloaded. 0.21-0.24 s CPU
+  per 150 frames on an M1, i.e. ~35 % of software decode, bit-stable output,
+  4 concurrent streams fine.
+
+Both need an ffmpeg with the v4l2request hwaccel (not in Frigate's bundled
+builds), the second one also Vulkan + libshaderc (`scale_vulkan`); they are
+meant to be used with `ffmpeg.path` pointing at such a build and the container
+given /dev/video0, /dev/media0 and /dev/dri/renderD128. No encode presets are
+added: birdseye/timelapse fall back to libx264 (`default`), as the AVD is
+decode-only.
+
+Measured on an M1 Mac mini, Fedora Asahi 44, kernel 7.1.6 with the apple-avd
+driver fixes queued for 7.1.8/7.1.12 plus cacheable capture buffers, ffmpeg
+Kwiboo v4l2-request-n8.1 + 4 patches (cacheable buffers, Vulkan import of
+NV12 dma-bufs, Honeykrisp plane-offset quirk).
+
+TODO before submitting upstream: docs/configuration/hardware_acceleration_video.md
+section for Apple silicon, and a note that `auto` detection does not select
+these presets.
+---
+ frigate/const.py          |  2 ++
+ frigate/ffmpeg_presets.py | 15 +++++++++++++++
+ 2 files changed, 17 insertions(+)
+
+diff --git a/frigate/const.py b/frigate/const.py
+index 07537ea..8a2ec10 100644
+--- a/frigate/const.py
++++ b/frigate/const.py
+@@ -92,6 +92,8 @@ FFMPEG_HWACCEL_VAAPI = "preset-vaapi"
+ FFMPEG_HWACCEL_VULKAN = "preset-vulkan"
+ FFMPEG_HWACCEL_RKMPP = "preset-rkmpp"
+ FFMPEG_HWACCEL_AMF = "preset-amd-amf"
++FFMPEG_HWACCEL_APPLE_AVD = "preset-apple-avd"
++FFMPEG_HWACCEL_APPLE_AVD_VULKAN = "preset-apple-avd-vulkan"
+ FFMPEG_HVC1_ARGS = ["-tag:v", "hvc1"]
+ 
+ # RKNN constants
+diff --git a/frigate/ffmpeg_presets.py b/frigate/ffmpeg_presets.py
+index c314b30..ef9a300 100644
+--- a/frigate/ffmpeg_presets.py
++++ b/frigate/ffmpeg_presets.py
+@@ -8,6 +8,8 @@ from typing import Any, Optional
+ from frigate.const import (
+     FFMPEG_HVC1_ARGS,
+     FFMPEG_HWACCEL_AMF,
++    FFMPEG_HWACCEL_APPLE_AVD,
++    FFMPEG_HWACCEL_APPLE_AVD_VULKAN,
+     FFMPEG_HWACCEL_NVIDIA,
+     FFMPEG_HWACCEL_RKMPP,
+     FFMPEG_HWACCEL_VAAPI,
+@@ -94,6 +96,13 @@ PRESETS_HW_ACCEL_DECODE = {
+     # experimental presets
+     FFMPEG_HWACCEL_VULKAN: "-hwaccel vulkan -init_hw_device vulkan=gpu:0 -filter_hw_device gpu -hwaccel_output_format vulkan",
+     FFMPEG_HWACCEL_AMF: "-hwaccel amf -init_hw_device amf=gpu:0 -filter_hw_device gpu -hwaccel_output_format amf",
++    # Apple silicon (Asahi Linux): the AVD stateless decoder through the V4L2 Request API.
++    # preset-apple-avd reads the decoded frames back to system memory and scales with swscale;
++    # preset-apple-avd-vulkan keeps them in the decoder's dma-bufs, maps them into Vulkan
++    # (Honeykrisp) and scales on the GPU. Both need an ffmpeg with the v4l2request hwaccel
++    # (and Vulkan + scale_vulkan for the latter); see docs/configuration/hardware_acceleration_video.md.
++    FFMPEG_HWACCEL_APPLE_AVD: "-hwaccel v4l2request",
++    FFMPEG_HWACCEL_APPLE_AVD_VULKAN: "-init_hw_device vulkan=vk -filter_hw_device vk -hwaccel v4l2request -hwaccel_output_format drm_prime",
+ }
+ PRESETS_HW_ACCEL_DECODE["preset-nvidia-h264"] = PRESETS_HW_ACCEL_DECODE[
+     FFMPEG_HWACCEL_NVIDIA
+@@ -131,6 +140,12 @@ PRESETS_HW_ACCEL_SCALE = {
+     # experimental presets
+     FFMPEG_HWACCEL_VULKAN: "-r {0} -vf fps={0},hwupload,scale_vulkan=w={1}:h={2},hwdownload",
+     FFMPEG_HWACCEL_AMF: "-r {0} -vf fps={0},hwupload,scale_amf=w={1}:h={2},hwdownload",
++    FFMPEG_HWACCEL_APPLE_AVD: "-r {0} -vf fps={0},scale={1}:{2}",
++    # fps first so only the frames that are kept get mapped; scale_vulkan is bilinear, so halve the
++    # frame first (exact at 2x) and then scale to the detect size, which keeps luma at ~31 dB PSNR
++    # vs swscale's bicubic instead of ~25 dB for a single 3.6x step; small sources (iw/2 < w)
++    # degenerate to a single step. scale_vulkan keeps NV12, so download as nv12 and convert.
++    FFMPEG_HWACCEL_APPLE_AVD_VULKAN: "-r {0} -vf fps={0},hwmap,scale_vulkan=w=max(iw/2\\,{1}):h=max(ih/2\\,{2}),scale_vulkan=w={1}:h={2},hwdownload,format=nv12,format=yuv420p",
+ }
+ PRESETS_HW_ACCEL_SCALE["preset-nvidia-h264"] = PRESETS_HW_ACCEL_SCALE[
+     FFMPEG_HWACCEL_NVIDIA
+-- 
+2.55.0
+

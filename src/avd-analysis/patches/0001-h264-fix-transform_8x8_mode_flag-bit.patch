@@ -1,0 +1,43 @@
+From: AVD root-cause analysis <blue@aquarat.co.uk>
+Subject: [PATCH 1/7] media: apple: avd: h264: fix transform_8x8_mode_flag encoding
+
+stream_hdr() passes the raw V4L2 PPS flag (V4L2_H264_PPS_FLAG_TRANSFORM_8X8_MODE
+== 0x40) into AVD_HDR_COMMON_LUMA_TBS(), i.e. FIELD_PREP(GENMASK(8, 7), 0x40).
+(0x40 << 7) & 0x180 is 0, and FIELD_PREP only checks constant values, so bit 7
+of hdr_2c_sps_param is silently never set. The VP then parses High-profile
+8x8-transform slices as 4x4-only and raises DECODE_STATUS_ERR on the first
+frame ("H2 00 error" on T8103). eiln's HAL sets
+boolify(pps.transform_8x8_mode_flag) << 7 (avid/h264/halv3.py:155).
+
+Backport of asahi-7.1.8-1 commit 8e8d72a673ab ("fixup! media: apple: avd:
+define static values and bitmasks"), h264 part.
+
+Expected to flip: f_high_8x8.h264, h_360_high8x8_lowbr.h264, t_320x240_high.h264.
+
+Base: AsahiLinux/linux tag asahi-7.1.6-1 (drivers/media/platform/apple/avd, last driver commit 0d6dcb9b11b4)
+---
+diff --git a/drivers/media/platform/apple/avd/avd-h264.c b/drivers/media/platform/apple/avd/avd-h264.c
+--- a/drivers/media/platform/apple/avd/avd-h264.c
++++ b/drivers/media/platform/apple/avd/avd-h264.c
+@@ -29,6 +29,12 @@
+ #define H264_FLAG_ENTROPY_CODING_MODE(v)	FIELD_PREP(BIT(20), !!(v))
+ #define H264_FLAG_NOT_IDR(v)			FIELD_PREP(BIT(21), !!(v))
+ 
++/*
++ * hdr_2c bit 7: transform_8x8_mode_flag. Must be a boolean; passing the raw
++ * V4L2 flag value (0x40) through a 2-bit FIELD_PREP masks it to zero.
++ */
++#define H264_TRANSFORM_8X8_MODE(v)		FIELD_PREP(BIT(7), !!(v))
++
+ 
+ struct avd_h264_run {
+ 	struct avd_run base;
+@@ -216,7 +222,7 @@
+ 		| AVD_HDR_COMMON_BIT_DEPTH_C(sps->bit_depth_chroma_minus8)
+ 		| AVD_HDR_COMMON_MIN_LUMA_CBS(1)
+ 		| AVD_HDR_COMMON_LUMA_CBS(1)
+-		| AVD_HDR_COMMON_LUMA_TBS(pps->flags & V4L2_H264_PPS_FLAG_TRANSFORM_8X8_MODE)
++		| H264_TRANSFORM_8X8_MODE(pps->flags & V4L2_H264_PPS_FLAG_TRANSFORM_8X8_MODE)
+ 		| AVD_HDR_COMMON_FLAG0(sps->flags & V4L2_H264_SPS_FLAG_DIRECT_8X8_INFERENCE),
+ 		"hdr_2c_sps_param");
+ 

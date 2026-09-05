@@ -1,0 +1,23 @@
+bash: line 3: docker: command not found
+=== 1. Frigate cam2 detect+record command (captured from ), hwaccel_args added, 22 s
+detect pipe: 38016000 bytes = 110.0 frames of 640x360 yuv420p
+rc=124
+[aac @ 0xaaaaae92be10] Too many bits 8832.000000 > 6144 per frame requested, clamping to max
+--- record segments:
+total 3072
+-rw-r--r--. 1 root root 1763766 Sep  5 20:01 cam2@20260905200140+0000.mp4
+-rw-r--r--. 1 root root 1380044 Sep  5 20:01 cam2@20260905200150+0000.mp4
+/tmp/cache/cam2@20260905200140+0000.mp4: h264,2304,1296 aac 12.799000 
+/tmp/cache/cam2@20260905200150+0000.mp4: h264,2304,1296 aac 9.488000 
+=== 2. Frigate ffprobe (util/services.py ffprobe_stream)
+[('video', 'h264', 2304, 1296), ('audio', 'pcm_alaw', None, None)]
+=== 3. jsmpeg/birdseye-style encode from rawvideo (no hwaccel args -> pass-through)
+406456
+0
+=== 4. export-style -c copy from a record segment (pass-through)
+rc=0 1763766 bytes
+0
+=== 5. same detect command with AVD_VK_REWRITE=0 (hw decode + read-back + swscale), 8 s
+14515200
+[ffmpeg-avd-vk] rewrite=0 (hwaccel=1 rawvideo=1 vf=1/1 explicit=0 scale=2stage) exec: /host-lib64-ld.so --library-path /
+=== 6. Honeykrisp really used? (libvulkan_asahi mapped by the ffmpeg process during a 6 s run)

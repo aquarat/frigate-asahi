@@ -1,0 +1,47 @@
+ffmpeg stats and -progress period set to 30.
+Input #0, rtsp, from 'rtsp://host.docker.internal:8554/cam2':
+  Metadata:
+    title           : go2rtc/1.9.13
+  Duration: N/A, start: 0.000000, bitrate: N/A
+  Stream #0:0: Audio: pcm_alaw, 8000 Hz, mono, s16, 64 kb/s
+  Stream #0:1: Video: h264 (High), yuv420p(progressive), 2304x1296, 15 fps, 25 tbr, 90k tbn, start 0.041000
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+  Stream #0:0 -> #0:1 (pcm_alaw (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+[AVHWFramesContext @ 0xffff38045c20] Using V4L2 media driver avd (7.1.6) for S264
+Output #0, null, to 'pipe:':
+  Metadata:
+    title           : go2rtc/1.9.13
+    encoder         : Lavf62.12.100
+  Stream #0:0: Video: wrapped_avframe, yuv420p(progressive), 640x360, q=2-31, 200 kb/s, 5 fps, 5 tbn
+    Metadata:
+      encoder         : Lavc62.28.100 wrapped_avframe
+  Stream #0:1: Audio: pcm_s16le, 8000 Hz, mono, s16, 128 kb/s
+    Metadata:
+      encoder         : Lavc62.28.100 pcm_s16le
+frame=  163 fps=5.4 q=-0.0 size=N/A time=00:00:32.60 bitrate=N/A dup=7 drop=0 speed=1.09x elapsed=0:00:30.00    frame=  313 fps=5.2 q=-0.0 size=N/A time=00:01:02.60 bitrate=N/A dup=7 drop=0 speed=1.04x elapsed=0:01:00.00    frame=  463 fps=5.1 q=-0.0 size=N/A time=00:01:32.60 bitrate=N/A dup=7 drop=0 speed=1.03x elapsed=0:01:30.00    frame=  613 fps=5.1 q=-0.0 size=N/A time=00:02:02.60 bitrate=N/A dup=7 drop=0 speed=1.02x elapsed=0:02:00.00    frame=  763 fps=5.1 q=-0.0 size=N/A time=00:02:32.60 bitrate=N/A dup=7 drop=0 speed=1.02x elapsed=0:02:30.00    frame=  913 fps=5.1 q=-0.0 size=N/A time=00:03:02.60 bitrate=N/A dup=7 drop=0 speed=1.01x elapsed=0:03:00.00    frame= 1063 fps=5.1 q=-0.0 size=N/A time=00:03:32.60 bitrate=N/A dup=7 drop=0 speed=1.01x elapsed=0:03:30.00    frame= 1213 fps=5.1 q=-0.0 size=N/A time=00:04:02.60 bitrate=N/A dup=7 drop=0 speed=1.01x elapsed=0:04:00.00    frame= 1363 fps=5.0 q=-0.0 size=N/A time=00:04:32.60 bitrate=N/A dup=7 drop=0 speed=1.01x elapsed=0:04:30.00    frame= 1513 fps=5.0 q=-0.0 size=N/A time=00:05:02.60 bitrate=N/A dup=7 drop=0 speed=1.01x elapsed=0:05:00.00    frame= 1663 fps=5.0 q=-0.0 size=N/A time=00:05:32.60 bitrate=N/A dup=7 drop=0 speed=1.01x elapsed=0:05:30.00    frame= 1813 fps=5.0 q=-0.0 size=N/A time=00:06:02.60 bitrate=N/A dup=7 drop=0 speed=1.01x elapsed=0:06:00.00    frame= 1963 fps=5.0 q=-0.0 size=N/A time=00:06:32.60 bitrate=N/A dup=7 drop=0 speed=1.01x elapsed=0:06:30.00    frame= 2113 fps=5.0 q=-0.0 size=N/A time=00:07:02.60 bitrate=N/A dup=7 drop=0 speed=1.01x elapsed=0:07:00.00    frame= 2263 fps=5.0 q=-0.0 size=N/A time=00:07:32.60 bitrate=N/A dup=7 drop=0 speed=1.01x elapsed=0:07:30.00    frame= 2413 fps=5.0 q=-0.0 size=N/A time=00:08:02.60 bitrate=N/A dup=7 drop=0 speed=1.01x elapsed=0:08:00.00    frame= 2563 fps=5.0 q=-0.0 size=N/A time=00:08:32.60 bitrate=N/A dup=7 drop=0 speed=1.01x elapsed=0:08:30.00    frame= 2713 fps=5.0 q=-0.0 size=N/A time=00:09:02.60 bitrate=N/A dup=7 drop=0 speed=   1x elapsed=0:09:00.00    frame= 2863 fps=5.0 q=-0.0 size=N/A time=00:09:32.60 bitrate=N/A dup=7 drop=0 speed=   1x elapsed=0:09:30.00    [out#0/null @ 0xaaaab965b060] video:1242KiB audio:9375KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame= 3000 fps=5.0 q=-0.0 Lsize=N/A time=00:10:00.00 bitrate=N/A dup=7 drop=0 speed=   1x elapsed=0:09:57.59    
+	Command being timed: "/host-lib64-ld.so --library-path /host-lib64 /opt/ffmpeg-vk/bin/ffmpeg -hide_banner -loglevel info -stats_period 30 -init_hw_device vulkan=vk -filter_hw_device vk -hwaccel v4l2request -hwaccel_output_format drm_prime -rtsp_transport tcp -timeout 10000000 -i rtsp://host.docker.internal:8554/cam2 -t 600 -r 5 -vf fps=5,hwmap,scale_vulkan=1152:648,scale_vulkan=640:360,hwdownload,format=nv12,format=yuv420p -threads 2 -f null -"
+	User time (seconds): 5.72
+	System time (seconds): 4.61
+	Percent of CPU this job got: 1%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 10:00.87
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 180912
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 8554
+	Voluntary context switches: 100521
+	Involuntary context switches: 19655
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 16384
+	Exit status: 0

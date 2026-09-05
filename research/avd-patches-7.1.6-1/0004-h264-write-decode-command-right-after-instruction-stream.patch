@@ -1,0 +1,125 @@
+From: AVD root-cause analysis <blue@aquarat.co.uk>
+Subject: [PATCH 4/7] media: apple: avd: h264: write the decode command right after the instruction stream
+
+The driver only writes the submit/decode command (ctrl+0x4014 on T8103)
+from the IRQ handler once the VP has reported done ("a vp is done, kick the
+pp and hope for the best"). eiln's hardware-verified T8103 flow
+(m1n1 fw/avd/decoder.py AVDH264Dec.get_disp_frame) and the emulated Apple
+firmware (avd_emu.py w_40104014 "decode command") write it immediately after
+the last instruction word, so VP and PP run pipelined.
+
+Serialising the two stages works for small frames but is the best
+explanation for the bitrate/resolution/CABAC dependent DECODE_STATUS_ERR on
+T8103 (2304x1296 CAVLC 358 KB IDR fails, 97 KB works; 1080p CAVLC 296 KB
+works, 1080p CABAC 290 KB fails): the VP has to stream its residual output
+into a PP that has not been started and stalls once the internal buffering
+is exhausted. T8103 has no pipe_state buffer (AVD_QUIRK_NO_PIPE_STATE).
+
+Write the command after each slice's instruction words (START flag on the
+first slice of a frame, plain command for further slices, like
+avd_hevc_submit()/avd_vp9_submit()) and skip the late submit in the IRQ
+handler. Module parameter avd.h264_early_submit=0 restores the old order.
+
+Expected to flip: g_1296_base.h264, g_1080_main.h264 (with 0002),
+t_1296p_main_cavlc.h264; with 0001 also cam2-10s.h264.
+
+Base: AsahiLinux/linux tag asahi-7.1.6-1 (drivers/media/platform/apple/avd, last driver commit 0d6dcb9b11b4)
+---
+diff --git a/drivers/media/platform/apple/avd/avd-drv.c b/drivers/media/platform/apple/avd/avd-drv.c
+--- a/drivers/media/platform/apple/avd/avd-drv.c
++++ b/drivers/media/platform/apple/avd/avd-drv.c
+@@ -166,6 +166,7 @@
+ 
+ 	free_vp_slot(avd, ctx);
+ 	free_inst_slot(avd, ctx);
++	ctx->submitted = false;
+ 
+ 	writel(0, avd->mbox + AVD_REG_MBOX_IRQ_ENABLE);
+ 	ret = avd_reset(avd);
+@@ -200,10 +201,18 @@
+ 		state = VB2_BUF_STATE_DONE;
+ 
+ 		free_inst_slot(avd, ctx);
++		/* with an early submit the vp-done IRQ may still be pending */
++		if (ctx->submitted && ctx->vp_slot != VP_SLOT_NONE)
++			free_vp_slot(avd, ctx);
++		ctx->submitted = false;
+ 	} else if (status & 0x100) {
+ 		free_vp_slot(avd, ctx);
+-		/* a vp is done, kick the pp and hope for the best */
+-		if(ctx->coded_fmt_desc->ops->submit)
++		/*
++		 * a vp is done, kick the pp and hope for the best -- unless the
++		 * codec already submitted right after pushing the instruction
++		 * stream (the order the firmware-traced sequence uses).
++		 */
++		if (!ctx->submitted && ctx->coded_fmt_desc->ops->submit)
+ 			ctx->coded_fmt_desc->ops->submit(ctx);
+ 
+ 		goto done;
+diff --git a/drivers/media/platform/apple/avd/avd-h264.c b/drivers/media/platform/apple/avd/avd-h264.c
+--- a/drivers/media/platform/apple/avd/avd-h264.c
++++ b/drivers/media/platform/apple/avd/avd-h264.c
+@@ -20,6 +20,8 @@
+ #include <media/v4l2-h264.h>
+ #include <media/videobuf2-dma-contig.h>
+ 
++#include <linux/moduleparam.h>
++
+ #include "avd.h"
+ #include "avd-inst.h"
+ 
+@@ -74,6 +76,11 @@
+ 	} bufs;
+ };
+ 
++static bool avd_h264_early_submit = true;
++module_param_named(h264_early_submit, avd_h264_early_submit, bool, 0644);
++MODULE_PARM_DESC(h264_early_submit,
++		 "write the H.264 decode command right after the instruction stream instead of after VP done (default: Y)");
++
+ /* ffmpeg submits wrong timestamp, use first_mb_in_slice as a workaround */
+ #define is_new_frame(sl) (sl->first_mb_in_slice == 0) /* (ctx->fh.m2m_ctx->new_frame) */
+ 
+@@ -712,6 +719,28 @@
+ 
+ 	slice_size = stream_slice(ctx, &run);
+ 
++	/*
++	 * Write the decode command as soon as the instruction stream for the
++	 * slice is in the FIFO (eiln's m1n1 flow and the emulated Apple
++	 * firmware do this before waiting for anything). Waiting for the VP
++	 * done IRQ before kicking the PP serialises the two stages; on T8103
++	 * (no pipe_state) that appears to stall the VP on frames whose
++	 * residual output exceeds the internal buffering (high bitrate,
++	 * CABAC, >1080p) and ends in DECODE_STATUS_ERR.
++	 *
++	 * First slice of a frame: START flag; further slices: plain command
++	 * (same pattern as avd_hevc_submit()/avd_vp9_submit()).
++	 */
++	if (avd_h264_early_submit) {
++		writel_relaxed(0x2b000000
++			| (is_new_frame(run.slice_params) ?
++				(avd->variant->revision == 3 ? 0x100 : 0x200) : 0)
++			| (ctx->fifo_idx << 4)
++			| avd->variant->fifo_slots,
++			avd->ctrl + avd->variant->submit_offset);
++		ctx->submitted = true;
++	}
++
+ 	if (run.base.bufs.src->flags & V4L2_BUF_FLAG_M2M_HOLD_CAPTURE_BUF) {
+ 		if (avd->variant->revision == 3)
+ 			reg = (0x18 | ctx->vp_slot << 12);
+diff --git a/drivers/media/platform/apple/avd/avd.h b/drivers/media/platform/apple/avd/avd.h
+--- a/drivers/media/platform/apple/avd/avd.h
++++ b/drivers/media/platform/apple/avd/avd.h
+@@ -216,6 +216,9 @@
+ 
+ 	u8 fifo_idx;
+ 	u8 vp_slot;
++
++	/* codec already wrote the submit/decode command for this job */
++	bool submitted;
+ };
+ 
+ struct avd_buf {

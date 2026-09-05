@@ -1,0 +1,284 @@
++ apt-get update -qq
++ apt-get install -y -qq --no-install-recommends build-essential nasm pkg-config ca-certificates git libdrm-dev libudev-dev libssl-dev libx264-dev libopus-dev zlib1g-dev libvulkan-dev
+debconf: delaying package configuration, since apt-utils is not installed
++ rm -f /usr/lib/aarch64-linux-gnu/libx264.so /usr/lib/aarch64-linux-gnu/libopus.so /usr/lib/aarch64-linux-gnu/libshaderc.so*
++ export PKG_CONFIG_PATH=/opt/shaderc-static/lib/pkgconfig:
++ export PATH=/opt/shaderc-static/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
++ git config --global --add safe.directory /src/FFmpeg
++ cd /src/FFmpeg
++ git log --oneline -3
+c78e613 avutil/hwcontext_vulkan: import linear multi-plane DRM layers (NV12, P010, ...)
+8765283 avcodec/v4l2_request: skip the cache clean when queueing CAPTURE buffers
+92ef7e2 avutil/hwcontext_v4l2request: request cacheable CAPTURE buffers
++ grep -E ^(prefix|CONFIG_VULKAN|CONFIG_V4L2_REQUEST|CONFIG_LIBSHADERC|CONFIG_SCALE_VULKAN_FILTER)= ffbuild/config.mak
+prefix=/opt/ffmpeg-vk
+CONFIG_LIBSHADERC=yes
+CONFIG_VULKAN=yes
+CONFIG_V4L2_REQUEST=yes
+CONFIG_SCALE_VULKAN_FILTER=yes
++ rm -f ffmpeg ffmpeg_g ffprobe ffprobe_g
++ make -j8
+CC	libavdevice/version.o
+CC	libavfilter/version.o
+CC	libavformat/version.o
+CC	libavcodec/version.o
+CC	libswresample/version.o
+CC	libswscale/version.o
+CC	libavutil/hwcontext_vulkan.o
+CC	libavutil/version.o
+CC	fftools/cmdutils.o
+CC	fftools/opt_common.o
+CC	fftools/ffprobe.o
+AR	libavdevice/libavdevice.a
+AR	libavfilter/libavfilter.a
+AR	libavformat/libavformat.a
+AR	libswresample/libswresample.a
+AR	libswscale/libswscale.a
+AR	libavcodec/libavcodec.a
+AR	libavutil/libavutil.a
+LDXX	ffmpeg_g
+LDXX	ffprobe_g
+STRIP	ffmpeg
+STRIP	ffprobe
++ make install
+INSTALL	install-progs-yes
+INSTALL	ffmpeg
+INSTALL	ffprobe
+INSTALL	presets/libvpx-1080p.ffpreset
+INSTALL	presets/libvpx-1080p50_60.ffpreset
+INSTALL	presets/libvpx-360p.ffpreset
+INSTALL	presets/libvpx-720p.ffpreset
+INSTALL	presets/libvpx-720p50_60.ffpreset
+INSTALL	doc/ffprobe.xsd
+INSTALL	doc/examples/avio_http_serve_files.c
+INSTALL	doc/examples/avio_list_dir.c
+INSTALL	doc/examples/avio_read_callback.c
+INSTALL	doc/examples/decode_audio.c
+INSTALL	doc/examples/decode_filter_audio.c
+INSTALL	doc/examples/decode_filter_video.c
+INSTALL	doc/examples/decode_video.c
+INSTALL	doc/examples/demux_decode.c
+INSTALL	doc/examples/encode_audio.c
+INSTALL	doc/examples/encode_video.c
+INSTALL	doc/examples/extract_mvs.c
+INSTALL	doc/examples/filter_audio.c
+INSTALL	doc/examples/hw_decode.c
+INSTALL	doc/examples/mux.c
+INSTALL	doc/examples/qsv_decode.c
+INSTALL	doc/examples/qsv_transcode.c
+INSTALL	doc/examples/remux.c
+INSTALL	doc/examples/resample_audio.c
+INSTALL	doc/examples/scale_video.c
+INSTALL	doc/examples/show_metadata.c
+INSTALL	doc/examples/transcode.c
+INSTALL	doc/examples/transcode_aac.c
+INSTALL	doc/examples/vaapi_encode.c
+INSTALL	doc/examples/vaapi_transcode.c
+INSTALL	doc/examples/README
+INSTALL	doc/examples/Makefile
+INSTALL	doc/examples/avio_http_serve_files.c
+INSTALL	doc/examples/avio_list_dir.c
+INSTALL	doc/examples/avio_read_callback.c
+INSTALL	doc/examples/decode_audio.c
+INSTALL	doc/examples/decode_filter_audio.c
+INSTALL	doc/examples/decode_filter_video.c
+INSTALL	doc/examples/decode_video.c
+INSTALL	doc/examples/demux_decode.c
+INSTALL	doc/examples/encode_audio.c
+INSTALL	doc/examples/encode_video.c
+INSTALL	doc/examples/extract_mvs.c
+INSTALL	doc/examples/filter_audio.c
+INSTALL	doc/examples/hw_decode.c
+INSTALL	doc/examples/mux.c
+INSTALL	doc/examples/qsv_decode.c
+INSTALL	doc/examples/qsv_transcode.c
+INSTALL	doc/examples/remux.c
+INSTALL	doc/examples/resample_audio.c
+INSTALL	doc/examples/scale_video.c
+INSTALL	doc/examples/show_metadata.c
+INSTALL	doc/examples/transcode.c
+INSTALL	doc/examples/transcode_aac.c
+INSTALL	doc/examples/vaapi_encode.c
+INSTALL	doc/examples/vaapi_transcode.c
+INSTALL	doc/examples/README
+INSTALL	doc/examples/Makefile
+INSTALL	libavdevice/libavdevice.a
+INSTALL	libavfilter/libavfilter.a
+INSTALL	libavformat/libavformat.a
+INSTALL	libavcodec/libavcodec.a
+INSTALL	libswresample/libswresample.a
+INSTALL	libswscale/libswscale.a
+INSTALL	libavutil/libavutil.a
+INSTALL	libavdevice/avdevice.h
+INSTALL	libavdevice/version.h
+INSTALL	libavdevice/version_major.h
+INSTALL	libavdevice/libavdevice.pc
+INSTALL	libavfilter/avfilter.h
+INSTALL	libavfilter/buffersink.h
+INSTALL	libavfilter/buffersrc.h
+INSTALL	libavfilter/version.h
+INSTALL	libavfilter/version_major.h
+INSTALL	libavfilter/libavfilter.pc
+INSTALL	libavformat/avformat.h
+INSTALL	libavformat/avio.h
+INSTALL	libavformat/version.h
+INSTALL	libavformat/version_major.h
+INSTALL	libavformat/libavformat.pc
+INSTALL	libavcodec/ac3_parser.h
+INSTALL	libavcodec/adts_parser.h
+INSTALL	libavcodec/avcodec.h
+INSTALL	libavcodec/avdct.h
+INSTALL	libavcodec/bsf.h
+INSTALL	libavcodec/codec.h
+INSTALL	libavcodec/codec_desc.h
+INSTALL	libavcodec/codec_id.h
+INSTALL	libavcodec/codec_par.h
+INSTALL	libavcodec/d3d11va.h
+INSTALL	libavcodec/defs.h
+INSTALL	libavcodec/dirac.h
+INSTALL	libavcodec/dv_profile.h
+INSTALL	libavcodec/dxva2.h
+INSTALL	libavcodec/exif.h
+INSTALL	libavcodec/jni.h
+INSTALL	libavcodec/mediacodec.h
+INSTALL	libavcodec/packet.h
+INSTALL	libavcodec/qsv.h
+INSTALL	libavcodec/smpte_436m.h
+INSTALL	libavcodec/vdpau.h
+INSTALL	libavcodec/version.h
+INSTALL	libavcodec/version_major.h
+INSTALL	libavcodec/videotoolbox.h
+INSTALL	libavcodec/vorbis_parser.h
+INSTALL	libavcodec/libavcodec.pc
+INSTALL	libswresample/swresample.h
+INSTALL	libswresample/version.h
+INSTALL	libswresample/version_major.h
+INSTALL	libswresample/libswresample.pc
+INSTALL	libswscale/swscale.h
+INSTALL	libswscale/version.h
+INSTALL	libswscale/version_major.h
+INSTALL	libswscale/libswscale.pc
+INSTALL	libavutil/adler32.h
+INSTALL	libavutil/aes.h
+INSTALL	libavutil/aes_ctr.h
+INSTALL	libavutil/ambient_viewing_environment.h
+INSTALL	libavutil/attributes.h
+INSTALL	libavutil/audio_fifo.h
+INSTALL	libavutil/avassert.h
+INSTALL	libavutil/avstring.h
+INSTALL	libavutil/avutil.h
+INSTALL	libavutil/base64.h
+INSTALL	libavutil/blowfish.h
+INSTALL	libavutil/bprint.h
+INSTALL	libavutil/bswap.h
+INSTALL	libavutil/buffer.h
+INSTALL	libavutil/cast5.h
+INSTALL	libavutil/camellia.h
+INSTALL	libavutil/channel_layout.h
+INSTALL	libavutil/common.h
+INSTALL	libavutil/container_fifo.h
+INSTALL	libavutil/cpu.h
+INSTALL	libavutil/crc.h
+INSTALL	libavutil/csp.h
+INSTALL	libavutil/des.h
+INSTALL	libavutil/detection_bbox.h
+INSTALL	libavutil/dict.h
+INSTALL	libavutil/display.h
+INSTALL	libavutil/dovi_meta.h
+INSTALL	libavutil/downmix_info.h
+INSTALL	libavutil/encryption_info.h
+INSTALL	libavutil/error.h
+INSTALL	libavutil/eval.h
+INSTALL	libavutil/executor.h
+INSTALL	libavutil/fifo.h
+INSTALL	libavutil/file.h
+INSTALL	libavutil/film_grain_params.h
+INSTALL	libavutil/frame.h
+INSTALL	libavutil/hash.h
+INSTALL	libavutil/hdr_dynamic_metadata.h
+INSTALL	libavutil/hdr_dynamic_vivid_metadata.h
+INSTALL	libavutil/hmac.h
+INSTALL	libavutil/hwcontext.h
+INSTALL	libavutil/hwcontext_cuda.h
+INSTALL	libavutil/hwcontext_d3d11va.h
+INSTALL	libavutil/hwcontext_d3d12va.h
+INSTALL	libavutil/hwcontext_drm.h
+INSTALL	libavutil/hwcontext_dxva2.h
+INSTALL	libavutil/hwcontext_amf.h
+INSTALL	libavutil/hwcontext_qsv.h
+INSTALL	libavutil/hwcontext_mediacodec.h
+INSTALL	libavutil/hwcontext_opencl.h
+INSTALL	libavutil/hwcontext_oh.h
+INSTALL	libavutil/hwcontext_v4l2request.h
+INSTALL	libavutil/hwcontext_vaapi.h
+INSTALL	libavutil/hwcontext_videotoolbox.h
+INSTALL	libavutil/hwcontext_vdpau.h
+INSTALL	libavutil/hwcontext_vulkan.h
+INSTALL	libavutil/iamf.h
+INSTALL	libavutil/imgutils.h
+INSTALL	libavutil/intfloat.h
+INSTALL	libavutil/intreadwrite.h
+INSTALL	libavutil/lfg.h
+INSTALL	libavutil/log.h
+INSTALL	libavutil/lzo.h
+INSTALL	libavutil/macros.h
+INSTALL	libavutil/mathematics.h
+INSTALL	libavutil/mastering_display_metadata.h
+INSTALL	libavutil/md5.h
+INSTALL	libavutil/mem.h
+INSTALL	libavutil/motion_vector.h
+INSTALL	libavutil/murmur3.h
+INSTALL	libavutil/opt.h
+INSTALL	libavutil/parseutils.h
+INSTALL	libavutil/pixdesc.h
+INSTALL	libavutil/pixelutils.h
+INSTALL	libavutil/pixfmt.h
+INSTALL	libavutil/random_seed.h
+INSTALL	libavutil/rc4.h
+INSTALL	libavutil/rational.h
+INSTALL	libavutil/refstruct.h
+INSTALL	libavutil/replaygain.h
+INSTALL	libavutil/ripemd.h
+INSTALL	libavutil/samplefmt.h
+INSTALL	libavutil/sha.h
+INSTALL	libavutil/sha512.h
+INSTALL	libavutil/spherical.h
+INSTALL	libavutil/stereo3d.h
+INSTALL	libavutil/tdrdi.h
+INSTALL	libavutil/threadmessage.h
+INSTALL	libavutil/time.h
+INSTALL	libavutil/timecode.h
+INSTALL	libavutil/timestamp.h
+INSTALL	libavutil/tree.h
+INSTALL	libavutil/twofish.h
+INSTALL	libavutil/uuid.h
+INSTALL	libavutil/version.h
+INSTALL	libavutil/video_enc_params.h
+INSTALL	libavutil/xtea.h
+INSTALL	libavutil/tea.h
+INSTALL	libavutil/tx.h
+INSTALL	libavutil/video_hint.h
+INSTALL	libavutil/avconfig.h
+INSTALL	libavutil/ffversion.h
+INSTALL	libavutil/libavutil.pc
++ /opt/ffmpeg-vk/bin/ffmpeg -hide_banner -version
++ head -1
+ffmpeg version c78e613-vk-b57fbbe Copyright (c) 2000-2026 the FFmpeg developers
++ /opt/ffmpeg-vk/bin/ffmpeg -hide_banner -hwaccels
+Hardware acceleration methods:
+drm
+vulkan
+v4l2request
+
++ ldd /opt/ffmpeg-vk/bin/ffmpeg
+	linux-vdso.so.1 (0x0000ffffac6b8000)
+	libdrm.so.2 => /lib/aarch64-linux-gnu/libdrm.so.2 (0x0000ffffa9f90000)
+	libm.so.6 => /lib/aarch64-linux-gnu/libm.so.6 (0x0000ffffa9ee0000)
+	libz.so.1 => /lib/aarch64-linux-gnu/libz.so.1 (0x0000ffffa9ea0000)
+	libssl.so.3 => /lib/aarch64-linux-gnu/libssl.so.3 (0x0000ffffa9de0000)
+	libcrypto.so.3 => /lib/aarch64-linux-gnu/libcrypto.so.3 (0x0000ffffa9980000)
+	libudev.so.1 => /lib/aarch64-linux-gnu/libudev.so.1 (0x0000ffffa9930000)
+	libstdc++.so.6 => /lib/aarch64-linux-gnu/libstdc++.so.6 (0x0000ffffa9710000)
+	libgcc_s.so.1 => /lib/aarch64-linux-gnu/libgcc_s.so.1 (0x0000ffffa96d0000)
+	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffffa9510000)
+	/lib/ld-linux-aarch64.so.1 (0x0000ffffac680000)

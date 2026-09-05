@@ -1,0 +1,16 @@
+#!/bin/sh
+# ffprobe companion of ../bin/ffmpeg: same real binary set (/opt/ffmpeg-vk) under the host loader when
+# the loader mounts exist, plain exec otherwise. Never rewrites anything.
+set -u
+REAL=${AVD_VK_FFPROBE:-/opt/ffmpeg-vk/bin/ffprobe}
+# The loader is exec'd through libexec/ffprobe, a symlink to /host-lib64-ld.so, so the process is
+# NAMED "ffprobe": Frigate's record maintainer (record/maintainer.py, psutil process.name() == "ffmpeg")
+# only treats cache segments as in-use when the process holding them is called ffmpeg; under the
+# loader's own name it deleted every in-progress segment (found 2026-09-05 after the first switch).
+LOADER=${AVD_VK_LOADER:-/opt/ffmpeg-avd-vk/libexec/ffprobe}
+[ -x "$LOADER" ] || LOADER=/host-lib64-ld.so
+LIBDIR=${AVD_VK_LIBDIR:-/host-lib64}
+if [ -x "$LOADER" ] && [ -d "$LIBDIR" ]; then
+  exec "$LOADER" --library-path "$LIBDIR" "$REAL" "$@"
+fi
+exec "$REAL" "$@"

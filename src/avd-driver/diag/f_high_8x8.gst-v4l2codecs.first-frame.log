@@ -1,0 +1,110 @@
+0:00:00.042280625      84356      84356 DEBUG             v4l2codecs gstv4l2codecdevice.c:342:gst_v4l2_codec_find_devices: Analysing media device '/dev/media0'
+0:00:00.042321084      84356      84356 DEBUG             v4l2codecs gstv4l2codecdevice.c:358:gst_v4l2_codec_find_devices: Found CODEC entities
+0:00:00.042336250      84356      84356 DEBUG             v4l2codecs gstv4l2codecdevice.c:368:gst_v4l2_codec_find_devices: Analysing entity avd-proc
+0:00:00.042340542      84356      84356 DEBUG             v4l2codecs gstv4l2codecdevice.c:373:gst_v4l2_codec_find_devices: Found source and sink pads
+0:00:00.042344292      84356      84356 DEBUG             v4l2codecs gstv4l2codecdevice.c:381:gst_v4l2_codec_find_devices: Found source and sink V4L IO entities
+0:00:00.042478459      84356      84356 INFO              v4l2codecs gstv4l2codecdevice.c:399:gst_v4l2_codec_find_devices: Found decoder device avd-proc
+0:00:00.042597752      84356      84356 DEBUG     v4l2codecs-decoder gstv4l2decoder.c:363:gst_v4l2_decoder_enum_sink_fmt:<v4l2decoder0> Found format S265 (HEVC Parsed Slice Data)
+0:00:00.042605585      84356      84356 INFO              v4l2codecs plugin.c:82:register_video_decoder:<v4l2decoder0> Registering avd-proc as H265 Decoder
+0:00:00.042928795      84356      84356 DEBUG     v4l2codecs-decoder gstv4l2decoder.c:363:gst_v4l2_decoder_enum_sink_fmt:<v4l2decoder0> Found format S264 (H.264 Parsed Slice Data)
+0:00:00.042935754      84356      84356 INFO              v4l2codecs plugin.c:76:register_video_decoder:<v4l2decoder0> Registering avd-proc as H264 Decoder
+0:00:00.043167630      84356      84356 DEBUG     v4l2codecs-decoder gstv4l2decoder.c:363:gst_v4l2_decoder_enum_sink_fmt:<v4l2decoder0> Found format VP9F (VP9 Frame)
+0:00:00.043173672      84356      84356 INFO              v4l2codecs plugin.c:101:register_video_decoder:<v4l2decoder0> Registering avd-proc as VP9 Decoder
+0:00:00.043845759      84356      84356 INFO      v4l2codecs-h264dec gstv4l2codech264dec.c:250:gst_v4l2_codec_h264_dec_open:<v4l2slh264dec0> Opened H264 slice based decoder without start-codes
+0:00:00.044461638      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:249:gst_h264_parse_nalu_header: Nal type 7, ref_idc 3
+0:00:00.044474930      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:249:gst_h264_parse_nalu_header: Nal type 7, ref_idc 3
+0:00:00.044477305      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:1569:gst_h264_parser_identify_nalu: Complete nal found. Off: 4, Size: 24
+0:00:00.044480763      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:2129:gst_h264_parse_sps: parsing SPS
+0:00:00.044484721      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:423:gst_h264_parse_vui_parameters: parsing "VUI Parameters"
+0:00:00.044488346      84356      84360 LOG        codecparsers_h264 gsth264parser.c:1993:gst_h264_parse_sps_data: initial width=640, height=368
+0:00:00.044490513      84356      84360 LOG        codecparsers_h264 gsth264parser.c:2017:gst_h264_parse_sps_data: crop_rectangle x=0 y=0 width=640, height=360
+0:00:00.044492388      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:1872:gst_h264_parser_parse_sps: adding sequence parameter set with id: 0 to array
+0:00:00.044496805      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:249:gst_h264_parse_nalu_header: Nal type 8, ref_idc 3
+0:00:00.044498638      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:1569:gst_h264_parser_identify_nalu: Complete nal found. Off: 32, Size: 4
+0:00:00.044500388      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:2259:gst_h264_parse_pps: parsing PPS
+0:00:00.044502721      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:2393:gst_h264_parser_parse_pps: adding picture parameter set with id: 0 to array
+0:00:00.044505430      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:249:gst_h264_parse_nalu_header: Nal type 6, ref_idc 0
+0:00:00.044511846      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:1569:gst_h264_parser_identify_nalu: Complete nal found. Off: 39, Size: 623
+0:00:00.044518555      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:2726:gst_h264_parser_parse_sei: parsing SEI nal
+0:00:00.044520597      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:1310:gst_h264_parser_parse_sei_message: parsing "SEI message"
+0:00:00.044522722      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:1330:gst_h264_parser_parse_sei_message: SEI message received: payloadType  5, payloadSize = 4936 bits
+0:00:00.044529638      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:249:gst_h264_parse_nalu_header: Nal type 5, ref_idc 3
+0:00:00.044540180      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:1569:gst_h264_parser_identify_nalu: Complete nal found. Off: 665, Size: 53000
+0:00:00.044542388      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:2456:gst_h264_parser_parse_slice_hdr: parsing "Slice header", slice type 7
+0:00:00.044544472      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:708:gst_h264_slice_parse_dec_ref_pic_marking: parsing "Decoded reference picture marking"
+0:00:00.044550638      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:249:gst_h264_parse_nalu_header: Nal type 1, ref_idc 2
+0:00:00.044552930      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:1569:gst_h264_parser_identify_nalu: Complete nal found. Off: 53669, Size: 566
+0:00:00.044602430      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:249:gst_h264_parse_nalu_header: Nal type 7, ref_idc 3
+0:00:00.044605514      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:249:gst_h264_parse_nalu_header: Nal type 8, ref_idc 3
+0:00:00.044607222      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:2129:gst_h264_parse_sps: parsing SPS
+0:00:00.044609055      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:423:gst_h264_parse_vui_parameters: parsing "VUI Parameters"
+0:00:00.044611180      84356      84360 LOG        codecparsers_h264 gsth264parser.c:1993:gst_h264_parse_sps_data: initial width=640, height=368
+0:00:00.044614305      84356      84360 LOG        codecparsers_h264 gsth264parser.c:2017:gst_h264_parse_sps_data: crop_rectangle x=0 y=0 width=640, height=360
+0:00:00.044617805      84356      84360 INFO      v4l2codecs-h264dec gstv4l2codech264dec.c:956:gst_v4l2_codec_h264_dec_new_sequence:<v4l2slh264dec0> Resolution changed to 640x360 (640x368)
+0:00:00.044619722      84356      84360 INFO      v4l2codecs-h264dec gstv4l2codech264dec.c:972:gst_v4l2_codec_h264_dec_new_sequence:<v4l2slh264dec0> Bitdepth changed to 8
+0:00:00.044621389      84356      84360 INFO      v4l2codecs-h264dec gstv4l2codech264dec.c:978:gst_v4l2_codec_h264_dec_new_sequence:<v4l2slh264dec0> Chroma format changed to 1
+0:00:00.044623597      84356      84360 DEBUG     v4l2codecs-h264dec gstv4l2codech264dec.c:360:gst_v4l2_codec_h264_dec_negotiate:<v4l2slh264dec0> Negotiate
+0:00:00.044675139      84356      84360 DEBUG     v4l2codecs-h264dec gstv4l2codech264dec.c:392:gst_v4l2_codec_h264_dec_negotiate:<v4l2slh264dec0> Supported output formats: video/x-raw, format=(string)NV12, width=(int)640, height=(int)368, framerate=(fraction)[ 0/1, 2147483647/1 ]
+0:00:00.044678597      84356      84360 DEBUG     v4l2codecs-h264dec gstv4l2codech264dec.c:396:gst_v4l2_codec_h264_dec_negotiate:<v4l2slh264dec0> Peer supported formats: video/x-raw, format=(string)NV12, width=(int)640, height=(int)368, framerate=(fraction)[ 0/1, 2147483647/1 ]
+0:00:00.044681722      84356      84360 DEBUG     v4l2codecs-decoder gstv4l2decoder.c:683:gst_v4l2_decoder_select_src_format:<v4l2decoder1> Original caps: video/x-raw, format=(string)NV12, width=(int)640, height=(int)368, framerate=(fraction)[ 0/1, 2147483647/1 ]
+0:00:00.044699848      84356      84360 DEBUG     v4l2codecs-decoder gstv4l2decoder.c:686:gst_v4l2_decoder_select_src_format:<v4l2decoder1> Fixated caps: video/x-raw, format=(string)NV12, width=(int)640, height=(int)368, framerate=(fraction)0/1
+0:00:00.044705473      84356      84360 INFO      v4l2codecs-decoder gstv4l2decoder.c:743:gst_v4l2_decoder_select_src_format:<v4l2decoder1> Selected format NV12 DRM ....:0x00ffffffffffffff 640x368
+0:00:00.044720806      84356      84360 DEBUG     v4l2codecs-decoder gstv4l2decoder.c:776:gst_v4l2_decoder_set_output_state:<v4l2slh264dec0> Setting caps: video/x-raw, format=(string)NV12, width=(int)640, height=(int)360, interlace-mode=(string)progressive, multiview-mode=(string)mono, multiview-flags=(GstVideoMultiviewFlagsSet)0:ffffffff:/right-view-first/left-flipped/left-flopped/right-flipped/right-flopped/half-aspect/mixed-mono, pixel-aspect-ratio=(fraction)1/1, framerate=(fraction)15/1
+0:00:00.044732348      84356      84360 WARN      v4l2codecs-h264dec gstv4l2codech264dec.c:494:gst_v4l2_codec_h264_dec_decide_allocation:<v4l2slh264dec0> GstVideoMeta support required, copying frames.
+0:00:00.044744014      84356      84360 DEBUG   v4l2codecs-allocator gstv4l2codecallocator.c:179:gst_v4l2_codec_allocator_prepare:<v4l2codecallocator0> Try to create 2 buffers
+0:00:00.044746056      84356      84360 DEBUG     v4l2codecs-decoder gstv4l2decoder.c:814:gst_v4l2_decoder_create_buffers:<v4l2decoder1> Creating 1 buffers
+0:00:00.044840848      84356      84360 DEBUG   v4l2codecs-allocator gstv4l2codecallocator.c:107:gst_v4l2_codec_buffer_new:<v4l2codecallocator0> Create buffer 0 with 1 memory fds
+0:00:00.044843515      84356      84360 DEBUG     v4l2codecs-decoder gstv4l2decoder.c:814:gst_v4l2_decoder_create_buffers:<v4l2decoder1> Creating 1 buffers
+0:00:00.044935474      84356      84360 DEBUG   v4l2codecs-allocator gstv4l2codecallocator.c:107:gst_v4l2_codec_buffer_new:<v4l2codecallocator0> Create buffer 1 with 1 memory fds
+0:00:00.044938766      84356      84360 DEBUG   v4l2codecs-allocator gstv4l2codecallocator.c:179:gst_v4l2_codec_allocator_prepare:<v4l2codecallocator1> Try to create 8 buffers
+0:00:00.044941516      84356      84360 DEBUG     v4l2codecs-decoder gstv4l2decoder.c:814:gst_v4l2_decoder_create_buffers:<v4l2decoder1> Creating 1 buffers
+0:00:00.045048433      84356      84360 DEBUG   v4l2codecs-allocator gstv4l2codecallocator.c:107:gst_v4l2_codec_buffer_new:<v4l2codecallocator1> Create buffer 0 with 1 memory fds
+0:00:00.045050641      84356      84360 DEBUG     v4l2codecs-decoder gstv4l2decoder.c:814:gst_v4l2_decoder_create_buffers:<v4l2decoder1> Creating 1 buffers
+0:00:00.045088350      84356      84360 DEBUG   v4l2codecs-allocator gstv4l2codecallocator.c:107:gst_v4l2_codec_buffer_new:<v4l2codecallocator1> Create buffer 1 with 1 memory fds
+0:00:00.045090225      84356      84360 DEBUG     v4l2codecs-decoder gstv4l2decoder.c:814:gst_v4l2_decoder_create_buffers:<v4l2decoder1> Creating 1 buffers
+0:00:00.045136725      84356      84360 DEBUG   v4l2codecs-allocator gstv4l2codecallocator.c:107:gst_v4l2_codec_buffer_new:<v4l2codecallocator1> Create buffer 2 with 1 memory fds
+0:00:00.045138725      84356      84360 DEBUG     v4l2codecs-decoder gstv4l2decoder.c:814:gst_v4l2_decoder_create_buffers:<v4l2decoder1> Creating 1 buffers
+0:00:00.045185934      84356      84360 DEBUG   v4l2codecs-allocator gstv4l2codecallocator.c:107:gst_v4l2_codec_buffer_new:<v4l2codecallocator1> Create buffer 3 with 1 memory fds
+0:00:00.045187684      84356      84360 DEBUG     v4l2codecs-decoder gstv4l2decoder.c:814:gst_v4l2_decoder_create_buffers:<v4l2decoder1> Creating 1 buffers
+0:00:00.045240017      84356      84360 DEBUG   v4l2codecs-allocator gstv4l2codecallocator.c:107:gst_v4l2_codec_buffer_new:<v4l2codecallocator1> Create buffer 4 with 1 memory fds
+0:00:00.045242101      84356      84360 DEBUG     v4l2codecs-decoder gstv4l2decoder.c:814:gst_v4l2_decoder_create_buffers:<v4l2decoder1> Creating 1 buffers
+0:00:00.045278893      84356      84360 DEBUG   v4l2codecs-allocator gstv4l2codecallocator.c:107:gst_v4l2_codec_buffer_new:<v4l2codecallocator1> Create buffer 5 with 1 memory fds
+0:00:00.045280601      84356      84360 DEBUG     v4l2codecs-decoder gstv4l2decoder.c:814:gst_v4l2_decoder_create_buffers:<v4l2decoder1> Creating 1 buffers
+0:00:00.045352851      84356      84360 DEBUG   v4l2codecs-allocator gstv4l2codecallocator.c:107:gst_v4l2_codec_buffer_new:<v4l2codecallocator1> Create buffer 6 with 1 memory fds
+0:00:00.045354601      84356      84360 DEBUG     v4l2codecs-decoder gstv4l2decoder.c:814:gst_v4l2_decoder_create_buffers:<v4l2decoder1> Creating 1 buffers
+0:00:00.045392435      84356      84360 DEBUG   v4l2codecs-allocator gstv4l2codecallocator.c:107:gst_v4l2_codec_buffer_new:<v4l2codecallocator1> Create buffer 7 with 1 memory fds
+0:00:00.045987522      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:2768:gst_h264_parser_update_sps: Updating sequence parameter set with id: 0
+0:00:00.045990355      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:2259:gst_h264_parse_pps: parsing PPS
+0:00:00.045992230      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:2816:gst_h264_parser_update_pps: Updating picture parameter set with id: 0
+0:00:00.046092147      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:249:gst_h264_parse_nalu_header: Nal type 7, ref_idc 3
+0:00:00.046095772      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:2129:gst_h264_parse_sps: parsing SPS
+0:00:00.046097773      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:423:gst_h264_parse_vui_parameters: parsing "VUI Parameters"
+0:00:00.046099773      84356      84360 LOG        codecparsers_h264 gsth264parser.c:1993:gst_h264_parse_sps_data: initial width=640, height=368
+0:00:00.046102023      84356      84360 LOG        codecparsers_h264 gsth264parser.c:2017:gst_h264_parse_sps_data: crop_rectangle x=0 y=0 width=640, height=360
+0:00:00.046104023      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:2768:gst_h264_parser_update_sps: Updating sequence parameter set with id: 0
+0:00:00.046106106      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:249:gst_h264_parse_nalu_header: Nal type 8, ref_idc 3
+0:00:00.046107564      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:2259:gst_h264_parse_pps: parsing PPS
+0:00:00.046109314      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:2816:gst_h264_parser_update_pps: Updating picture parameter set with id: 0
+0:00:00.046111273      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:249:gst_h264_parse_nalu_header: Nal type 6, ref_idc 0
+0:00:00.046121606      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:249:gst_h264_parse_nalu_header: Nal type 5, ref_idc 3
+0:00:00.046123231      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:2456:gst_h264_parser_parse_slice_hdr: parsing "Slice header", slice type 7
+0:00:00.046126314      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:708:gst_h264_slice_parse_dec_ref_pic_marking: parsing "Decoded reference picture marking"
+0:00:00.046131731      84356      84360 DEBUG   v4l2codecs-allocator gstv4l2codecallocator.c:294:gst_v4l2_codec_allocator_alloc:<v4l2codecallocator0> Allocated buffer 0
+0:00:00.046144939      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:1694:gst_h264_parser_identify_and_split_nalu_avc: Can't parse, buffer has too small size 53667, offset 53667
+0:00:00.046148773      84356      84360 DEBUG   v4l2codecs-allocator gstv4l2codecallocator.c:341:gst_v4l2_codec_allocator_prepare_buffer:<v4l2codecallocator1> Allocated buffer 0
+0:00:00.046179731      84356      84360 TRACE     v4l2codecs-decoder gstv4l2decoder.c:1449:gst_v4l2_request_queue:<v4l2decoder1> Queuing request 21.
+0:00:00.046182190      84356      84360 TRACE     v4l2codecs-decoder gstv4l2decoder.c:929:gst_v4l2_decoder_queue_sink_mem:<v4l2decoder1> Queueing bitstream buffer 0
+0:00:00.046185606      84356      84360 TRACE     v4l2codecs-decoder gstv4l2decoder.c:958:gst_v4l2_decoder_queue_src_buffer:<v4l2decoder1> Queuing picture buffer 0
+0:00:00.046525192      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:249:gst_h264_parse_nalu_header: Nal type 1, ref_idc 2
+0:00:00.046527942      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:249:gst_h264_parse_nalu_header: Nal type 1, ref_idc 2
+0:00:00.046530150      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:1569:gst_h264_parser_identify_nalu: Complete nal found. Off: 4, Size: 566
+0:00:00.046532108      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:2456:gst_h264_parser_parse_slice_hdr: parsing "Slice header", slice type 5
+0:00:00.046534067      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:708:gst_h264_slice_parse_dec_ref_pic_marking: parsing "Decoded reference picture marking"
+0:00:00.046536525      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:249:gst_h264_parse_nalu_header: Nal type 1, ref_idc 2
+0:00:00.046538400      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:1569:gst_h264_parser_identify_nalu: Complete nal found. Off: 574, Size: 310
+0:00:00.046542650      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:249:gst_h264_parse_nalu_header: Nal type 1, ref_idc 2
+0:00:00.046544692      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:2456:gst_h264_parser_parse_slice_hdr: parsing "Slice header", slice type 5
+0:00:00.046546067      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:708:gst_h264_slice_parse_dec_ref_pic_marking: parsing "Decoded reference picture marking"
+0:00:00.046549067      84356      84360 DEBUG   v4l2codecs-allocator gstv4l2codecallocator.c:294:gst_v4l2_codec_allocator_alloc:<v4l2codecallocator0> Allocated buffer 1
+0:00:00.046556984      84356      84360 DEBUG      codecparsers_h264 gsth264parser.c:1694:gst_h264_parser_identify_and_split_nalu_avc: Can't parse, buffer has too small size 570, offset 570
+0:00:00.046559484      84356      84360 DEBUG   v4l2codecs-allocator gstv4l2codecallocator.c:341:gst_v4l2_codec_allocator_prepare_buffer:<v4l2codecallocator1> Allocated buffer 1

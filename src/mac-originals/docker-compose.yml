@@ -1,0 +1,47 @@
+services:
+  frigate:
+    container_name: frigate
+    # Built from source out of the dev clone at
+    # ~/Projects/frigate-workspace/frigate via `make local`
+    # (produces frigate:latest). This carries the configurable
+    # networking.listen.internal port; the old from-stable Dockerfile + sed
+    # patch is no longer used.
+    image: frigate:latest
+    restart: unless-stopped
+    # The image's baked-in HEALTHCHECK curls 127.0.0.1:5000, but we moved the
+    # internal port to 5050 (networking.listen.internal). Override it to match,
+    # otherwise the container is marked unhealthy despite working normally.
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /dev/shm/.frigate-is-stopping && exit 0; curl --fail --silent --show-error http://127.0.0.1:5050/api/version || exit 1"]
+      start_period: 300s
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    shm_size: "512mb" # update for your cameras based on calculation above
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ~/Projects/frigate/cache:/tmp/cache
+      - ~/Projects/frigate/config:/config
+      - ~/Projects/frigate/recordings:/media/frigate/recordings
+      - ~/Projects/frigate/clips:/media/frigate/clips
+      - ~/Projects/frigate/exports:/media/frigate/exports
+      - ~/Projects/frigate-workspace/wrapper-coordinator/dist/wrapper-linux-arm64:/usr/local/bin/frigate-wrapper/bin/ffmpeg:ro
+      - ~/Projects/frigate-workspace/wrapper-coordinator/dist/wrapper-linux-arm64:/usr/local/bin/frigate-wrapper/bin/ffprobe:ro
+    ports:
+      - "8971:8971"
+      # Internal unauthenticated port == config networking.listen.internal (5050).
+      # Bound to 127.0.0.1 so it stays off the LAN; the host-side ffmpeg
+      # (frigate-wrapper) reaches the /vod endpoint here for exports.
+      # 5000 is avoided because macOS AirPlay Receiver permanently holds it.
+      - "127.0.0.1:5050:5050"
+      - "8554:8554" # RTSP feeds
+      - "8555:8555/tcp"
+      - "8555:8555/udp"  # WebRTC needs UDP
+    extra_hosts:
+      # This is very important
+      # It allows frigate access to the NPU on Apple Silicon via Apple Silicon Detector
+      - "host.docker.internal:host-gateway" # Required to talk to the NPU detector
+    environment:
+      - "FRIGATE_IPC_ADDR=host.docker.internal:17346"
+      - "FRIGATE_RTSP_PASSWORD=<rtsp-password>"
+      - "PLUS_API_KEY=<plus-api-key>"

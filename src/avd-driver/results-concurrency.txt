@@ -1,0 +1,15 @@
+hw x4: wall=3.72s
+  #1 md5=ee810b0f90e2 bench: utime=3.207s stime=0.052s rtime=3.024s
+  #2 md5=ee810b0f90e2 bench: utime=3.183s stime=0.091s rtime=2.997s
+  #3 md5=ee810b0f90e2 bench: utime=3.207s stime=0.068s rtime=3.022s
+  #4 md5=ee810b0f90e2 bench: utime=3.100s stime=0.053s rtime=2.975s
+sw x4: wall=1.31s
+  #1 md5=ee810b0f90e2 bench: utime=0.746s stime=0.032s rtime=0.525s
+  #2 md5=ee810b0f90e2 bench: utime=0.737s stime=0.028s rtime=0.605s
+  #3 md5=ee810b0f90e2 bench: utime=0.941s stime=0.034s rtime=0.633s
+  #4 md5=ee810b0f90e2 bench: utime=0.782s stime=0.033s rtime=0.595s
+hw x4: wall=3.67s
+  #1 md5=ee810b0f90e2 bench: utime=3.012s stime=0.059s rtime=2.769s
+  #2 md5=ee810b0f90e2 bench: utime=3.208s stime=0.068s rtime=3.004s
+  #3 md5=ee810b0f90e2 bench: utime=3.109s stime=0.076s rtime=2.963s
+  #4 md5=ee810b0f90e2 bench: utime=3.192s stime=0.074s rtime=3.060s

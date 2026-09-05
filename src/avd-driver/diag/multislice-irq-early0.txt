@@ -1,0 +1,40 @@
+[ 6156.997657] avd 269080000.avd: run: first_mb=0 hold=1 vp=2 fifo=0 size=4124
+[ 6157.003228] avd 269080000.avd: run: first_mb=240 hold=1 vp=2 fifo=0 size=7827
+[ 6157.010353] avd 269080000.avd: run: first_mb=480 hold=1 vp=2 fifo=0 size=6048
+[ 6157.017491] avd 269080000.avd: run: first_mb=680 hold=0 vp=2 fifo=0 size=6845
+[ 6157.017576] avd 269080000.avd: IRQ status=00102 ctx=000000007dc080ac vp=2 fifo=0 submitted=0
+[ 6157.033339] avd 269080000.avd: IRQ status=01000 ctx=000000007dc080ac vp=255 fifo=0 submitted=0
+[ 6157.041800] avd 269080000.avd: run: first_mb=0 hold=1 vp=2 fifo=0 size=71
+[ 6157.048555] avd 269080000.avd: run: first_mb=240 hold=1 vp=2 fifo=0 size=30
+[ 6157.064512] avd 269080000.avd: run: first_mb=480 hold=1 vp=2 fifo=0 size=30
+[ 6157.070083] avd 269080000.avd: run: first_mb=680 hold=0 vp=2 fifo=0 size=113
+[ 6157.077120] avd 269080000.avd: IRQ status=00102 ctx=000000007dc080ac vp=2 fifo=0 submitted=0
+[ 6157.085806] avd 269080000.avd: IRQ status=01000 ctx=000000007dc080ac vp=255 fifo=0 submitted=0
+[ 6157.094377] avd 269080000.avd: run: first_mb=0 hold=1 vp=2 fifo=0 size=10
+[ 6157.095588] avd 269080000.avd: VP2: timed out (00)! size: 00000071 parsed: 0000000a
+[ 6157.101033] avd 269080000.avd: run: first_mb=240 hold=1 vp=2 fifo=0 size=22
+[ 6157.109657] avd 269080000.avd: VP2: c0000000 10800000 00000000 00000000
+[ 6157.115655] avd 269080000.avd: run: first_mb=480 hold=1 vp=2 fifo=0 size=3
+[ 6157.115731] avd 269080000.avd: run: first_mb=680 hold=0 vp=2 fifo=0 size=64
+[ 6157.122299] avd 269080000.avd: IRQ status=00102 ctx=000000007dc080ac vp=2 fifo=0 submitted=0
+[ 6157.144625] avd 269080000.avd: VP2: 0000b027 0000000a 00000016 000007e3
+[ 6157.151230] avd 269080000.avd: IRQ status=01000 ctx=000000007dc080ac vp=255 fifo=0 submitted=0
+[ 6157.159926] avd 269080000.avd: run: first_mb=0 hold=1 vp=2 fifo=0 size=6
+[ 6157.166612] avd 269080000.avd: run: first_mb=240 hold=1 vp=2 fifo=0 size=5
+[ 6157.173505] avd 269080000.avd: run: first_mb=480 hold=1 vp=2 fifo=0 size=16
+[ 6157.180480] avd 269080000.avd: run: first_mb=680 hold=0 vp=2 fifo=0 size=103
+[ 6157.187513] avd 269080000.avd: IRQ status=00102 ctx=000000007dc080ac vp=2 fifo=0 submitted=0
+[ 6157.196207] avd 269080000.avd: IRQ status=01000 ctx=000000007dc080ac vp=255 fifo=0 submitted=0
+[ 6157.204659] avd 269080000.avd: run: first_mb=0 hold=1 vp=2 fifo=0 size=6
+[ 6157.211335] avd 269080000.avd: run: first_mb=240 hold=1 vp=2 fifo=0 size=3
+[ 6157.218224] avd 269080000.avd: run: first_mb=480 hold=1 vp=2 fifo=0 size=17
+[ 6157.225219] avd 269080000.avd: run: first_mb=680 hold=0 vp=2 fifo=0 size=107
+[ 6157.232253] avd 269080000.avd: IRQ status=00102 ctx=000000007dc080ac vp=2 fifo=0 submitted=0
+[ 6157.240944] avd 269080000.avd: IRQ status=01000 ctx=000000007dc080ac vp=255 fifo=0 submitted=0
+[ 6157.249403] avd 269080000.avd: run: first_mb=0 hold=1 vp=2 fifo=0 size=8
+[ 6157.256065] avd 269080000.avd: run: first_mb=240 hold=1 vp=2 fifo=0 size=5
+[ 6157.262960] avd 269080000.avd: run: first_mb=480 hold=1 vp=2 fifo=0 size=10
+[ 6157.269945] avd 269080000.avd: run: first_mb=680 hold=0 vp=2 fifo=0 size=76
+[ 6157.276903] avd 269080000.avd: IRQ status=00102 ctx=000000007dc080ac vp=2 fifo=0 submitted=0
+[ 6157.285611] avd 269080000.avd: IRQ status=01000 ctx=000000007dc080ac vp=255 fifo=0 submitted=0
+[ 6157.294065] avd 269080000.avd: run: first_mb=0 hold=1 vp=2 fifo=0 size=8

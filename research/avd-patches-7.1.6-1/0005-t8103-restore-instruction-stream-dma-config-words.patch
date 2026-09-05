@@ -1,0 +1,56 @@
+From: AVD root-cause analysis <blue@aquarat.co.uk>
+Subject: [PATCH 5/7] media: apple: avd: t8103: push the firmware-traced DMA config words
+
+INST_DMA1/2/3 are defined as 0 with the real values only in comments. On
+T8103 the Apple firmware inserts 0x00020002 / 0x04020002 / 0x00070007 from a
+per-codec table in CM3 SRAM before each buffer-address group (m1n1
+fw/avd/__init__.py mcpu_decode_init dump, avid/h264/halv3.py
+cm3_dma_config_*). Zeros were only verified on newer revisions. Push the
+traced values on revision 3; avd.inst_dma_words=0 disables this.
+
+Experiment for the size-dependent failures (low risk: matches the
+hardware-verified stream byte for byte).
+
+Base: AsahiLinux/linux tag asahi-7.1.6-1 (drivers/media/platform/apple/avd, last driver commit 0d6dcb9b11b4)
+---
+diff --git a/drivers/media/platform/apple/avd/avd-drv.c b/drivers/media/platform/apple/avd/avd-drv.c
+--- a/drivers/media/platform/apple/avd/avd-drv.c
++++ b/drivers/media/platform/apple/avd/avd-drv.c
+@@ -21,6 +21,11 @@
+ #include "avd.h"
+ #include "avd-regs.h"
+ 
++bool avd_inst_dma_words = true;
++module_param_named(inst_dma_words, avd_inst_dma_words, bool, 0644);
++MODULE_PARM_DESC(inst_dma_words,
++		 "push the firmware-traced DMA config words on T8103 instead of zeros (default: Y)");
++
+ void fill_rvra(struct avd_rvra *rvra, enum avd_image_fmt image_fmt,
+ 		u32 width, u32 height)
+ {
+diff --git a/drivers/media/platform/apple/avd/avd-inst.h b/drivers/media/platform/apple/avd/avd-inst.h
+--- a/drivers/media/platform/apple/avd/avd-inst.h
++++ b/drivers/media/platform/apple/avd/avd-inst.h
+@@ -7,10 +7,18 @@
+ 
+ #include "avd.h"
+ 
+-/* i have no clue what this is */
+-#define INST_DMA1 0 /* (0x14 << 16 | 0x14) */
+-#define INST_DMA2 0 /* (0x4000000 | INST_DMA1) */
+-#define INST_DMA3 0 /* (0x07 << 16 | 0x07) */
++/*
++ * DMA configuration words that precede every buffer address group in the
++ * instruction stream. The Apple firmware inserts them from a per-codec table
++ * in CM3 SRAM; on T8103 the traced values are 0x00020002 / 0x04020002 /
++ * 0x00070007 (eiln avid/h264/halv3.py, m1n1 fw/avd/__init__.py). Newer
++ * revisions apparently tolerate zeros (comment values were 0x14 << 16 | 0x14).
++ * Keep them for revision 3 unless avd.inst_dma_words=0.
++ */
++extern bool avd_inst_dma_words;
++#define INST_DMA1 ((avd_inst_dma_words && avd->variant->revision == 3) ? 0x00020002 : 0)
++#define INST_DMA2 ((avd_inst_dma_words && avd->variant->revision == 3) ? 0x04020002 : 0)
++#define INST_DMA3 ((avd_inst_dma_words && avd->variant->revision == 3) ? 0x00070007 : 0)
+ 
+ #define AVD_OP_EXEC			FIELD_PREP(GENMASK(31, 24), 0x2b)
+ #define AVD_OP_EXEC_FIFO_MASK(v)	FIELD_PREP(GENMASK(3, 0), v)

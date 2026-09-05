@@ -1,0 +1,25 @@
+From: AVD root-cause analysis <blue@aquarat.co.uk>
+Subject: [PATCH 7/7] media: apple: avd: t8103: set INSN_FIFO_MASK to 0
+
+Backport of asahi-7.1.12-1 commit ca9a850f237f (Janne Grunau, 2026-08-30,
+"fixup! media: apple: add avd driver"): t8103_configure_stream() writes 0
+instead of 0x100000 to AVD_V3_VP_INSN_FIFO_MASK, matching what the t8112/
+t8122 paths do. The commit has no description; eiln's m1n1 code uses
+0x100000 with 1 MiB FIFOs. Included for parity with the newest tree; no
+known link to the failures analysed here.
+
+Base: AsahiLinux/linux tag asahi-7.1.6-1 (drivers/media/platform/apple/avd, last driver commit 0d6dcb9b11b4)
+---
+diff --git a/drivers/media/platform/apple/avd/avd-hw.c b/drivers/media/platform/apple/avd/avd-hw.c
+--- a/drivers/media/platform/apple/avd/avd-hw.c
++++ b/drivers/media/platform/apple/avd/avd-hw.c
+@@ -88,7 +88,8 @@
+ 			  u32 vp_slot)
+ {
+ 	w32(AVD_V3_VP_INSN_FIFO_IOVA + (fifo_idx * 4), addr >> 8);
+-	w32(AVD_V3_VP_INSN_FIFO_MASK + (fifo_idx * 4), 0x100000);
++	/* asahi-7.1.12-1 ca9a850f237f ("fixup! media: apple: add avd driver") */
++	w32(AVD_V3_VP_INSN_FIFO_MASK + (fifo_idx * 4), 0);
+ 	w32(AVD_V3_VP_INSN_FIFO_CACH + (fifo_idx * 4), 0);
+ 	w32(AVD_V3_VP_INSN_FIFO_XFER + (fifo_idx * 4), 0);
+ 

@@ -1,0 +1,18 @@
+capture: 2304x1296 fourcc NV12 planes 1 sizeimage 13162496 bpl 2304
+reqbufs: count 1 caps 0x55 (MMAP_CACHE_HINTS supported) flags-after 0x1  requested-noncoherent=1
+plane0 length 13162496 offset 1073741824
+== source: mmap(/dev/video0) buffer, 13162496 bytes, iters 20
+  memcpy                           0.74 ms/frame     17860 MB/s
+  neon 64B                         0.62 ms/frame     21077 MB/s
+  neon 128B                        0.55 ms/frame     23810 MB/s
+  neon 256B                        0.71 ms/frame     18614 MB/s
+  ldnp/stnp 64B                    0.55 ms/frame     23942 MB/s
+  read-only u64 sum                0.70 ms/frame     18831 MB/s
+== source: mmap(dma-buf fd) (what ffmpeg uses)
+  DMA_BUF_IOCTL_SYNC start        0.000 ms
+  memcpy                           0.59 ms/frame     22492 MB/s
+  neon 256B                        0.85 ms/frame     15467 MB/s
+== reference: plain RAM -> RAM (cached)
+  memcpy                           0.60 ms/frame     21904 MB/s
+  neon 256B                        0.59 ms/frame     22214 MB/s
+  dma-buf mmap+touch+munmap       0.039 ms

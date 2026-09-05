@@ -1,0 +1,58 @@
+From: AVD root-cause analysis <blue@aquarat.co.uk>
+Subject: [PATCH 6/7] media: apple: avd: t8103: write ctrl+0x40f4/0x4110 after CM3 boot
+
+eiln's T8103 bring-up writes ctrl+0x40f4 = 0x1555 and ctrl+0x4110 = 0
+right after the DMA tunables (which the replacement firmware applies at
+boot). The in-tree driver never touches either register. 0x1555 looks like
+a 2-bit field for each of the 7 instruction FIFOs. Purpose unknown;
+experiment only. avd.t8103_extra_init=0 disables it.
+
+Base: AsahiLinux/linux tag asahi-7.1.6-1 (drivers/media/platform/apple/avd, last driver commit 0d6dcb9b11b4)
+---
+diff --git a/drivers/media/platform/apple/avd/avd-drv.c b/drivers/media/platform/apple/avd/avd-drv.c
+--- a/drivers/media/platform/apple/avd/avd-drv.c
++++ b/drivers/media/platform/apple/avd/avd-drv.c
+@@ -26,6 +26,11 @@
+ MODULE_PARM_DESC(inst_dma_words,
+ 		 "push the firmware-traced DMA config words on T8103 instead of zeros (default: Y)");
+ 
++bool avd_t8103_extra_init = true;
++module_param_named(t8103_extra_init, avd_t8103_extra_init, bool, 0644);
++MODULE_PARM_DESC(t8103_extra_init,
++		 "write ctrl+0x40f4=0x1555 and ctrl+0x4110=0 after CM3 boot on T8103 as eiln's m1n1 init does (default: Y)");
++
+ void fill_rvra(struct avd_rvra *rvra, enum avd_image_fmt image_fmt,
+ 		u32 width, u32 height)
+ {
+diff --git a/drivers/media/platform/apple/avd/avd-hw.c b/drivers/media/platform/apple/avd/avd-hw.c
+--- a/drivers/media/platform/apple/avd/avd-hw.c
++++ b/drivers/media/platform/apple/avd/avd-hw.c
+@@ -61,6 +61,16 @@
+ 	if (ret)
+ 		return ret;
+ 
++	/*
++	 * eiln's T8103 bring-up (m1n1 fw/avd/__init__.py, avd_dma_tunables_stage0)
++	 * writes these two after the DMA tunables the firmware applies at boot.
++	 * 0x1555 looks like a 2-bit field per instruction FIFO (7 FIFOs).
++	 */
++	if (avd->variant->revision == 3 && avd_t8103_extra_init) {
++		writel_relaxed(0x1555, avd->ctrl + 0x40f4);
++		writel_relaxed(0, avd->ctrl + 0x4110);
++	}
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/media/platform/apple/avd/avd.h b/drivers/media/platform/apple/avd/avd.h
+--- a/drivers/media/platform/apple/avd/avd.h
++++ b/drivers/media/platform/apple/avd/avd.h
+@@ -279,6 +279,8 @@
+ 	return container_of(file_to_v4l2_fh(filp), struct avd_ctx, fh);
+ }
+ 
++extern bool avd_t8103_extra_init;
++
+ /* hw stuff */
+ int avd_boot(struct avd_dev *avd);
+ void avd_shutdown(struct avd_dev *avd);

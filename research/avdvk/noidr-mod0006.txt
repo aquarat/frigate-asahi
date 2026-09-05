@@ -1,0 +1,8 @@
+== hw (zero-copy chain, full rate, framemd5)
+rc=0
+2
+== sw reference (same scaler chain on the CPU-decoded frames is not bit-identical; compare frame counts and hw-vs-hw md5 instead)
+hw frames out: 120   sw frames out: 120
+--- dmesg since start:
+[11621.199660] apple-dart 269010000.iommu: translation fault: status:0x80000002 stream:0 code:0x2 (NO PMD FOR IOVA) at 0x8080800
+[11623.228809] avd 269080000.avd: Frame processing timed out! Vp: 255 (00)

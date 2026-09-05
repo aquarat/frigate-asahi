@@ -1,0 +1,50 @@
+From a58f9b176324b06e26842b11c21d36df3dc1eb29 Mon Sep 17 00:00:00 2001
+From: Aquarat <blue@aquarat.co.uk>
+Date: Sat, 5 Sep 2026 19:31:00 +0100
+Subject: [PATCH 2/2] avcodec/v4l2_request: skip the cache clean when queueing
+ CAPTURE buffers
+
+With non-coherent (cacheable) CAPTURE buffers videobuf2 cleans the whole
+buffer from the caches at every QBUF and invalidates it at every DQBUF.
+The CPU never writes a CAPTURE buffer, so there is nothing to clean;
+V4L2_BUF_FLAG_NO_CACHE_CLEAN tells videobuf2 to skip that half. The
+invalidate at DQBUF, which is what makes the decoded data visible
+through the cacheable mapping, is unchanged.
+
+On an Apple M1 (apple-avd, 2304x1296 NV12, 13.2 MB planes) this takes
+the Frigate-like chain "-vf fps=5,scale=640:360 -f rawvideo" for 150
+frames from 0.11-0.14 s to 0.07-0.08 s of sys time (user time
+unchanged at 0.34-0.37 s), output still bit-identical to software
+decode per frame.
+
+Signed-off-by: <fill in>
+---
+ libavcodec/v4l2_request.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/libavcodec/v4l2_request.c b/libavcodec/v4l2_request.c
+index 36eec85..fb9427d 100644
+--- a/libavcodec/v4l2_request.c
++++ b/libavcodec/v4l2_request.c
+@@ -160,6 +160,18 @@ static int v4l2_request_queue_capture_buffer(V4L2RequestContext *ctx,
+         .type = ctx->fctxi->capture.format.type,
+         .memory = V4L2_MEMORY_MMAP,
+     };
++
++#ifdef V4L2_BUF_FLAG_NO_CACHE_CLEAN
++    /*
++     * CAPTURE buffers are only ever written by the decoder and read by the
++     * CPU, so there is nothing to clean from the caches before the hardware
++     * writes them; skipping the clean halves the cache maintenance that
++     * videobuf2 does for non-coherent (cacheable) buffers. The invalidate
++     * at DQBUF is still done.
++     */
++    if (ctx->fctxi->capture.capabilities & V4L2_BUF_CAP_SUPPORTS_MMAP_CACHE_HINTS)
++        buffer.flags = V4L2_BUF_FLAG_NO_CACHE_CLEAN;
++#endif
+     return v4l2_request_queue_buffer(ctx, &buffer);
+ }
+ 
+-- 
+2.55.0
+

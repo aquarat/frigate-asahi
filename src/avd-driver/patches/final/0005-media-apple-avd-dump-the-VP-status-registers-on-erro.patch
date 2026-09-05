@@ -1,0 +1,44 @@
+From 41931a0a96749de73777a9afc162b5687a303cf5 Mon Sep 17 00:00:00 2001
+From: Aquarat <blue@aquarat.co.uk>
+Date: Sat, 5 Sep 2026 18:58:19 +0100
+Subject: [PATCH 5/5] media: apple: avd: dump the VP status registers on error
+ and timeout
+
+avd_status() (MB counter, status, slice bytes parsed, instruction bytes)
+is only called on the multi-slice poll timeout path. Call it as well when
+the CM3 reports a VP error and when the watchdog fires, so a failure can
+be placed inside the frame from dmesg alone: a parse error at MB 0
+(e.g. the transform_8x8_mode_flag bug) looks different from a stall
+after most of the slice was consumed (the VP_INSN_FIFO_MASK problem on
+T8103). Two extra lines per failed frame, nothing on success.
+
+Signed-off-by: Aquarat <blue@aquarat.co.uk>
+---
+ avd-drv.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/media/platform/apple/avd/avd-drv.c b/drivers/media/platform/apple/avd/avd-drv.c
+index bb4e8fb..abbe6d4 100644
+--- a/drivers/media/platform/apple/avd/avd-drv.c
++++ b/drivers/media/platform/apple/avd/avd-drv.c
+@@ -161,6 +161,8 @@ static void avd_watchdog_func(struct work_struct *work)
+ 
+ 	dev_err(avd->dev, "Frame processing timed out! Vp: %d (%02d)",
+ 		ctx->vp_slot, ctx->fifo_idx);
++	if (ctx->vp_slot != VP_SLOT_NONE)
++		avd_status(avd, ctx->vp_slot);
+ 
+ 	free_vp_slot(avd, ctx);
+ 	free_inst_slot(avd, ctx);
+@@ -207,6 +209,8 @@ static irqreturn_t avd_irq_handler(int irq, void *data)
+ 		goto done;
+ 	} else {
+ 		dev_err(avd->dev, "H%d %02d error", status, ctx->fifo_idx);
++		if (ctx->vp_slot != VP_SLOT_NONE)
++			avd_status(avd, ctx->vp_slot);
+ 		/* let watchdog handle */
+ 		goto done;
+ 	}
+-- 
+2.55.0
+

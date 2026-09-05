@@ -1,0 +1,29 @@
+ca9a850f237f98949996eefb8980371a5d58c886 2026-08-30 Janne Grunau | fixup! media: apple: add avd driver
+3cba4f1d5b86a48641e618103389bbc8980530b0 2026-08-27 sofus | media: apple: avd: h264: fix default weights handling
+ee63bbaca5378a043a194d64082df0965e7aebd0 2026-08-26 sofus | media: apple: avd: h264: size buffers correctly
+14bdc1c105f947dd937dbe075e92a63f5ab925e3 2026-08-26 sofus | media: apple: avd: hevc: size buffers correctly
+5f67141682ffcc270592b7358d8b6c03394f119b 2026-08-25 sofus | media: apple: avd: vp9: size buffers correctly
+61386a4d8599667d9b5e74f95af92d3f44cdc6b7 2026-08-24 sofus | media: apple: avd: av1: size buffers (semi) correctly
+93c0fd6dc62a450d52224e00e3b4f547a41bb3f7 2026-08-26 sofus | media: apple: avd: only allocate if new buffer is larger
+139a0062983b486377ef500bc8454553d366cdb1 2026-08-26 sofus | media: apple: avd: change rvra naming and fix size calculation
+41550f1e3186211302e3235d5f41acb9ef8cf71b 2026-08-26 sofus | media: apple: avd: add y, uv and coded to common struct
+04c5bab79f335bd1bc0f2c41aebb837c9ce2f8b9 2026-08-16 sofus | media: apple: avd: drop INST_DMA
+3016f84eb8a513869d528209e75c74a49757a0e2 2026-08-16 sofus | media: apple: avd: av1: add try_ctrl handler
+368871a53771dd157e8fdcc904dabfbbe22f3963 2026-08-16 sofus | media: apple: avd: calculate buffer size
+344df2f39e317883a9e28631c37717013352e35f 2026-08-19 sofus | media: apple: avd: mark suspend/resume as __maybe_unused
+7d846e02e3d63f46877aef7fd5adbb51ac568c6e 2026-08-16 sofus | media: apple: avd: add MODULE_FIRMWARE
+adec89957b4232b3d33188245114b9e640f72de6 2026-08-08 sofus | media: apple: avd: better av1 support
+adb54ad2ed92af4d230e257310f56c77d13bf306 2026-08-08 sofus | media: apple: avd: fix hevc offsets
+8e8d72a673ab2d9ad1f0cc3f268d889a8420c97e 2026-08-08 sofus | fixup! media: apple: avd: define static values and bitmasks
+ef8392b94d410694a9147626641447bbd6f45c5a 2026-08-02 sofus | media: apple: avd: clang-format avd-{av1,h264,hevc,vp9}
+0d6dcb9b11b41af215b8a8443b0e3f7d5aa6c110 2026-08-02 sofus | media: apple: avd: add av1 support
+cbab401e27354c90eaa31798ca75eccfeb4b4d9c 2026-08-02 sofus | media: apple: avd: define static values and bitmasks
+ba1bbb4683934d3d35df8c8d9e2c06a2d1cd83a8 2026-08-02 sofus | media: apple: avd: fix vp9 format selection
+e50eeff2151afe8f4c533eed5b769eb772adf597 2026-07-25 sofus | fixup! media: apple: avd: add hevc support
+23b02d4a5c4dfa473b036aa7823db90750802590 2026-07-18 sofus | fixup! media: apple: avd: make get_ref_buf shared
+95738fb3e5cd5df1e394067152d23097c1eb0b02 2026-07-15 sofus | media: apple: avd: add hevc support
+c3f3b7562dcc2966831b747fdf6d236ce4a7e6aa 2026-07-15 sofus | fixup! media: apple: avd: vp9: remove undefined var
+113f70cfac45961a46c1b4ca068520e3652dc964 2026-07-15 sofus | media: apple: avd: make get_ref_buf shared
+8fdfd1a5dd80ba29b1a946c5515c5057565c4fd0 2026-07-15 Janne Grunau | fixup! media: apple: add avd driver
+edd1529cbf30f69240acea99fa8225683c555200 2026-07-06 sofus | media: apple: avd: support vp9
+9d77b27426e338bbf4f4df0676c1e064e046527e 2026-06-30 sofus | media: apple: add avd driver

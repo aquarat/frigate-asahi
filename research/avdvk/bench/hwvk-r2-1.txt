@@ -1,0 +1,24 @@
+73811bb3fe93
+	Command being timed: "/host-lib64-ld.so --library-path /host-lib64 /opt/ffmpeg-vk/bin/ffmpeg -init_hw_device vulkan=vk -filter_hw_device vk -hwaccel v4l2request -hwaccel_output_format drm_prime -i /research/cam2-10s.h264 -vf fps=5,hwmap,scale_vulkan=640:360,hwdownload,format=nv12,format=yuv420p -threads 2 -hide_banner -loglevel warning -f rawvideo -pix_fmt yuv420p -"
+	User time (seconds): 0.18
+	System time (seconds): 0.05
+	Percent of CPU this job got: 34%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.69
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 183392
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 7560
+	Voluntary context switches: 1504
+	Involuntary context switches: 140
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 32
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 16384
+	Exit status: 0

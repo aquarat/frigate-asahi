@@ -1,0 +1,5 @@
+g_1296_base.h264             FAIL(hw-timeout) 3
+g_1080_main.h264             FAIL(hw-timeout) 3
+t_1080p_high.h264            FAIL(hw-timeout) 3
+f_high_8x8.h264              OK-identical   0
+IMPROVED: f_high_8x8.h264 was FAIL(hw-timeout), now OK-identical

@@ -1,0 +1,10 @@
+# 2026-09-05T18:34:59+01:00 kernel=7.1.6-400.asahi.fc44.aarch64+16k apple_avd=taint=OE(out-of-tree)
+clip                         result         new-avd-dmesg
+g_1080_base_idr_only.h264    OK-identical   0
+g_1080_main_idr_only.h264    FAIL(hw-timeout) 3
+g_1296_base_idr_only.h264    FAIL(hw-timeout) 3
+h_1296_base_lowbr_idr_only.h264 OK-identical   0
+cam2-10s_idr_only.h264    FAIL(hw-timeout) 3
+g_1080_main_2frames.h264     FAIL(hw-timeout) 3
+g_1296_base_2frames.h264     FAIL(hw-timeout) 3
+cam2-10s_2frames.h264     FAIL(hw-timeout) 3

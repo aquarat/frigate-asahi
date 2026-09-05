@@ -1,0 +1,46 @@
+[ 3620.993832] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3620.997782] avd 269080000.avd: 2db032e0 | hdr_34_start_hdr
+[ 3621.003267] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3621.008322] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3621.014080] avd 269080000.avd:        0 | hdr_40_zero
+[ 3621.019138] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3621.025507] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3621.030998] avd 269080000.avd:        0 | hdr_44_flags
+[ 3621.036146] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3621.042772] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3621.048178] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3621.053673] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3621.059166] avd 269080000.avd:        0 | zero
+[ 3621.063614] avd 269080000.avd: edfe0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3621.070152] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3621.077304] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3621.082798] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3621.088293] avd 269080000.avd:        0 | zero
+[ 3621.092740] avd 269080000.avd: edfd8000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3621.099281] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3621.106432] avd 269080000.avd: edfb8000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3621.112974] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3621.120129] avd 269080000.avd: edfb0000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3621.126664] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3621.133815] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3621.139311] avd 269080000.avd: fde00000 | hdr_210_y_addr_lsb8[0]
+[ 3621.145326] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3621.151954] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3621.157710] avd 269080000.avd: fde39800 | hdr_214_uv_addr_lsb8[0]
+[ 3621.163813] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3621.170529] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3621.176283] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3621.182127] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3621.187881] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3621.194075] avd 269080000.avd: 2d830000 | slc_a7c_cmd_set_coded_slice
+[ 3621.200527] avd 269080000.avd: ff380003 | slc_a84_slice_addr_low
+[ 3621.206544] avd 269080000.avd:     cf05 | slc_a88_slice_hdr_size
+[ 3621.212562] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3621.218230] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3621.224336] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3621.230963] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3621.236720] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3621.242124] avd 269080000.avd: 2d028000 | slc_6e4_cmd_ref_type
+[ 3621.247969] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3621.247991] avd 269080000.avd: H2 00 error
+[ 3623.194380] avd 269080000.avd: Frame processing timed out! Vp: 2 (00)

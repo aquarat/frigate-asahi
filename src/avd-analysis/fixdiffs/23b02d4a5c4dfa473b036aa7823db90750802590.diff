@@ -1,0 +1,65 @@
+diff --git a/drivers/media/platform/apple/avd/avd-drv.c b/drivers/media/platform/apple/avd/avd-drv.c
+index 400cbe76cff8f7..2e826afb19b952 100644
+--- a/drivers/media/platform/apple/avd/avd-drv.c
++++ b/drivers/media/platform/apple/avd/avd-drv.c
+@@ -101,7 +101,7 @@ void avd_buf_free(struct avd_dev *avd, struct avd_buf *buf)
+ }
+ 
+ struct avd_decoded_buffer *
+-get_ref_buf(struct avd_ctx *ctx, struct vb2_v4l2_buffer *dst, u64 timestamp)
++avd_get_ref_buf(struct avd_ctx *ctx, struct vb2_v4l2_buffer *dst, u64 timestamp)
+ {
+ 	struct v4l2_m2m_ctx *m2m_ctx = ctx->fh.m2m_ctx;
+ 	struct vb2_queue *cap_q = &m2m_ctx->cap_q_ctx.q;
+diff --git a/drivers/media/platform/apple/avd/avd-hevc.c b/drivers/media/platform/apple/avd/avd-hevc.c
+index af0a4eabaf9f16..e7dbe65f3bd6b2 100644
+--- a/drivers/media/platform/apple/avd/avd-hevc.c
++++ b/drivers/media/platform/apple/avd/avd-hevc.c
+@@ -91,7 +91,7 @@ static void stream_refs(struct avd_ctx *ctx, struct avd_hevc_run *run)
+ 	for (int i = 0; i < decode->num_active_dpb_entries; i++) {
+ 		dpb = &decode->dpb[i];
+ 
+-		ref_buf = get_ref_buf(ctx, &dst->base.vb, dpb->timestamp);
++		ref_buf = avd_get_ref_buf(ctx, &dst->base.vb, dpb->timestamp);
+ 
+ 		dma_addr_t rvra_addr =
+ 			vb2_dma_contig_plane_dma_addr(&ref_buf->base.vb.vb2_buf, 0)
+@@ -503,7 +503,7 @@ static void stream_slice_mv(struct avd_ctx *ctx, struct avd_hevc_run *run,
+ 			? sl->ref_idx_l0 : sl->ref_idx_l1;
+ 
+ 	dst = vb2_to_avd_decoded_buf(&run->base.bufs.dst->vb2_buf);
+-	ref = get_ref_buf(ctx, &dst->base.vb,
++	ref = avd_get_ref_buf(ctx, &dst->base.vb,
+ 			decode->dpb[ref_list[sl->collocated_ref_idx]].timestamp);
+ 
+ 	ref_valid =
+diff --git a/drivers/media/platform/apple/avd/avd-vp9.c b/drivers/media/platform/apple/avd/avd-vp9.c
+index fb423616aa7726..77dd49de6cf140 100644
+--- a/drivers/media/platform/apple/avd/avd-vp9.c
++++ b/drivers/media/platform/apple/avd/avd-vp9.c
+@@ -163,9 +163,9 @@ static void set_refs(struct avd_ctx *ctx, struct avd_vp9_run *run)
+ 
+ 	dst = vb2_to_avd_decoded_buf(&run->base.bufs.dst->vb2_buf);
+ 
+-	ref_buf[0] = get_ref_buf(ctx, &dst->base.vb, frame->last_frame_ts);
+-	ref_buf[1] = get_ref_buf(ctx, &dst->base.vb, frame->golden_frame_ts);
+-	ref_buf[2] = get_ref_buf(ctx, &dst->base.vb, frame->alt_frame_ts);
++	ref_buf[0] = avd_get_ref_buf(ctx, &dst->base.vb, frame->last_frame_ts);
++	ref_buf[1] = avd_get_ref_buf(ctx, &dst->base.vb, frame->golden_frame_ts);
++	ref_buf[2] = avd_get_ref_buf(ctx, &dst->base.vb, frame->alt_frame_ts);
+ 
+ 	push(INST_DMA3, "cm3_dma_config_7");
+ 	push(INST_DMA3, "cm3_dma_config_8");
+diff --git a/drivers/media/platform/apple/avd/avd.h b/drivers/media/platform/apple/avd/avd.h
+index a12b42e2a68461..82086ac3d9ca88 100644
+--- a/drivers/media/platform/apple/avd/avd.h
++++ b/drivers/media/platform/apple/avd/avd.h
+@@ -101,7 +101,7 @@ vb2_to_avd_decoded_buf(struct vb2_buffer *buf)
+ 	return container_of(buf, struct avd_decoded_buffer, base.vb.vb2_buf);
+ }
+ struct avd_decoded_buffer *
+-get_ref_buf(struct avd_ctx *ctx, struct vb2_v4l2_buffer *dst, u64 timestamp);
++avd_get_ref_buf(struct avd_ctx *ctx, struct vb2_v4l2_buffer *dst, u64 timestamp);
+ 
+ struct avd_coded_fmt_ops {
+ 	void (*adjust_decoded_fmt)(struct avd_ctx *ctx,

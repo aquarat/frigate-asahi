@@ -1,0 +1,10 @@
+Running hooks in /etc/ca-certificates/update.d...
+done.
+AR	libavutil/libavutil.a
+LD	ffmpeg_g
+LD	ffprobe_g
+STRIP	ffprobe
+STRIP	ffmpeg
+INSTALL	libavutil/ffversion.h
+INSTALL	libavutil/libavutil.pc
+BUILD-OK

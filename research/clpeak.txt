@@ -1,0 +1,78 @@
+clpeak: unknown option '--global-bandwidth'
+ clpeak [OPTIONS]
+ GLOBAL OPTIONS:
+  -h, --help                  display help message
+  -v, --version               display version
+  -i, --iters num             force a fixed iter count (overrides --max-time calibration)
+  -w, --warmup num            number of warm-up kernel runs before timing (default: 2)
+  --max-time ms               per-test time budget for the timed phase, all backends
+                              except CPU (default: 500 ms)
+  --max-time-cpu ms           per-test time budget for the CPU backend (default: 2000 ms)
+                              picks iters automatically; set lower if you hit a GPU watchdog
+  --verbose                   print backend debug logs (kernel build logs, API errors)
+  --describe                  explain what each test and each reading measures
+  --list-devices              list available devices for every backend and exit
+  --xml-file file             save results to an XML file
+  --json-file file            save results to a JSON file
+  --csv-file file             save results to a CSV file
+  --compare file              compare results against a baseline (JSON / CSV / XML)
+ BACKEND SELECTION (default: run every available backend):
+  --opencl                    run only the OpenCL backend
+  --vulkan                    run only the Vulkan backend
+  --cpu                       run only the native CPU backend
+  (multiple --<backend> flags can be combined)
+  --no-opencl                 skip the OpenCL backend
+  --no-vulkan                 skip the Vulkan backend
+  --no-cpu                    skip the native CPU backend
+ DEVICE SELECTION (indices are 0-based; comma-separated for multiple,
+ default: run every device):
+  --cl-platform list          OpenCL platform index/indices (e.g. 0 or 0,1)
+  --cl-device list            OpenCL device index/indices within the platform
+  --vk-device list            Vulkan physical-device index/indices
+ TEST CATEGORY SELECTION (default: run every category):
+  --fp-compute / --no-fp-compute       floating-point compute (gflops / tflops)
+  --int-compute / --no-int-compute     integer compute (gops / tops)
+  --crypto      / --no-crypto          crypto/hash silicon (gbps)     [CPU]
+  --string      / --no-string          string/text processing (gbps)  [CPU]
+  --bandwidth   / --no-bandwidth       memory & transfer bandwidth (gbps)
+  --latency     / --no-latency         kernel-launch latency (us)
+  Any positive --<category> flag switches to allow-list mode.
+ TEST SELECTION (default: every test the backend supports;
+ any positive --<test> flag switches to allow-list mode;
+ --no-<test> always subtracts):
+  --single-precision-compute        | --no-single-precision-compute
+  --half-precision-compute          | --no-half-precision-compute
+  --double-precision-compute        | --no-double-precision-compute
+  --mixed-precision-compute         | --no-mixed-precision-compute
+  --bfloat16-compute                | --no-bfloat16-compute
+  --integer-compute                 | --no-integer-compute
+  --integer-compute-fast            | --no-integer-compute-fast      [OpenCL]
+  --integer-compute-char            | --no-integer-compute-char      [OpenCL]
+  --integer-compute-short           | --no-integer-compute-short     [OpenCL]
+  --int8-dot-product-compute        | --no-int8-dot-product-compute
+  --int16-dot-product-compute       | --no-int16-dot-product-compute [CPU: x86 VNNI]
+  --fp8-dot-product-compute         | --no-fp8-dot-product-compute   [CPU: ARM FP8]
+  --divide-sqrt-compute             | --no-divide-sqrt-compute       [CPU]
+  --integer-divide-compute          | --no-integer-divide-compute    [CPU]
+  --coopmat                         | --no-coopmat                   [Vulkan]
+  --amx                             | --no-amx                       [CPU: AMX/I8MM/SME]
+  --accelerate                      | --no-accelerate                [CPU: Apple Accelerate/BNNS GEMM]
+  --aes                             | --no-aes                       [CPU: AES-NI/VAES/ARM AES]
+  --sha256                          | --no-sha256                    [CPU: SHA-NI/ARM SHA2]
+  --sha512                          | --no-sha512                    [CPU: ARM SHA512]
+  --crc32c                          | --no-crc32c                    [CPU]
+  --string-scan                     | --no-string-scan               [CPU: memchr-style]
+  --utf8-validate                   | --no-utf8-validate             [CPU: PSHUFB/TBL]
+  --global-memory-bandwidth         | --no-global-memory-bandwidth
+  --local-memory-bandwidth          | --no-local-memory-bandwidth
+  --image-memory-bandwidth          | --no-image-memory-bandwidth
+  --transfer-bandwidth              | --no-transfer-bandwidth
+  --cache-bandwidth                 | --no-cache-bandwidth           [CPU]
+  --memory-latency                  | --no-memory-latency            [CPU]
+  --atomics                         | --no-atomics                   [CPU]
+  --branch-penalty                  | --no-branch-penalty            [CPU]
+  --store-forward                   | --no-store-forward             [CPU]
+  --smt-scaling                     | --no-smt-scaling               [CPU: Linux/Windows SMT]
+  --kernel-launch-latency           | --no-kernel-launch-latency
+ OPENCL-SPECIFIC:
+  --use-event-timer           time using cl events instead of std chrono

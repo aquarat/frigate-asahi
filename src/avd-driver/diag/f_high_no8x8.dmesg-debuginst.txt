@@ -1,0 +1,1668 @@
+[ 3684.624210] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3684.628151] avd 269080000.avd: 2db032e0 | hdr_34_start_hdr
+[ 3684.633644] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3684.638700] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3684.644455] avd 269080000.avd:        0 | hdr_40_zero
+[ 3684.649514] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3684.655880] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3684.661374] avd 269080000.avd:        0 | hdr_44_flags
+[ 3684.666518] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3684.673167] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3684.678581] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3684.684094] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3684.689556] avd 269080000.avd:        0 | zero
+[ 3684.693990] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3684.700530] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3684.707708] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3684.713175] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3684.718668] avd 269080000.avd:        0 | zero
+[ 3684.723116] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3684.729701] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3684.736832] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3684.743349] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3684.750503] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3684.757052] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3684.764191] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3684.769699] avd 269080000.avd: fde00000 | hdr_210_y_addr_lsb8[0]
+[ 3684.775703] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3684.782353] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3684.788113] avd 269080000.avd: fde39800 | hdr_214_uv_addr_lsb8[0]
+[ 3684.794211] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3684.800905] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3684.806660] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3684.812502] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3684.818259] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3684.824468] avd 269080000.avd: 2d830000 | slc_a7c_cmd_set_coded_slice
+[ 3684.830958] avd 269080000.avd: fef00003 | slc_a84_slice_addr_low
+[ 3684.836978] avd 269080000.avd:     cf19 | slc_a88_slice_hdr_size
+[ 3684.843020] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3684.848657] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3684.854753] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3684.861348] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3684.867137] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3684.872546] avd 269080000.avd: 2d028000 | slc_6e4_cmd_ref_type
+[ 3684.878374] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3684.884615] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3684.889707] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3684.895200] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3684.900244] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3684.906001] avd 269080000.avd:        0 | hdr_40_zero
+[ 3684.911073] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3684.917434] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3684.922917] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3684.928140] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3684.934704] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3684.940390] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3684.945708] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3684.951226] avd 269080000.avd:        0 | zero
+[ 3684.955581] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3684.962074] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3684.969223] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3684.974718] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3684.980212] avd 269080000.avd:        0 | zero
+[ 3684.984657] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3684.991201] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3684.998359] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3685.004893] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3685.012043] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3685.018585] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3685.025761] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3685.031265] avd 269080000.avd: fdd00000 | hdr_210_y_addr_lsb8[0]
+[ 3685.037279] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3685.043885] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3685.049649] avd 269080000.avd: fdd39800 | hdr_214_uv_addr_lsb8[0]
+[ 3685.055737] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3685.062469] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3685.068226] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3685.074054] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3685.079829] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3685.085315] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3685.091857] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3685.099006] avd 269080000.avd: fddce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3685.105544] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3685.112684] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3685.118185] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3685.123692] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3685.129180] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3685.134669] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3685.139993] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3685.146183] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3685.152629] avd 269080000.avd: fee80003 | slc_a84_slice_addr_low
+[ 3685.158660] avd 269080000.avd:      219 | slc_a88_slice_hdr_size
+[ 3685.164691] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3685.170339] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3685.176453] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3685.183067] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3685.189084] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3685.195368] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3685.201126] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3685.206521] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3685.212398] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3685.218626] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3685.223715] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3685.229293] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3685.234295] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3685.240031] avd 269080000.avd:        0 | hdr_40_zero
+[ 3685.245088] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3685.251436] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3685.256923] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3685.262064] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3685.268699] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3685.274097] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3685.279597] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3685.285090] avd 269080000.avd:        0 | zero
+[ 3685.289533] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3685.296074] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3685.303226] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3685.308719] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3685.314214] avd 269080000.avd:        0 | zero
+[ 3685.318661] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3685.325203] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3685.332356] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3685.338906] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3685.346048] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3685.352584] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3685.359734] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3685.365231] avd 269080000.avd: fdc00000 | hdr_210_y_addr_lsb8[0]
+[ 3685.371247] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3685.377875] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3685.383636] avd 269080000.avd: fdc39800 | hdr_214_uv_addr_lsb8[0]
+[ 3685.389735] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3685.396449] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3685.402206] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3685.408049] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3685.413804] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3685.419296] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3685.425837] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3685.432990] avd 269080000.avd: fdcce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3685.439531] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3685.446681] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3685.452180] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3685.457674] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3685.463167] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3685.468672] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3685.473980] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3685.480170] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3685.486649] avd 269080000.avd: fef00003 | slc_a84_slice_addr_low
+[ 3685.492641] avd 269080000.avd:      10f | slc_a88_slice_hdr_size
+[ 3685.498681] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3685.504330] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3685.510443] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3685.517058] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3685.523080] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3685.529358] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3685.535112] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3685.540519] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3685.546366] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3685.552585] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3685.557709] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3685.563193] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3685.568248] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3685.574007] avd 269080000.avd:        0 | hdr_40_zero
+[ 3685.579065] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3685.585429] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3685.590922] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3685.596067] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3685.602697] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3685.608100] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3685.613595] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3685.619089] avd 269080000.avd:        0 | zero
+[ 3685.623538] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3685.630081] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3685.637232] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3685.642729] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3685.648217] avd 269080000.avd:        0 | zero
+[ 3685.652668] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3685.659209] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3685.666364] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3685.672900] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3685.680050] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3685.686594] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3685.693739] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3685.699238] avd 269080000.avd: fdb00000 | hdr_210_y_addr_lsb8[0]
+[ 3685.705253] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3685.711878] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3685.717634] avd 269080000.avd: fdb39800 | hdr_214_uv_addr_lsb8[0]
+[ 3685.723738] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3685.730455] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3685.736208] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3685.742052] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3685.747810] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3685.753300] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3685.759844] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3685.766998] avd 269080000.avd: fdbce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3685.773533] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3685.780685] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3685.786179] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3685.791670] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3685.797166] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3685.802660] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3685.807979] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3685.814172] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3685.820623] avd 269080000.avd: fee80003 | slc_a84_slice_addr_low
+[ 3685.826641] avd 269080000.avd:      202 | slc_a88_slice_hdr_size
+[ 3685.832669] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3685.838330] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3685.844439] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3685.851063] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3685.857079] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3685.863366] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3685.869116] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3685.874524] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3685.880369] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3685.886580] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3685.891704] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3685.897196] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3685.902252] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3685.908006] avd 269080000.avd:        0 | hdr_40_zero
+[ 3685.913065] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3685.919433] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3685.924925] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3685.930070] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3685.936700] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3685.942104] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3685.947600] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3685.953098] avd 269080000.avd:        0 | zero
+[ 3685.957543] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3685.964084] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3685.971237] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3685.976728] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3685.982221] avd 269080000.avd:        0 | zero
+[ 3685.986670] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3685.993211] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3686.000365] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3686.006902] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3686.014055] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3686.020592] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3686.027748] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3686.033243] avd 269080000.avd: fda00000 | hdr_210_y_addr_lsb8[0]
+[ 3686.039255] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3686.045889] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3686.051647] avd 269080000.avd: fda39800 | hdr_214_uv_addr_lsb8[0]
+[ 3686.057743] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3686.064458] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3686.070218] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3686.076058] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3686.081820] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3686.087313] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3686.093849] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3686.101002] avd 269080000.avd: fdace400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3686.107538] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3686.114695] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3686.120184] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3686.125677] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3686.131172] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3686.136667] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3686.141990] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3686.148179] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3686.154633] avd 269080000.avd: fef00003 | slc_a84_slice_addr_low
+[ 3686.160647] avd 269080000.avd:      2a4 | slc_a88_slice_hdr_size
+[ 3686.166666] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3686.172340] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3686.178446] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3686.185068] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3686.191086] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3686.197365] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3686.203120] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3686.208528] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3686.214368] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3686.220584] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3686.225715] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3686.231199] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3686.236269] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3686.242017] avd 269080000.avd:        0 | hdr_40_zero
+[ 3686.247072] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3686.253440] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3686.258941] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3686.264076] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3686.270707] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3686.276116] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3686.281607] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3686.287185] avd 269080000.avd:        0 | zero
+[ 3686.291552] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3686.298092] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3686.305240] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3686.310733] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3686.316226] avd 269080000.avd:        0 | zero
+[ 3686.320674] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3686.327230] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3686.334372] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3686.340908] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3686.348059] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3686.354597] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3686.361750] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3686.367244] avd 269080000.avd: fd900000 | hdr_210_y_addr_lsb8[0]
+[ 3686.373261] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3686.379890] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3686.385644] avd 269080000.avd: fd939800 | hdr_214_uv_addr_lsb8[0]
+[ 3686.391748] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3686.398467] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3686.404218] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3686.410068] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3686.415819] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3686.421311] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3686.427854] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3686.435004] avd 269080000.avd: fd9ce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3686.441543] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3686.448704] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3686.454191] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3686.459683] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3686.465185] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3686.470671] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3686.475998] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3686.482189] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3686.488637] avd 269080000.avd: fee80003 | slc_a84_slice_addr_low
+[ 3686.494654] avd 269080000.avd:      1a0 | slc_a88_slice_hdr_size
+[ 3686.500684] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3686.506341] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3686.512454] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3686.519070] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3686.525093] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3686.531367] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3686.537125] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3686.542528] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3686.548374] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3686.554593] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3686.559719] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3686.565204] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3686.570259] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3686.576017] avd 269080000.avd:        0 | hdr_40_zero
+[ 3686.581078] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3686.587443] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3686.592936] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3686.598081] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3686.604711] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3686.610116] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3686.615609] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3686.621104] avd 269080000.avd:        0 | zero
+[ 3686.625550] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3686.632093] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3686.639246] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3686.644739] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3686.650235] avd 269080000.avd:        0 | zero
+[ 3686.654677] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3686.661230] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3686.668379] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3686.674914] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3686.682074] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3686.688606] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3686.695759] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3686.701256] avd 269080000.avd: fd800000 | hdr_210_y_addr_lsb8[0]
+[ 3686.707267] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3686.713898] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3686.719651] avd 269080000.avd: fd839800 | hdr_214_uv_addr_lsb8[0]
+[ 3686.725754] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3686.732470] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3686.738225] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3686.744068] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3686.749824] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3686.755322] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3686.761857] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3686.769006] avd 269080000.avd: fd8ce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3686.775549] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3686.782708] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3686.788195] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3686.793688] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3686.799184] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3686.804677] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3686.809995] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3686.816188] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3686.822640] avd 269080000.avd: fef00003 | slc_a84_slice_addr_low
+[ 3686.828661] avd 269080000.avd:      26a | slc_a88_slice_hdr_size
+[ 3686.834681] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3686.840347] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3686.846449] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3686.853080] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3686.859096] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3686.865377] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3686.871133] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3686.876536] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3686.882378] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3686.888602] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3686.893726] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3686.899210] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3686.904268] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3686.910024] avd 269080000.avd:        0 | hdr_40_zero
+[ 3686.915080] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3686.921447] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3686.926941] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3686.932088] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3686.938718] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3686.944122] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3686.949614] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3686.955109] avd 269080000.avd:        0 | zero
+[ 3686.959556] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3686.966098] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3686.973249] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3686.978743] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3686.984236] avd 269080000.avd:        0 | zero
+[ 3686.988683] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3686.995224] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3687.002382] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3687.008920] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3687.016068] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3687.022608] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3687.029760] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3687.035265] avd 269080000.avd: fd700000 | hdr_210_y_addr_lsb8[0]
+[ 3687.041270] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3687.047897] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3687.053660] avd 269080000.avd: fd739800 | hdr_214_uv_addr_lsb8[0]
+[ 3687.059757] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3687.066476] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3687.072232] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3687.078071] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3687.083826] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3687.089321] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3687.095863] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3687.103013] avd 269080000.avd: fd7ce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3687.109554] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3687.116706] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3687.122198] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3687.127691] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3687.133185] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3687.138692] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3687.144001] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3687.150192] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3687.156644] avd 269080000.avd: fee80003 | slc_a84_slice_addr_low
+[ 3687.162662] avd 269080000.avd:      227 | slc_a88_slice_hdr_size
+[ 3687.168679] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3687.174348] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3687.180462] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3687.187083] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3687.193096] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3687.199376] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3687.205131] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3687.210538] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3687.216382] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3687.222598] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3687.227724] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3687.233212] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3687.238278] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3687.244032] avd 269080000.avd:        0 | hdr_40_zero
+[ 3687.249095] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3687.255452] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3687.260957] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3687.266095] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3687.272721] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3687.278130] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3687.283624] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3687.289115] avd 269080000.avd:        0 | zero
+[ 3687.293561] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3687.300103] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3687.307256] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3687.312747] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3687.318240] avd 269080000.avd:        0 | zero
+[ 3687.322689] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3687.329230] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3687.336390] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3687.342921] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3687.350153] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3687.356611] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3687.363763] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3687.369261] avd 269080000.avd: fde00000 | hdr_210_y_addr_lsb8[0]
+[ 3687.375276] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3687.381904] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3687.387658] avd 269080000.avd: fde39800 | hdr_214_uv_addr_lsb8[0]
+[ 3687.393763] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3687.400478] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3687.406233] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3687.412076] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3687.417832] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3687.423325] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3687.429868] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3687.437021] avd 269080000.avd: fdece400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3687.443563] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3687.450714] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3687.456212] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3687.461698] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3687.467189] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3687.472689] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3687.478004] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3687.484201] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3687.490656] avd 269080000.avd: fef00003 | slc_a84_slice_addr_low
+[ 3687.496667] avd 269080000.avd:      19d | slc_a88_slice_hdr_size
+[ 3687.502693] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3687.508351] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3687.514471] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3687.521085] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3687.527104] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3687.533383] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3687.539137] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3687.544547] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3687.550385] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3687.556600] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3687.561727] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3687.567220] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3687.572278] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3687.578039] avd 269080000.avd:        0 | hdr_40_zero
+[ 3687.583097] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3687.589461] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3687.594948] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3687.600093] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3687.606721] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3687.612127] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3687.617620] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3687.623116] avd 269080000.avd:        0 | zero
+[ 3687.627569] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3687.634108] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3687.641262] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3687.646750] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3687.652244] avd 269080000.avd:        0 | zero
+[ 3687.656697] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3687.663233] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3687.670392] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3687.676930] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3687.684079] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3687.690615] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3687.697768] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3687.703262] avd 269080000.avd: fdd00000 | hdr_210_y_addr_lsb8[0]
+[ 3687.709277] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3687.715904] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3687.721660] avd 269080000.avd: fdd39800 | hdr_214_uv_addr_lsb8[0]
+[ 3687.727766] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3687.734481] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3687.740238] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3687.746081] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3687.751835] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3687.757330] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3687.763870] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3687.771021] avd 269080000.avd: fddce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3687.777569] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3687.784720] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3687.790205] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3687.795699] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3687.801193] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3687.806689] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3687.812010] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3687.818202] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3687.824655] avd 269080000.avd: fee80003 | slc_a84_slice_addr_low
+[ 3687.830670] avd 269080000.avd:      309 | slc_a88_slice_hdr_size
+[ 3687.836687] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3687.842365] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3687.848462] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3687.855090] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3687.861111] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3687.867387] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3687.873144] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3687.878556] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3687.884394] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3687.890606] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3687.895735] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3687.901224] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3687.906281] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3687.912036] avd 269080000.avd:        0 | hdr_40_zero
+[ 3687.917093] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3687.923461] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3687.928955] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3687.934101] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3687.940728] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3687.946133] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3687.951629] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3687.957121] avd 269080000.avd:        0 | zero
+[ 3687.961572] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3687.968113] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3687.975261] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3687.980755] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3687.986248] avd 269080000.avd:        0 | zero
+[ 3687.990696] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3687.997239] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3688.004392] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3688.010929] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3688.018080] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3688.024620] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3688.031772] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3688.037266] avd 269080000.avd: fdc00000 | hdr_210_y_addr_lsb8[0]
+[ 3688.043284] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3688.049917] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3688.055668] avd 269080000.avd: fdc39800 | hdr_214_uv_addr_lsb8[0]
+[ 3688.061772] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3688.068491] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3688.074241] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3688.080089] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3688.085848] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3688.091335] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3688.097875] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3688.105029] avd 269080000.avd: fdcce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3688.111566] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3688.118720] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3688.124211] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3688.129706] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3688.135201] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3688.140697] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3688.146016] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3688.152207] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3688.158660] avd 269080000.avd: fef00003 | slc_a84_slice_addr_low
+[ 3688.164675] avd 269080000.avd:      3c6 | slc_a88_slice_hdr_size
+[ 3688.170695] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3688.176363] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3688.182466] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3688.189106] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3688.195118] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3688.201391] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3688.207150] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3688.212556] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3688.218403] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3688.224647] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3688.229748] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3688.235227] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3688.240285] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3688.246050] avd 269080000.avd:        0 | hdr_40_zero
+[ 3688.251100] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3688.257465] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3688.262966] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3688.268102] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3688.274738] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3688.280146] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3688.285637] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3688.291143] avd 269080000.avd:        0 | zero
+[ 3688.295576] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3688.302117] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3688.309269] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3688.314761] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3688.320256] avd 269080000.avd:        0 | zero
+[ 3688.324705] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3688.331245] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3688.338400] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3688.344935] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3688.352087] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3688.358626] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3688.365780] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3688.371273] avd 269080000.avd: fdb00000 | hdr_210_y_addr_lsb8[0]
+[ 3688.377290] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3688.383916] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3688.389672] avd 269080000.avd: fdb39800 | hdr_214_uv_addr_lsb8[0]
+[ 3688.395776] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3688.402492] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3688.408247] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3688.414090] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3688.419921] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3688.425339] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3688.431881] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3688.439033] avd 269080000.avd: fdbce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3688.445574] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3688.452732] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3688.458215] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3688.463711] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3688.469213] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3688.474701] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3688.480029] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3688.486217] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3688.492666] avd 269080000.avd: fee80003 | slc_a84_slice_addr_low
+[ 3688.498696] avd 269080000.avd:      334 | slc_a88_slice_hdr_size
+[ 3688.504698] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3688.510432] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3688.516475] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3688.523106] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3688.529117] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3688.535396] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3688.541150] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3688.546556] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3688.552400] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3688.558614] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3688.563743] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3688.569231] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3688.574291] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3688.580094] avd 269080000.avd:        0 | hdr_40_zero
+[ 3688.585104] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3688.591468] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3688.596969] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3688.602108] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3688.608737] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3688.614142] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3688.619636] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3688.625130] avd 269080000.avd:        0 | zero
+[ 3688.629580] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3688.636119] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3688.643271] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3688.648764] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3688.654258] avd 269080000.avd:        0 | zero
+[ 3688.658707] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3688.665251] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3688.672405] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3688.678950] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3688.686092] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3688.692630] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3688.699788] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3688.705276] avd 269080000.avd: fda00000 | hdr_210_y_addr_lsb8[0]
+[ 3688.711297] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3688.717926] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3688.723680] avd 269080000.avd: fda39800 | hdr_214_uv_addr_lsb8[0]
+[ 3688.729783] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3688.736497] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3688.742252] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3688.748092] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3688.753848] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3688.759343] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3688.765885] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3688.773035] avd 269080000.avd: fdace400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3688.779575] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3688.786733] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3688.792220] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3688.797714] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3688.803211] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3688.808706] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3688.814024] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3688.820218] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3688.826670] avd 269080000.avd: fef00003 | slc_a84_slice_addr_low
+[ 3688.832687] avd 269080000.avd:      44e | slc_a88_slice_hdr_size
+[ 3688.838711] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3688.844375] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3688.850479] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3688.857112] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3688.863124] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3688.869407] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3688.875159] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3688.880561] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3688.886406] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3688.892624] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3688.897753] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3688.903239] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3688.908295] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3688.914052] avd 269080000.avd:        0 | hdr_40_zero
+[ 3688.919109] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3688.925477] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3688.930971] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3688.936115] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3688.942744] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3688.948147] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3688.953638] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3688.959136] avd 269080000.avd:        0 | zero
+[ 3688.963583] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3688.970124] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3688.977281] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3688.982768] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3688.988265] avd 269080000.avd:        0 | zero
+[ 3688.992711] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3688.999251] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3689.006402] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3689.012947] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3689.020095] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3689.026634] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3689.033784] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3689.039280] avd 269080000.avd: fd900000 | hdr_210_y_addr_lsb8[0]
+[ 3689.045296] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3689.051928] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3689.057681] avd 269080000.avd: fd939800 | hdr_214_uv_addr_lsb8[0]
+[ 3689.063786] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3689.070508] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3689.076254] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3689.082096] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3689.087858] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3689.093347] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3689.099892] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3689.107051] avd 269080000.avd: fd9ce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3689.113581] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3689.120746] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3689.126230] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3689.131722] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3689.137213] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3689.142712] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3689.148030] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3689.154223] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3689.160673] avd 269080000.avd: fee80003 | slc_a84_slice_addr_low
+[ 3689.166691] avd 269080000.avd:      4a8 | slc_a88_slice_hdr_size
+[ 3689.172708] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3689.178377] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3689.184479] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3689.191107] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3689.197128] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3689.203402] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3689.209158] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3689.214567] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3689.220413] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3689.226627] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3689.231763] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3689.237242] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3689.242310] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3689.248060] avd 269080000.avd:        0 | hdr_40_zero
+[ 3689.253113] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3689.259487] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3689.264974] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3689.270117] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3689.276752] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3689.282157] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3689.287647] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3689.293141] avd 269080000.avd:        0 | zero
+[ 3689.297589] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3689.304130] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3689.311284] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3689.316776] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3689.322269] avd 269080000.avd:        0 | zero
+[ 3689.326715] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3689.333274] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3689.340414] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3689.346950] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3689.354102] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3689.360640] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3689.367797] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3689.373288] avd 269080000.avd: fd800000 | hdr_210_y_addr_lsb8[0]
+[ 3689.379302] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3689.385930] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3689.391687] avd 269080000.avd: fd839800 | hdr_214_uv_addr_lsb8[0]
+[ 3689.397790] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3689.404507] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3689.410263] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3689.416104] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3689.421861] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3689.427358] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3689.433895] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3689.441046] avd 269080000.avd: fd8ce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3689.447589] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3689.454745] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3689.460233] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3689.465726] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3689.471223] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3689.476792] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3689.482037] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3689.488232] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3689.494676] avd 269080000.avd: fef00003 | slc_a84_slice_addr_low
+[ 3689.500708] avd 269080000.avd:      25e | slc_a88_slice_hdr_size
+[ 3689.506714] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3689.512388] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3689.518487] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3689.525115] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3689.531130] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3689.537420] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3689.543166] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3689.548572] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3689.554414] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3689.560630] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3689.565757] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3689.571244] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3689.576304] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3689.582062] avd 269080000.avd:        0 | hdr_40_zero
+[ 3689.587117] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3689.593483] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3689.598978] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3689.604124] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3689.610750] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3689.616157] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3689.621651] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3689.627144] avd 269080000.avd:        0 | zero
+[ 3689.631593] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3689.638134] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3689.645286] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3689.650781] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3689.656273] avd 269080000.avd:        0 | zero
+[ 3689.660719] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3689.667269] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3689.674417] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3689.680955] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3689.688110] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3689.694648] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3689.701803] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3689.707294] avd 269080000.avd: fd700000 | hdr_210_y_addr_lsb8[0]
+[ 3689.713305] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3689.719935] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3689.725689] avd 269080000.avd: fd739800 | hdr_214_uv_addr_lsb8[0]
+[ 3689.731795] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3689.738512] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3689.744268] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3689.750111] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3689.755865] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3689.761360] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3689.767897] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3689.775050] avd 269080000.avd: fd7ce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3689.781591] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3689.788745] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3689.794235] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3689.799730] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3689.805224] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3689.810718] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3689.816037] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3689.822230] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3689.828682] avd 269080000.avd: fee80003 | slc_a84_slice_addr_low
+[ 3689.834704] avd 269080000.avd:      3a6 | slc_a88_slice_hdr_size
+[ 3689.840717] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3689.846384] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3689.852490] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3689.859121] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3689.865138] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3689.871422] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3689.877169] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3689.882576] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3689.888422] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3689.894640] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3689.899775] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3689.905256] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3689.910311] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3689.916066] avd 269080000.avd:        0 | hdr_40_zero
+[ 3689.921123] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3689.927490] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3689.932984] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3689.938131] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3689.944767] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3689.950162] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3689.955655] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3689.961149] avd 269080000.avd:        0 | zero
+[ 3689.965596] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3689.972137] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3689.979289] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3689.984783] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3689.990276] avd 269080000.avd:        0 | zero
+[ 3689.994724] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3690.001268] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3690.008420] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3690.014962] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3690.022112] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3690.028648] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3690.035803] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3690.041297] avd 269080000.avd: fde00000 | hdr_210_y_addr_lsb8[0]
+[ 3690.047319] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3690.053941] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3690.059694] avd 269080000.avd: fde39800 | hdr_214_uv_addr_lsb8[0]
+[ 3690.065805] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3690.072515] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3690.078272] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3690.084114] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3690.089867] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3690.095362] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3690.101903] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3690.109054] avd 269080000.avd: fdece400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3690.115595] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3690.122750] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3690.128240] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3690.133737] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3690.139234] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3690.144730] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3690.150054] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3690.156239] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3690.162687] avd 269080000.avd: fef00003 | slc_a84_slice_addr_low
+[ 3690.168707] avd 269080000.avd:      2f1 | slc_a88_slice_hdr_size
+[ 3690.174723] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3690.180390] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3690.186495] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3690.193122] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3690.199141] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3690.205422] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3690.211174] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3690.216582] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3690.222424] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3690.228643] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3690.233777] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3690.239261] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3690.244319] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3690.250083] avd 269080000.avd:        0 | hdr_40_zero
+[ 3690.255130] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3690.261495] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3690.266996] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3690.272136] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3690.278768] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3690.284172] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3690.289661] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3690.295156] avd 269080000.avd:        0 | zero
+[ 3690.299603] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3690.306145] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3690.313296] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3690.318789] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3690.324282] avd 269080000.avd:        0 | zero
+[ 3690.328729] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3690.335274] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3690.342441] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3690.348969] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3690.356118] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3690.362653] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3690.369805] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3690.375298] avd 269080000.avd: fdd00000 | hdr_210_y_addr_lsb8[0]
+[ 3690.381314] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3690.387943] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3690.393700] avd 269080000.avd: fdd39800 | hdr_214_uv_addr_lsb8[0]
+[ 3690.399813] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3690.406519] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3690.412272] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3690.418117] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3690.423873] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3690.429365] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3690.435909] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3690.443060] avd 269080000.avd: fddce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3690.449598] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3690.456759] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3690.462244] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3690.467735] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3690.473234] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3690.478724] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3690.484049] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3690.490241] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3690.496689] avd 269080000.avd: fee80003 | slc_a84_slice_addr_low
+[ 3690.502721] avd 269080000.avd:      1c9 | slc_a88_slice_hdr_size
+[ 3690.508730] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3690.514402] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3690.520496] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3690.527142] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3690.533147] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3690.539425] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3690.545177] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3690.550584] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3690.556427] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3690.562724] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3690.567770] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3690.573260] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3690.578317] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3690.584072] avd 269080000.avd:        0 | hdr_40_zero
+[ 3690.589133] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3690.595497] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3690.600991] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3690.606136] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3690.612762] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3690.618170] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3690.623664] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3690.629157] avd 269080000.avd:        0 | zero
+[ 3690.633605] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3690.640147] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3690.647302] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3690.652793] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3690.658285] avd 269080000.avd:        0 | zero
+[ 3690.662735] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3690.669279] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3690.676450] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3690.682968] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3690.690118] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3690.696663] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3690.703809] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3690.709308] avd 269080000.avd: fdc00000 | hdr_210_y_addr_lsb8[0]
+[ 3690.715323] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3690.721947] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3690.727706] avd 269080000.avd: fdc39800 | hdr_214_uv_addr_lsb8[0]
+[ 3690.733807] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3690.740523] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3690.746281] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3690.752122] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3690.757877] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3690.763370] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3690.769912] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3690.777067] avd 269080000.avd: fdcce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3690.783603] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3690.790759] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3690.796248] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3690.801742] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3690.807239] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3690.812733] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3690.818055] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3690.824244] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3690.830697] avd 269080000.avd: fef00003 | slc_a84_slice_addr_low
+[ 3690.836714] avd 269080000.avd:      341 | slc_a88_slice_hdr_size
+[ 3690.842737] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3690.848399] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3690.854504] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3690.861137] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3690.867149] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3690.873430] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3690.879187] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3690.884592] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3690.890432] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3690.896647] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3690.901776] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3690.907270] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3690.912325] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3690.918078] avd 269080000.avd:        0 | hdr_40_zero
+[ 3690.923135] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3690.929501] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3690.934994] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3690.940142] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3690.946769] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3690.952178] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3690.957668] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3690.963163] avd 269080000.avd:        0 | zero
+[ 3690.967610] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3690.974158] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3690.981304] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3690.986801] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3690.992290] avd 269080000.avd:        0 | zero
+[ 3690.996738] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3691.003279] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3691.010434] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3691.016974] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3691.024124] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3691.030663] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3691.037817] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3691.043316] avd 269080000.avd: fdb00000 | hdr_210_y_addr_lsb8[0]
+[ 3691.049324] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3691.055954] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3691.061710] avd 269080000.avd: fdb39800 | hdr_214_uv_addr_lsb8[0]
+[ 3691.067813] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3691.074534] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3691.080286] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3691.086126] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3691.091882] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3691.097375] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3691.103916] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3691.111066] avd 269080000.avd: fdbce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3691.117605] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3691.124759] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3691.130251] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3691.135746] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3691.141242] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3691.146734] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3691.152053] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3691.158251] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3691.164708] avd 269080000.avd: fee80003 | slc_a84_slice_addr_low
+[ 3691.170721] avd 269080000.avd:      399 | slc_a88_slice_hdr_size
+[ 3691.176734] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3691.182405] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3691.188507] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3691.195138] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3691.201152] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3691.207432] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3691.213187] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3691.218595] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3691.224436] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3691.230656] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3691.235786] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3691.241271] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3691.246334] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3691.252080] avd 269080000.avd:        0 | hdr_40_zero
+[ 3691.257138] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3691.263508] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3691.268999] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3691.274147] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3691.280779] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3691.286180] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3691.291677] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3691.297169] avd 269080000.avd:        0 | zero
+[ 3691.301617] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3691.308161] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3691.315308] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3691.320801] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3691.326295] avd 269080000.avd:        0 | zero
+[ 3691.330743] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3691.337285] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3691.344440] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3691.350977] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3691.358130] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3691.364670] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3691.371820] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3691.377318] avd 269080000.avd: fda00000 | hdr_210_y_addr_lsb8[0]
+[ 3691.383329] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3691.389963] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3691.395714] avd 269080000.avd: fda39800 | hdr_214_uv_addr_lsb8[0]
+[ 3691.401819] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3691.408536] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3691.414289] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3691.420134] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3691.425886] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3691.431379] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3691.437921] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3691.445094] avd 269080000.avd: fdace400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3691.451614] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3691.458767] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3691.464263] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3691.469754] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3691.475249] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3691.480744] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3691.486064] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3691.492252] avd 269080000.avd: 2d820000 | slc_a7c_cmd_set_coded_slice
+[ 3691.498707] avd 269080000.avd: fef00003 | slc_a84_slice_addr_low
+[ 3691.504737] avd 269080000.avd:      1ee | slc_a88_slice_hdr_size
+[ 3691.510742] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3691.516417] avd 269080000.avd: 2d906000 | slc_a70_cmd_quant_param
+[ 3691.522516] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3691.529144] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3691.535160] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3691.541439] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3691.547200] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3691.552600] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3691.558442] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3691.564662] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3691.569786] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3691.575273] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3691.580331] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3691.586087] avd 269080000.avd:        0 | hdr_40_zero
+[ 3691.591148] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3691.597513] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3691.603007] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3691.608152] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3691.614778] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3691.620263] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3691.625683] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3691.631173] avd 269080000.avd:        0 | zero
+[ 3691.635624] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3691.642172] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3691.649313] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3691.654805] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3691.660305] avd 269080000.avd:        0 | zero
+[ 3691.664747] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3691.671297] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3691.678447] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3691.684993] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3691.692147] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3691.698678] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3691.705829] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3691.711318] avd 269080000.avd: fd900000 | hdr_210_y_addr_lsb8[0]
+[ 3691.717344] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3691.723971] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3691.729730] avd 269080000.avd: fd939800 | hdr_214_uv_addr_lsb8[0]
+[ 3691.735833] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3691.742548] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3691.748300] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3691.754144] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3691.759897] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3691.765392] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3691.771934] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3691.779087] avd 269080000.avd: fd9ce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3691.785623] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3691.792775] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3691.798266] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3691.803761] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3691.809259] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3691.814749] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3691.820076] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3691.826265] avd 269080000.avd: 2d830000 | slc_a7c_cmd_set_coded_slice
+[ 3691.832734] avd 269080000.avd: fee80003 | slc_a84_slice_addr_low
+[ 3691.838751] avd 269080000.avd:      233 | slc_a88_slice_hdr_size
+[ 3691.844754] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3691.850420] avd 269080000.avd: 2d906400 | slc_a70_cmd_quant_param
+[ 3691.856523] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3691.863155] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3691.869167] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3691.875451] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3691.881204] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3691.886608] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3691.892453] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3691.898684] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3691.903793] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3691.909288] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3691.914348] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3691.920097] avd 269080000.avd:        0 | hdr_40_zero
+[ 3691.925155] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3691.931524] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3691.937040] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3691.942173] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3691.948810] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3691.954198] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3691.959691] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3691.965188] avd 269080000.avd:        0 | zero
+[ 3691.969630] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3691.976191] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3691.983333] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3691.988818] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3691.994311] avd 269080000.avd:        0 | zero
+[ 3691.998755] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3692.005303] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3692.012461] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3692.018997] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3692.026144] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3692.032685] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3692.039854] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3692.045331] avd 269080000.avd: fd800000 | hdr_210_y_addr_lsb8[0]
+[ 3692.051351] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3692.057972] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3692.063734] avd 269080000.avd: fd839800 | hdr_214_uv_addr_lsb8[0]
+[ 3692.069835] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3692.076552] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3692.082306] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3692.088148] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3692.093902] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3692.099394] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3692.105936] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3692.113089] avd 269080000.avd: fd8ce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3692.119628] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3692.126781] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3692.132276] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3692.137769] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3692.143270] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3692.148761] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3692.154072] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3692.160266] avd 269080000.avd: 2d830000 | slc_a7c_cmd_set_coded_slice
+[ 3692.166722] avd 269080000.avd: fef00003 | slc_a84_slice_addr_low
+[ 3692.172735] avd 269080000.avd:      115 | slc_a88_slice_hdr_size
+[ 3692.178771] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3692.184433] avd 269080000.avd: 2d906400 | slc_a70_cmd_quant_param
+[ 3692.190533] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3692.197177] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3692.203182] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3692.209458] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3692.215218] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3692.220615] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3692.226463] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3692.232726] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3692.237809] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3692.243306] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3692.248349] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3692.254107] avd 269080000.avd:        0 | hdr_40_zero
+[ 3692.259158] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3692.265533] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3692.271021] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3692.276171] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3692.282801] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3692.288200] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3692.293693] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3692.299187] avd 269080000.avd:        0 | zero
+[ 3692.303636] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3692.310176] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3692.317325] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3692.322822] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3692.328321] avd 269080000.avd:        0 | zero
+[ 3692.332768] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3692.339307] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3692.346476] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3692.352996] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3692.360146] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3692.366702] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3692.373841] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3692.379334] avd 269080000.avd: fd700000 | hdr_210_y_addr_lsb8[0]
+[ 3692.385368] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3692.391989] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3692.397743] avd 269080000.avd: fd739800 | hdr_214_uv_addr_lsb8[0]
+[ 3692.403833] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3692.410552] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3692.416316] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3692.422152] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3692.427913] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3692.433412] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3692.439952] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3692.447107] avd 269080000.avd: fd7ce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3692.453633] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3692.460789] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3692.466282] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3692.471772] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3692.477270] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3692.482764] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3692.488077] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3692.494278] avd 269080000.avd: 2d830000 | slc_a7c_cmd_set_coded_slice
+[ 3692.500737] avd 269080000.avd: fee80003 | slc_a84_slice_addr_low
+[ 3692.506754] avd 269080000.avd:       cd | slc_a88_slice_hdr_size
+[ 3692.512768] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3692.518425] avd 269080000.avd: 2d906400 | slc_a70_cmd_quant_param
+[ 3692.524535] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3692.531162] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3692.537181] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3692.543456] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3692.549215] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3692.554640] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3692.560463] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3692.566687] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3692.571814] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3692.577293] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3692.582350] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3692.588111] avd 269080000.avd:        0 | hdr_40_zero
+[ 3692.593166] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3692.599530] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3692.605025] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3692.610167] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3692.616800] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3692.622204] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3692.627696] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3692.633196] avd 269080000.avd:        0 | zero
+[ 3692.637640] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3692.644180] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3692.651331] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3692.656824] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3692.662319] avd 269080000.avd:        0 | zero
+[ 3692.666761] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3692.673308] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3692.680464] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3692.687001] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3692.694217] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3692.700694] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3692.707848] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3692.713337] avd 269080000.avd: fde00000 | hdr_210_y_addr_lsb8[0]
+[ 3692.719353] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3692.725987] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3692.731732] avd 269080000.avd: fde39800 | hdr_214_uv_addr_lsb8[0]
+[ 3692.737846] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3692.744563] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3692.750313] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3692.756156] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3692.761917] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3692.767408] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3692.773944] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3692.781102] avd 269080000.avd: fdece400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3692.787643] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3692.794803] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3692.800282] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3692.805784] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3692.811273] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3692.816769] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3692.822085] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3692.828279] avd 269080000.avd: 2d830000 | slc_a7c_cmd_set_coded_slice
+[ 3692.834729] avd 269080000.avd: fef00003 | slc_a84_slice_addr_low
+[ 3692.840750] avd 269080000.avd:      143 | slc_a88_slice_hdr_size
+[ 3692.846767] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3692.852431] avd 269080000.avd: 2d906800 | slc_a70_cmd_quant_param
+[ 3692.858540] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3692.865166] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3692.871184] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3692.877461] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3692.883221] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3692.888625] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3692.894469] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3692.900688] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3692.905808] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3692.911301] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3692.916367] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3692.922117] avd 269080000.avd:        0 | hdr_40_zero
+[ 3692.927185] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3692.933542] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3692.939033] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3692.944177] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3692.950807] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3692.956206] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3692.961703] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3692.967199] avd 269080000.avd:        0 | zero
+[ 3692.971646] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3692.978190] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3692.985345] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3692.990828] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3692.996331] avd 269080000.avd:        0 | zero
+[ 3693.000775] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3693.007317] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3693.014465] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3693.021016] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3693.028159] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3693.034694] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3693.041852] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3693.047344] avd 269080000.avd: fdd00000 | hdr_210_y_addr_lsb8[0]
+[ 3693.053368] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3693.060002] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3693.065746] avd 269080000.avd: fdd39800 | hdr_214_uv_addr_lsb8[0]
+[ 3693.071849] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3693.078571] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3693.084323] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3693.090165] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3693.095916] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3693.101410] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3693.107955] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3693.115103] avd 269080000.avd: fddce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3693.121642] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3693.128798] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3693.134286] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3693.139784] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3693.145276] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3693.150771] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3693.156096] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3693.162285] avd 269080000.avd: 2d830000 | slc_a7c_cmd_set_coded_slice
+[ 3693.168736] avd 269080000.avd: fee80003 | slc_a84_slice_addr_low
+[ 3693.174752] avd 269080000.avd:      1b4 | slc_a88_slice_hdr_size
+[ 3693.180764] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3693.186443] avd 269080000.avd: 2d906800 | slc_a70_cmd_quant_param
+[ 3693.192541] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3693.199180] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3693.205195] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3693.211470] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3693.217224] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3693.222633] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3693.228473] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3693.234693] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3693.239818] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3693.245304] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3693.250362] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3693.256118] avd 269080000.avd:        0 | hdr_40_zero
+[ 3693.261170] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3693.267546] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3693.273041] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3693.278184] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3693.284814] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3693.290217] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3693.295713] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3693.301200] avd 269080000.avd:        0 | zero
+[ 3693.305650] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3693.312189] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3693.319342] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3693.324836] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3693.330330] avd 269080000.avd:        0 | zero
+[ 3693.334780] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3693.341324] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3693.348476] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3693.355017] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3693.362168] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3693.368704] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3693.375853] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3693.381349] avd 269080000.avd: fdc00000 | hdr_210_y_addr_lsb8[0]
+[ 3693.387361] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3693.393988] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3693.399745] avd 269080000.avd: fdc39800 | hdr_214_uv_addr_lsb8[0]
+[ 3693.405849] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3693.412561] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3693.418318] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3693.424162] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3693.429920] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3693.435414] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3693.441962] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3693.449113] avd 269080000.avd: fdcce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3693.455658] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3693.462797] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3693.468292] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3693.473790] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3693.479281] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3693.484774] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3693.490096] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3693.496289] avd 269080000.avd: 2d800000 | slc_a7c_cmd_set_coded_slice
+[ 3693.502744] avd 269080000.avd: fef00004 | slc_a84_slice_addr_low
+[ 3693.508756] avd 269080000.avd:      101 | slc_a88_slice_hdr_size
+[ 3693.514789] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3693.520441] avd 269080000.avd: 2d906c00 | slc_a70_cmd_quant_param
+[ 3693.526555] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3693.533191] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3693.539195] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3693.545467] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3693.551224] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3693.556624] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3693.562479] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3693.568700] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3693.573814] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3693.579313] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3693.584362] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3693.590124] avd 269080000.avd:        0 | hdr_40_zero
+[ 3693.595179] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3693.601545] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3693.607038] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3693.612186] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3693.618814] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3693.624221] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3693.629724] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3693.635213] avd 269080000.avd:        0 | zero
+[ 3693.639653] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3693.646198] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3693.653352] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3693.658838] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3693.664336] avd 269080000.avd:        0 | zero
+[ 3693.668783] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3693.675327] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3693.682478] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3693.689018] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3693.696174] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3693.702704] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3693.709860] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3693.715353] avd 269080000.avd: fdb00000 | hdr_210_y_addr_lsb8[0]
+[ 3693.721374] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3693.727999] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3693.733758] avd 269080000.avd: fdb39800 | hdr_214_uv_addr_lsb8[0]
+[ 3693.739857] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3693.746574] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3693.752334] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3693.758180] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3693.763927] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3693.769425] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3693.775976] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3693.783200] avd 269080000.avd: fdbce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3693.789659] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3693.796808] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3693.802297] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3693.807791] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3693.813288] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3693.818777] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3693.824102] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3693.830293] avd 269080000.avd: 2d800000 | slc_a7c_cmd_set_coded_slice
+[ 3693.836747] avd 269080000.avd: fee80004 | slc_a84_slice_addr_low
+[ 3693.842763] avd 269080000.avd:      140 | slc_a88_slice_hdr_size
+[ 3693.848780] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3693.854452] avd 269080000.avd: 2d907000 | slc_a70_cmd_quant_param
+[ 3693.860548] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3693.867181] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3693.873200] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3693.879476] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3693.885242] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3693.890644] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3693.896481] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3693.902692] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3693.907822] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3693.913310] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3693.918369] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3693.924124] avd 269080000.avd:        0 | hdr_40_zero
+[ 3693.929176] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3693.935550] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3693.941044] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3693.946197] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3693.952828] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3693.958233] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3693.963724] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3693.969212] avd 269080000.avd:        0 | zero
+[ 3693.973661] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3693.980198] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3693.987354] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3693.992844] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3693.998340] avd 269080000.avd:        0 | zero
+[ 3694.002781] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3694.009326] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3694.016480] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3694.023019] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3694.030170] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3694.036704] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3694.043867] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3694.049355] avd 269080000.avd: fda00000 | hdr_210_y_addr_lsb8[0]
+[ 3694.055378] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3694.062010] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3694.067760] avd 269080000.avd: fda39800 | hdr_214_uv_addr_lsb8[0]
+[ 3694.073876] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3694.080582] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3694.086334] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3694.092172] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3694.097939] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3694.103426] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3694.109962] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3694.117117] avd 269080000.avd: fdace400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3694.123657] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3694.130804] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3694.136299] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3694.141809] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3694.147296] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3694.152792] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3694.158110] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3694.164297] avd 269080000.avd: 2d800000 | slc_a7c_cmd_set_coded_slice
+[ 3694.170745] avd 269080000.avd: fef00004 | slc_a84_slice_addr_low
+[ 3694.176778] avd 269080000.avd:      137 | slc_a88_slice_hdr_size
+[ 3694.182788] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3694.188460] avd 269080000.avd: 2d907400 | slc_a70_cmd_quant_param
+[ 3694.194559] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3694.201180] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3694.207203] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3694.213480] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3694.219238] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3694.224645] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3694.230485] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end
+[ 3694.236700] avd 269080000.avd: 2b000100 | inst_fifo_start
+[ 3694.241822] avd 269080000.avd: 2db012e0 | hdr_34_start_hdr
+[ 3694.247323] avd 269080000.avd:  1000000 | hdr_38_mode
+[ 3694.252374] avd 269080000.avd:  16f027f | hdr_3c_height_width
+[ 3694.258128] avd 269080000.avd:        0 | hdr_40_zero
+[ 3694.263191] avd 269080000.avd:   2d004f | hdr_28_height_width_shift3
+[ 3694.269552] avd 269080000.avd:  1002801 | hdr_2c_sps_param
+[ 3694.275051] avd 269080000.avd:   200000 | hdr_44_flags
+[ 3694.280198] avd 269080000.avd:        0 | hdr_48_chroma_qp_index_offset
+[ 3694.286823] avd 269080000.avd:   30000a | hdr_58_const_3a
+[ 3694.292226] avd 269080000.avd:        0 | cm3_dma_config_1
+[ 3694.297721] avd 269080000.avd:        0 | cm3_dma_config_2
+[ 3694.303216] avd 269080000.avd:        0 | zero
+[ 3694.307662] avd 269080000.avd: fcfa0000 | hdr_9c_pps_tile_addr_lsb8[0]
+[ 3694.314204] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[0] (high)
+[ 3694.321354] avd 269080000.avd:        0 | cm3_dma_config_3
+[ 3694.326848] avd 269080000.avd:        0 | cm3_dma_config_4
+[ 3694.332340] avd 269080000.avd:        0 | zero
+[ 3694.336789] avd 269080000.avd: fcf98000 | hdr_9c_pps_tile_addr_lsb8[1]
+[ 3694.343327] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[1] (high)
+[ 3694.350498] avd 269080000.avd: fce98000 | hdr_9c_pps_tile_addr_lsb8[2]
+[ 3694.357026] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[2] (high)
+[ 3694.364182] avd 269080000.avd: f4f90000 | hdr_9c_pps_tile_addr_lsb8[3]
+[ 3694.370715] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[3] (high)
+[ 3694.377868] avd 269080000.avd:        0 | cm3_dma_config_5
+[ 3694.383365] avd 269080000.avd: fd900000 | hdr_210_y_addr_lsb8[0]
+[ 3694.389385] avd 269080000.avd:        0 | hdr_210_y_addr_lsb8[0] (high)
+[ 3694.396023] avd 269080000.avd:       28 | hdr_218_width_align
+[ 3694.401768] avd 269080000.avd: fd939800 | hdr_214_uv_addr_lsb8[0]
+[ 3694.407866] avd 269080000.avd:        0 | hdr_214_uv_addr_lsb8[0] (high)
+[ 3694.414597] avd 269080000.avd:       28 | hdr_21c_width_align
+[ 3694.420343] avd 269080000.avd:        0 | cm3_mark_end_section
+[ 3694.426181] avd 269080000.avd:  16f027f | hdr_54_height_width
+[ 3694.431936] avd 269080000.avd:        0 | cm3_dma_config_6
+[ 3694.437431] avd 269080000.avd: fce18000 | hdr_9c_pps_tile_addr_lsb8[7]
+[ 3694.443964] avd 269080000.avd:        0 | hdr_9c_pps_tile_addr_lsb8[7] (high)
+[ 3694.451127] avd 269080000.avd: fd9ce400 | hdr_bc_sps_tile_addr_lsb8[0]
+[ 3694.457670] avd 269080000.avd:        0 | hdr_bc_sps_tile_addr_lsb8[0] (high)
+[ 3694.464823] avd 269080000.avd:        0 | cm3_dma_config_7
+[ 3694.470316] avd 269080000.avd:        0 | cm3_dma_config_8
+[ 3694.475802] avd 269080000.avd:        0 | cm3_dma_config_9
+[ 3694.481308] avd 269080000.avd:        0 | cm3_dma_config_a
+[ 3694.486796] avd 269080000.avd:  1000002 | hdr_d0_ref_hdr
+[ 3694.492116] avd 269080000.avd:        0 | cm3_mark_end_section_scl
+[ 3694.498316] avd 269080000.avd: 2d810000 | slc_a7c_cmd_set_coded_slice
+[ 3694.504761] avd 269080000.avd: fee80004 | slc_a84_slice_addr_low
+[ 3694.510769] avd 269080000.avd:       81 | slc_a88_slice_hdr_size
+[ 3694.516788] avd 269080000.avd: 2c000000 | cm3_cmd_exec_mb_vp
+[ 3694.522451] avd 269080000.avd: 2d907c00 | slc_a70_cmd_quant_param
+[ 3694.528560] avd 269080000.avd: 2da30000 | slc_a74_cmd_deblocking_filter
+[ 3694.535191] avd 269080000.avd: 2dc00000 | slc_6e8_cmd_ref_list_0
+[ 3694.541212] avd 269080000.avd: 2dd00000 | slc_76c_cmd_weights_denom
+[ 3694.547484] avd 269080000.avd: 2a000000 | cm3_cmd_set_mb_dims
+[ 3694.553242] avd 269080000.avd:    16027 | cm3_set_mb_dims
+[ 3694.558677] avd 269080000.avd: 2d018000 | slc_6e4_cmd_ref_type
+[ 3694.564500] avd 269080000.avd: 2b000400 | cm3_cmd_inst_fifo_end

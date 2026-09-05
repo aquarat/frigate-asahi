@@ -1,0 +1,94 @@
+From c29da0700169335a072932300ad082a2305220a6 Mon Sep 17 00:00:00 2001
+From: Aquarat <blue@aquarat.co.uk>
+Date: Sat, 5 Sep 2026 19:23:54 +0100
+Subject: [PATCH] media: apple: avd: allow cacheable (non-coherent) MMAP
+ buffers
+
+The capture buffers are allocated with vb2_dma_contig_memops on a device
+that is not marked dma-coherent, so both the kernel and the user space
+mapping are Normal-NC (pgprot_dmacoherent()). Reading decoded frames back
+through such a mapping is extremely slow on Apple silicon: every load is
+a serialised uncached DRAM transaction, and neither wider loads nor
+non-temporal loads help.
+
+Measured on an M1 Mac mini (T8103) with one 2304x1296 NV12 capture
+buffer (13.2 MB plane, 4.5 MB of it image data) mapped by user space:
+
+  mapping                    memcpy   NEON ld1x4  ldnp/stnp  read-only u64
+  coherent (Normal-NC)      240 MB/s   250 MB/s   246 MB/s    124 MB/s
+  non-coherent (cacheable) 17.9 GB/s  23.8 GB/s  23.9 GB/s   18.8 GB/s
+
+For a client that copies the frames to system memory (ffmpeg's
+v4l2request hwaccel without a DRM-PRIME consumer, as used by Frigate)
+that is ~18 ms of CPU time per 2304x1296 frame just for the copy, which
+made hardware decode cost 4-5x more CPU than software decode.
+
+Let user space opt into cacheable buffers with the standard videobuf2
+mechanism: set allow_cache_hints on both queues so that
+V4L2_MEMORY_FLAG_NON_COHERENT (REQBUFS/CREATE_BUFS) and
+V4L2_BUF_FLAG_NO_CACHE_{INVALIDATE,CLEAN} (QBUF) are honoured, and
+advertise V4L2_BUF_CAP_SUPPORTS_MMAP_CACHE_HINTS. videobuf2 then
+allocates with dma_alloc_noncontiguous(), maps the buffers cacheable and
+does the cache maintenance in prepare/finish (clean before the hardware
+runs, invalidate at DQBUF), so the data is still correct without any
+assumption about the fabric's coherency.
+
+DMA_ATTR_NO_KERNEL_MAPPING has to go from the capture queue:
+dma_alloc_noncontiguous() rejects every attribute other than
+DMA_ATTR_ALLOC_SINGLE_PAGES (WARN_ON_ONCE in kernel/dma/mapping.c) and
+the allocation fails with -ENOMEM. The attribute was ineffective anyway:
+with an IOMMU and a blocking allocation iommu_dma_alloc() always goes
+through iommu_dma_alloc_remap(), which creates the vmap mapping
+regardless of the attribute.
+
+Clients that do not pass the flag are unaffected (same coherent
+allocation and mapping as before). With ffmpeg requesting
+V4L2_MEMORY_FLAG_NON_COHERENT for its capture buffers, the
+Frigate-like chain "-hwaccel v4l2request -i 2304x1296.h264 -vf
+fps=5,scale=640:360 -f rawvideo -pix_fmt yuv420p" for 150 frames goes
+from 2.97 s user + 0.09 s sys to 0.36-0.40 s user + 0.11-0.14 s sys
+(software decode: 0.53 s user single-threaded, 0.76 s with the default
+thread count), output bit-identical. Decode + read-back alone
+("-f null -") goes from 2.75 s to 0.08 s user + 0.12 s sys, the
+remaining sys time being the cache maintenance over the 13.2 MB planes.
+Verified with the full clip matrix (gst v4l2slh264dec, coherent buffers,
+unchanged) and repeated per-frame md5 comparison against software decode
+with the non-coherent buffers.
+
+Signed-off-by: <fill in>
+---
+ avd-drv.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/media/platform/apple/avd/avd-drv.c b/drivers/media/platform/apple/avd/avd-drv.c
+index abbe6d4..47e8ef7 100644
+--- a/drivers/media/platform/apple/avd/avd-drv.c
++++ b/drivers/media/platform/apple/avd/avd-drv.c
+@@ -263,6 +263,7 @@ static int avd_queue_init(void *priv, struct vb2_queue *src_vq,
+ 	src_vq->lock = &ctx->dev->vdev_lock;
+ 	src_vq->dev = ctx->dev->v4l2_dev.dev;
+ 	src_vq->supports_requests = true;
++	src_vq->allow_cache_hints = true;
+ 
+ 	ret = vb2_queue_init(src_vq);
+ 	if (ret)
+@@ -270,7 +271,7 @@ static int avd_queue_init(void *priv, struct vb2_queue *src_vq,
+ 
+ 	dst_vq->bidirectional = true;
+ 	dst_vq->mem_ops = &vb2_dma_contig_memops;
+-	dst_vq->dma_attrs = DMA_ATTR_NO_KERNEL_MAPPING;
++	dst_vq->dma_attrs = 0;
+ 	dst_vq->type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
+ 	dst_vq->io_modes = VB2_MMAP | VB2_DMABUF;
+ 	dst_vq->drv_priv = ctx;
+@@ -279,6 +280,7 @@ static int avd_queue_init(void *priv, struct vb2_queue *src_vq,
+ 	dst_vq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_COPY;
+ 	dst_vq->lock = &ctx->dev->vdev_lock;
+ 	dst_vq->dev = ctx->dev->v4l2_dev.dev;
++	dst_vq->allow_cache_hints = true;
+ 
+ 	return vb2_queue_init(dst_vq);
+ }
+-- 
+2.55.0
+

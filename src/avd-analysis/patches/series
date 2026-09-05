@@ -1,0 +1,7 @@
+0001-h264-fix-transform_8x8_mode_flag-bit.patch
+0002-h264-fix-default-weights-handling.patch
+0003-dump-vp-status-on-error.patch
+0004-h264-write-decode-command-right-after-instruction-stream.patch
+0005-t8103-restore-instruction-stream-dma-config-words.patch
+0006-t8103-extra-init-registers.patch
+0007-t8103-insn-fifo-mask-0.patch

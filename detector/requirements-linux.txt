@@ -1,0 +1,10 @@
+# Linux variant of requirements.txt (installed 2026-09-05 on Fedora Asahi 44, aarch64,
+# Python 3.14 via uv). requirements.txt pins are for the macOS/CoreML setup and predate
+# Python 3.14 wheels; these are the versions that were verified to work here.
+numpy==2.5.2
+onnxruntime==1.29.0
+opencv-python-headless==5.0.0.93
+pyzmq==27.2.0
+# GPU (Vulkan) backends -- see README-linux.md
+ncnn==1.0.20260526      # ncnn-vulkan / ncnn-cpu backends (wheel has Vulkan; do NOT use Fedora's ncnn package here)
+mnn==3.6.1              # only for its `mnnconvert` (the wheel's runtime is CPU-only); mnn-vulkan uses research/MNN-src

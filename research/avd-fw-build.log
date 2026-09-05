@@ -1,0 +1,57 @@
+The Meson build system
+Version: 1.11.2
+Source dir: ~/frigate/src/avd-fw
+Build dir: ~/frigate/src/avd-fw/build
+Build type: cross build
+Project name: avd-fw
+Project version: 0.1
+C compiler for the host machine: clang (clang 22.1.8 "clang version 22.1.8 (Fedora 22.1.8-4.fc44)")
+C linker for the host machine: clang ld.bfd 2.46.1-1
+C compiler for the build machine: cc (gcc 16.1.1 "cc (GCC) 16.1.1 20260515 (Red Hat 16.1.1-2)")
+C linker for the build machine: cc ld.bfd 2.46.1-1
+Build machine cpu family: aarch64
+Build machine cpu: aarch64
+Host machine cpu family: arm
+Host machine cpu: cortex-m3
+Target machine cpu family: arm
+Target machine cpu: cortex-m3
+Program llvm-objcopy found: YES (/usr/bin/llvm-objcopy)
+Build targets in project: 12
+
+avd-fw 0.1
+
+  User defined options
+    Cross files: ./llvm.ini
+
+Found ninja-1.13.2 at /usr/bin/ninja
+ninja: Entering directory `build'
+[1/30] Compiling C object avd-fw-v2-t0.elf.p/src_avd.c.o
+[2/30] Compiling C object avd-fw-v3-t1.elf.p/src_irq.c.o
+[3/30] Compiling C object avd-fw-v4-t0.elf.p/src_avd.c.o
+[4/30] Compiling C object avd-fw-v3-t1.elf.p/src_util.c.o
+[5/30] Compiling C object avd-fw-v3-t0.elf.p/src_avd.c.o
+[6/30] Compiling C object avd-fw-v3-t1.elf.p/src_avd.c.o
+[7/30] Compiling C object avd-fw-v4-t0.elf.p/src_util.c.o
+[8/30] Compiling C object avd-fw-v2-t0.elf.p/src_util.c.o
+[9/30] Compiling C object avd-fw-v3-t0.elf.p/src_util.c.o
+[10/30] Compiling C object avd-fw-v5-t0.elf.p/src_util.c.o
+[11/30] Compiling C object avd-fw-v5-t0.elf.p/src_avd.c.o
+[12/30] Compiling C object avd-fw-v4-t0.elf.p/src_irq.c.o
+[13/30] Compiling C object avd-fw-v5-t0.elf.p/src_irq.c.o
+[14/30] Linking target avd-fw-v3-t1.elf
+[15/30] Compiling C object avd-fw-v3-t0.elf.p/src_irq.c.o
+[16/30] Compiling C object avd-fw-v5-t1.elf.p/src_util.c.o
+[17/30] Generating avd-fw-v3-t1.bin with a custom command
+[18/30] Compiling C object avd-fw-v2-t0.elf.p/src_irq.c.o
+[19/30] Compiling C object avd-fw-v5-t1.elf.p/src_avd.c.o
+[20/30] Linking target avd-fw-v3-t0.elf
+[21/30] Compiling C object avd-fw-v5-t1.elf.p/src_irq.c.o
+[22/30] Linking target avd-fw-v4-t0.elf
+[23/30] Linking target avd-fw-v5-t0.elf
+[24/30] Generating avd-fw-v4-t0.bin with a custom command
+[25/30] Linking target avd-fw-v5-t1.elf
+[26/30] Generating avd-fw-v3-t0.bin with a custom command
+[27/30] Linking target avd-fw-v2-t0.elf
+[28/30] Generating avd-fw-v5-t0.bin with a custom command
+[29/30] Generating avd-fw-v5-t1.bin with a custom command
+[30/30] Generating avd-fw-v2-t0.bin with a custom command

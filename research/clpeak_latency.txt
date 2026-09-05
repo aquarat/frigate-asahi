@@ -1,0 +1,17 @@
+Backend: Vulkan
+  Device 0: Apple M1 (G13G B1)
+    Driver version   : 26.1.8
+    API version      : 1.4.354
+    VRAM             : 7743 MB
+    Kernel launch latency (US)
+      dispatch  : 98.66
+      roundtrip : 170.79
+Backend: OpenCL
+  Platform 0: rusticl
+    Device 0: Apple M1 (G13G B1)
+      Driver version   : 26.1.8
+      Compute units    : 8
+      Clock frequency  : 1278 MHz
+      Kernel launch latency (US)
+        dispatch  : 27.82
+        roundtrip : 261.66

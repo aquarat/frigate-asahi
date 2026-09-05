@@ -1,0 +1,93 @@
++ apt-get install -y -qq --no-install-recommends cmake python3 git ca-certificates
+debconf: delaying package configuration, since apt-utils is not installed
++ mkdir -p /src/shaderc-build
++ cd /src/shaderc-build
++ [ ! -d shaderc ]
++ git ls-remote --tags https://github.com/google/shaderc v20*
++ grep -v \^{}
++ sed s|.*refs/tags/||
++ sort -V
++ tail -1
++ TAG=v2026.3
++ echo shaderc tag: v2026.3
++ git clone -q --depth 1 -b v2026.3 https://github.com/google/shaderc shaderc
+shaderc tag: v2026.3
+Note: switching to '2c8cae778eec0283b44acbe7ed1a386865d78799'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
++ cd shaderc
++ git log -1 --format=%H %d %s
+2c8cae778eec0283b44acbe7ed1a386865d78799  (grafted, HEAD, tag: v2026.3) Finalize Shaderc v2026.3
++ ./utils/git-sync-deps
++ cd third_party/glslang
++ git log -1 --format=glslang %H %s
+glslang 168d452a4f460d24b588fed08477a81c44ee27a1 Update CHANGES for 16.4.0
++ cd third_party/spirv-tools
++ git log -1 --format=spirv-tools %H %s
+spirv-tools b707790a898e44038547df54580022fc1cf89c3d Prepare release v2026.3 (#6784)
++ mkdir -p build
++ cd build
++ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/shaderc-static -DBUILD_SHARED_LIBS=OFF -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DSHADERC_SKIP_TESTS=ON -DSHADERC_SKIP_EXAMPLES=ON -DSHADERC_SKIP_COPYRIGHT_CHECK=ON -DSHADERC_ENABLE_WERROR_COMPILE=OFF -DSPIRV_SKIP_TESTS=ON -DSPIRV_SKIP_EXECUTABLES=ON -DENABLE_GLSLANG_BINARIES=ON ..
+CMake Deprecation Warning at third_party/glslang/CMakeLists.txt:111 (message):
+  ENABLE_HLSL is deprecated.  The HLSL front-end will be removed in a future
+  major release of glslang.  See
+  https://github.com/KhronosGroup/glslang/issues/4210 for details.
+
+
++ make -j8
++ make install
++ ls -la /opt/shaderc-static/lib/
++ head -20
+total 58132
+drwxr-xr-x. 1 root root      702 Sep  5 18:30 .
+drwxr-xr-x. 1 root root       26 Sep  5 18:30 ..
+drwxr-xr-x. 1 root root      198 Sep  5 18:30 cmake
+-rw-r--r--. 1 root root     1444 Sep  5 18:28 libGenericCodeGen.a
+-rw-r--r--. 1 root root     1444 Sep  5 18:28 libMachineIndependent.a
+-rw-r--r--. 1 root root     1444 Sep  5 18:28 libOSDependent.a
+-rw-r--r--. 1 root root   239180 Sep  5 18:29 libSPIRV-Tools-diff.a
+-rw-r--r--. 1 root root   386746 Sep  5 18:29 libSPIRV-Tools-link.a
+-rw-r--r--. 1 root root   230512 Sep  5 18:29 libSPIRV-Tools-lint.a
+-rw-r--r--. 1 root root 10930270 Sep  5 18:29 libSPIRV-Tools-opt.a
+-rw-r--r--. 1 root root   888188 Sep  5 18:30 libSPIRV-Tools-reduce.a
+-rw-r--r--. 1 root root  2143904 Sep  5 18:28 libSPIRV-Tools-shared.so
+-rw-r--r--. 1 root root  3464146 Sep  5 18:28 libSPIRV-Tools.a
+-rw-r--r--. 1 root root     1444 Sep  5 18:29 libSPIRV.a
+-rw-r--r--. 1 root root    46748 Sep  5 18:28 libglslang-default-resource-limits.a
+-rw-r--r--. 1 root root  8178620 Sep  5 18:30 libglslang.a
+-rw-r--r--. 1 root root    63938 Sep  5 18:30 libshaderc.a
+-rw-r--r--. 1 root root 22785898 Sep  5 18:30 libshaderc_combined.a
+lrwxrwxrwx. 1 root root       22 Sep  5 18:30 libshaderc_shared.so -> libshaderc_shared.so.1
++ mkdir -p /opt/shaderc-static/lib/pkgconfig
++ sed -n s/.*shaderc_VERSION[^0-9]*\([0-9.]*\).*/\1/p /src/shaderc-build/shaderc/CHANGES
++ head -1
++ grep .
++ echo 2025.0
++ cat
++ cat /opt/shaderc-static/lib/pkgconfig/shaderc.pc
+prefix=/opt/shaderc-static
+libdir=${prefix}/lib
+includedir=${prefix}/include
+Name: shaderc
+Description: static shaderc (combined) for ffmpeg-vk
+Version: 2025.0
+Libs: -L${libdir} -lshaderc_combined -lstdc++ -lm -lpthread
+Cflags: -I${includedir}
++ ls /opt/shaderc-static/bin
+glslang
+glslangValidator
+glslc

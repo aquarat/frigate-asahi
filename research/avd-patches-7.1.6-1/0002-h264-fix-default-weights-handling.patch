@@ -1,0 +1,56 @@
+From: AVD root-cause analysis <blue@aquarat.co.uk>
+Subject: [PATCH 2/7] media: apple: avd: h264: fix default weights handling
+
+For streams with weighted_bipred_idc == 2 (x264 default for Main/High with
+B-frames) stream_weights() OR'ed the implicit-bipred default denominators
+(5/5) into the explicit denominators of every P slice that carries real
+weights (weighted_pred_flag == 1), corrupting weighted prediction. Only use
+the defaults when no explicit weights are required for the slice, as eiln's
+HAL does (avid/h264/halv3.py:205-216).
+
+Backport of asahi-7.1.12-1 commit 3cba4f1d5b86.
+
+Affects P frames of g_1080_main/g_1296_main/t_*_high (not the first-frame error).
+
+Base: AsahiLinux/linux tag asahi-7.1.6-1 (drivers/media/platform/apple/avd, last driver commit 0d6dcb9b11b4)
+---
+diff --git a/drivers/media/platform/apple/avd/avd-h264.c b/drivers/media/platform/apple/avd/avd-h264.c
+--- a/drivers/media/platform/apple/avd/avd-h264.c
++++ b/drivers/media/platform/apple/avd/avd-h264.c
+@@ -297,20 +297,26 @@
+ 	const struct v4l2_ctrl_h264_slice_params *sl = run->slice_params;
+ 	struct avd_dev *avd = ctx->dev;
+ 
+-	bool pred_weight = V4L2_H264_CTRL_PRED_WEIGHTS_REQUIRED(pps, sl);
++	bool pred_weight_req = V4L2_H264_CTRL_PRED_WEIGHTS_REQUIRED(pps, sl);
++	/*
++	 * Implicit bi-pred (weighted_bipred_idc == 2) only applies to B slices
++	 * without explicit weights. P slices in such a stream (x264 default
++	 * for Main/High: weighted_pred=1, weighted_bipred_idc=2) carry explicit
++	 * weights and must not have the default denominators OR'ed in.
++	 */
++	bool default_weights = pps->weighted_bipred_idc == 2 && !pred_weight_req;
+ 
+-	/* TODO: is there a better flag or something for the
+-	 * pps->weighted_bipred_idc == 2 checks? */
+ 	push(AVD_OP_WEIGHTS_HDR
+-		| AVD_OP_WEIGHTS_HDR_FLAG1(pps->weighted_bipred_idc == 2)
+-		| AVD_OP_WEIGHTS_HDR_FLAG0(pred_weight)
+-		| AVD_OP_WEIGHTS_HDR_LUMA(weights->luma_log2_weight_denom)
+-		| AVD_OP_WEIGHTS_HDR_CHROMA(weights->chroma_log2_weight_denom)
+-		/* default luma and chroma denom */
+-		| (pps->weighted_bipred_idc == 2 ? DEFAULT_WEIGHT_DENOM : 0),
++		| AVD_OP_WEIGHTS_HDR_FLAG1(default_weights)
++		| AVD_OP_WEIGHTS_HDR_FLAG0(pred_weight_req)
++		| AVD_OP_WEIGHTS_HDR_LUMA(!default_weights ?
++					  weights->luma_log2_weight_denom : 0)
++		| AVD_OP_WEIGHTS_HDR_CHROMA(!default_weights ?
++					    weights->chroma_log2_weight_denom : 0)
++		| (default_weights ? DEFAULT_WEIGHT_DENOM : 0),
+ 		"slc_76c_cmd_weights_denom");
+ 
+-	if (!pred_weight)
++	if (!pred_weight_req)
+ 		return;
+ 
+ 	luma_denom = 1 << weights->luma_log2_weight_denom;

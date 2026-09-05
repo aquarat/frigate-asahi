@@ -1,0 +1,26 @@
+diff --git a/libavutil/hwcontext_v4l2request.c b/libavutil/hwcontext_v4l2request.c
+index b6633d9..6876ed0 100644
+--- a/libavutil/hwcontext_v4l2request.c
++++ b/libavutil/hwcontext_v4l2request.c
+@@ -733,6 +733,21 @@ static AVBufferRef *v4l2request_v4l2_buffer_alloc(AVHWFramesContext *hwfc,
+     uint8_t num_planes;
+     AVBufferRef *ref;
+ 
++#ifdef V4L2_MEMORY_FLAG_NON_COHERENT
++    /*
++     * Ask for cacheable (non-coherent) CAPTURE buffers when the driver
++     * supports cache hints. The decoded frames are read back by the CPU
++     * (transfer_data_from / hwdownload) and on ARM SoCs the default
++     * coherent MMAP buffers are mapped non-cacheable, so every read goes
++     * uncached to DRAM (~250 MB/s on Apple M1). With non-coherent memory
++     * videobuf2 does the cache maintenance at QBUF/DQBUF and the mapping
++     * is cacheable, so the read-back runs at normal memcpy speed.
++     */
++    if (format->type == fctxi->capture.format.type &&
++        (fctxi->capture.capabilities & V4L2_BUF_CAP_SUPPORTS_MMAP_CACHE_HINTS))
++        buffers.flags = V4L2_MEMORY_FLAG_NON_COHERENT;
++#endif
++
+     num_planes = V4L2_TYPE_IS_MULTIPLANAR(format->type) ?
+                  format->fmt.pix_mp.num_planes : 0;
+ 

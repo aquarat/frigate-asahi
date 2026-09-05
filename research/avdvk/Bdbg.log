@@ -1,0 +1,271 @@
+ffmpeg version 8765283-vk-b57fbbe Copyright (c) 2000-2026 the FFmpeg developers
+  built with gcc 12 (Debian 12.2.0-14+deb12u1)
+  configuration: --prefix=/opt/ffmpeg-vk --enable-gpl --enable-version3 --enable-static --disable-shared --disable-doc --disable-debug --enable-pic --enable-openssl --enable-libx264 --enable-libopus --enable-libdrm --enable-libudev --enable-v4l2-request --enable-vulkan --enable-libshaderc --pkg-config-flags=--static --extra-cflags='-I/uapi -I/src/vk-headers' --extra-libs='-lstdc++ -lm -lpthread' --extra-version=vk-b57fbbe
+  libavutil      60. 26.100 / 60. 26.100
+  libavcodec     62. 28.100 / 62. 28.100
+  libavformat    62. 12.100 / 62. 12.100
+  libavdevice    62.  3.100 / 62.  3.100
+  libavfilter    11. 14.100 / 11. 14.100
+  libswscale      9.  5.100 /  9.  5.100
+  libswresample   6.  3.100 /  6.  3.100
+Splitting the commandline.
+Reading option '-loglevel' ... matched as option 'loglevel' (set logging level) with argument 'debug'.
+Reading option '-init_hw_device' ... matched as option 'init_hw_device' (initialise hardware device) with argument 'vulkan=vk'.
+Reading option '-filter_hw_device' ... matched as option 'filter_hw_device' (set hardware device used when filtering) with argument 'vk'.
+Reading option '-hwaccel' ... matched as option 'hwaccel' (use HW accelerated decoding) with argument 'v4l2request'.
+Reading option '-hwaccel_output_format' ... matched as option 'hwaccel_output_format' (select output format used with HW accelerated decoding) with argument 'drm_prime'.
+Reading option '-i' ... matched as input url with argument '/research/cam2-10s.h264'.
+Reading option '-vf' ... matched as option 'vf' (alias for -filter:v (apply filters to video streams)) with argument 'fps=5,hwmap,scale_vulkan=640:360,hwdownload,format=nv12,format=yuv420p'.
+Reading option '-f' ... matched as option 'f' (force container format (auto-detected otherwise)) with argument 'rawvideo'.
+Reading option '-pix_fmt' ... matched as option 'pix_fmt' (set pixel format) with argument 'yuv420p'.
+Reading option '-y' ... matched as option 'y' (overwrite output files) with argument '1'.
+Reading option '/research/avdvk/Bdbg.yuv' ... matched as output url.
+Finished splitting the commandline.
+Parsing a group of options: global .
+Applying option loglevel (set logging level) with argument debug.
+Applying option init_hw_device (initialise hardware device) with argument vulkan=vk.
+[Vulkan @ 0xaaaae71f44d0] Supported layers:
+[Vulkan @ 0xaaaae71f44d0] 	VK_LAYER_MESA_device_select
+[Vulkan @ 0xaaaae71f44d0] 	VK_LAYER_MESA_overlay
+[Vulkan @ 0xaaaae71f44d0] GPU listing:
+[Vulkan @ 0xaaaae71f44d0]     0: Apple M1 (G13G B1) (integrated) (0x0)
+[Vulkan @ 0xaaaae71f44d0] Device 0 selected: Apple M1 (G13G B1) (integrated) (0x0)
+[Vulkan @ 0xaaaae71f44d0] Using device extension VK_KHR_push_descriptor
+[Vulkan @ 0xaaaae71f44d0] Using device extension VK_EXT_physical_device_drm
+[Vulkan @ 0xaaaae71f44d0] Using device extension VK_EXT_shader_object
+[Vulkan @ 0xaaaae71f44d0] Using device extension VK_KHR_shader_subgroup_rotate
+[Vulkan @ 0xaaaae71f44d0] Using device extension VK_EXT_host_image_copy
+[Vulkan @ 0xaaaae71f44d0] Using device extension VK_KHR_workgroup_memory_explicit_layout
+[Vulkan @ 0xaaaae71f44d0] Using device extension VK_KHR_shader_relaxed_extended_instruction
+[Vulkan @ 0xaaaae71f44d0] Using device extension VK_EXT_shader_replicated_composites
+[Vulkan @ 0xaaaae71f44d0] Using device extension VK_KHR_shader_expect_assume
+[Vulkan @ 0xaaaae71f44d0] Using device extension VK_KHR_external_memory_fd
+[Vulkan @ 0xaaaae71f44d0] Using device extension VK_EXT_external_memory_dma_buf
+[Vulkan @ 0xaaaae71f44d0] Using device extension VK_EXT_image_drm_format_modifier
+[Vulkan @ 0xaaaae71f44d0] Using device extension VK_KHR_external_semaphore_fd
+[Vulkan @ 0xaaaae71f44d0] Queue families:
+[Vulkan @ 0xaaaae71f44d0]     0: graphics compute transfer sparse (queues: 1)
+[Vulkan @ 0xaaaae71f44d0] Using device: Apple M1 (G13G B1)
+[Vulkan @ 0xaaaae71f44d0] Alignments:
+[Vulkan @ 0xaaaae71f44d0]     optimalBufferCopyRowPitchAlignment: 1
+[Vulkan @ 0xaaaae71f44d0]     minMemoryMapAlignment:              16384
+[Vulkan @ 0xaaaae71f44d0]     nonCoherentAtomSize:                64
+[Vulkan @ 0xaaaae71f44d0] Using queue family 0 (queues: 1) for graphics compute transfers
+Applying option filter_hw_device (set hardware device used when filtering) with argument vk.
+Applying option y (overwrite output files) with argument 1.
+Successfully parsed a group of options.
+Parsing a group of options: input url /research/cam2-10s.h264.
+Applying option hwaccel (use HW accelerated decoding) with argument v4l2request.
+Applying option hwaccel_output_format (select output format used with HW accelerated decoding) with argument drm_prime.
+Successfully parsed a group of options.
+Opening an input file: /research/cam2-10s.h264.
+[in#0 @ 0xaaaae7285130] Opening '/research/cam2-10s.h264' for reading
+[file @ 0xaaaae7207450] Setting default whitelist 'file,crypto,data'
+[in#0 @ 0xaaaae7285130] Format h264 probed with size=2048 and score=51
+[in#0/h264 @ 0xaaaae7285130] Before avformat_find_stream_info() pos: 0 bytes read:32768 seeks:0 nb_streams:1
+[h264 @ 0xaaaae72454f0] Decoding VUI
+[extract_extradata @ 0xaaaae7284fa0] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[extract_extradata @ 0xaaaae7284fa0] nal_unit_type: 8(PPS), nal_ref_idc: 3
+[extract_extradata @ 0xaaaae7284fa0] nal_unit_type: 5(IDR), nal_ref_idc: 3
+[h264 @ 0xaaaae72454f0] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[h264 @ 0xaaaae72454f0] nal_unit_type: 8(PPS), nal_ref_idc: 3
+[h264 @ 0xaaaae72454f0] nal_unit_type: 5(IDR), nal_ref_idc: 3
+[h264 @ 0xaaaae72454f0] Decoding VUI
+[h264 @ 0xaaaae72454f0] Format yuv420p chosen by get_format().
+[h264 @ 0xaaaae72454f0] Reinit context to 2304x1296, pix_fmt: yuv420p
+[h264 @ 0xaaaae72454f0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 5 times
+[h264 @ 0xaaaae72454f0] Decoding VUI
+[in#0/h264 @ 0xaaaae7285130] All info found
+[in#0/h264 @ 0xaaaae7285130] After avformat_find_stream_info() pos: 521216 bytes read:524288 seeks:0 frames:50
+[vist#0:0/h264 @ 0xaaaae723ae90] Selecting decoder 'h264' because of requested hwaccel method v4l2request
+Input #0, h264, from '/research/cam2-10s.h264':
+  Duration: N/A, bitrate: N/A
+  Stream #0:0, 50, 1/1200000: Video: h264 (High), 1 reference frame, yuv420p(progressive, left), 2304x1296, 0/1, 25 fps, 30 tbr, 1200k tbn
+Successfully opened the file.
+Parsing a group of options: output url /research/avdvk/Bdbg.yuv.
+Applying option vf (alias for -filter:v (apply filters to video streams)) with argument fps=5,hwmap,scale_vulkan=640:360,hwdownload,format=nv12,format=yuv420p.
+Applying option f (force container format (auto-detected otherwise)) with argument rawvideo.
+Applying option pix_fmt (set pixel format) with argument yuv420p.
+Successfully parsed a group of options.
+Opening an output file: /research/avdvk/Bdbg.yuv.
+[out#0/rawvideo @ 0xaaaae71ffff0] No explicit maps, mapping streams automatically...
+[vost#0:0/rawvideo @ 0xaaaae723b280] Created video stream from input stream 0:0
+[AVFilterGraph @ 0xaaaae723b680] Setting 'fps' to value '5'
+[AVFilterGraph @ 0xaaaae723b680] Setting 'w' to value '640'
+[AVFilterGraph @ 0xaaaae723b680] Setting 'h' to value '360'
+[AVFilterGraph @ 0xaaaae723b680] Setting 'pix_fmts' to value 'nv12'
+[AVFilterGraph @ 0xaaaae723b680] Setting 'pix_fmts' to value 'yuv420p'
+[Parsed_fps_0 @ 0xaaaae7216ee0] 0 frames in, 0 frames out; 0 frames dropped, 0 frames duplicated.
+detected 8 logical cores
+[h264 @ 0xaaaae724bd50] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[h264 @ 0xaaaae724bd50] nal_unit_type: 8(PPS), nal_ref_idc: 3
+[h264 @ 0xaaaae724bd50] Decoding VUI
+[file @ 0xaaaae736a5f0] Setting default whitelist 'file,crypto,data'
+Successfully opened the file.
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> rawvideo (native))
+[vost#0:0/rawvideo @ 0xaaaae723b280] Starting thread...
+[vf#0:0 @ 0xaaaae724c900] Starting thread...
+[vist#0:0/h264 @ 0xaaaae723ae90] [dec:h264 @ 0xaaaae724d520] Starting thread...
+[in#0/h264 @ 0xaaaae7284460] Starting thread...
+Press [q] to stop, [?] for help
+[h264 @ 0xaaaae724bd50] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[h264 @ 0xaaaae724bd50] nal_unit_type: 8(PPS), nal_ref_idc: 3
+[h264 @ 0xaaaae724bd50] nal_unit_type: 5(IDR), nal_ref_idc: 3
+[h264 @ 0xaaaae724bd50] Decoding VUI
+[h264 @ 0xaaaae724bd50] Format drm_prime chosen by get_format().
+[h264 @ 0xaaaae724bd50] Format drm_prime requires hwaccel h264_v4l2request initialisation.
+[AVHWFramesContext @ 0xffff3c07e570] Using V4L2 media driver avd (7.1.6) for S264
+[AVHWFramesContext @ 0xffff3c07e570] Using CAPTURE buffer format NV12 (2304x1296)
+[h264 @ 0xaaaae724bd50] Reinit context to 2304x1296, pix_fmt: drm_prime
+[AVFilterGraph @ 0xffff40000fa0] Setting 'fps' to value '5'
+[AVFilterGraph @ 0xffff40000fa0] Setting 'w' to value '640'
+[AVFilterGraph @ 0xffff40000fa0] Setting 'h' to value '360'
+[AVFilterGraph @ 0xffff40000fa0] Setting 'pix_fmts' to value 'nv12'
+[AVFilterGraph @ 0xffff40000fa0] Setting 'pix_fmts' to value 'yuv420p'
+[h264 @ 0xaaaae78339b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[graph -1 input from stream 0:0 @ 0xffff400076b0] w:2304 h:1296 pixfmt:drm_prime tb:1/1200000 fr:15/1 sar:0/1 csp:unknown range:unknown alpha:unspecified
+[format @ 0xffff40007c40] Setting 'pix_fmts' to value 'yuv420p'
+Filter 'Parsed_fps_0' formats:
+  in[0] 'default':
+    Pixel formats: yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+    Color spaces: unknown gbr bt709 fcc bt470bg smpte170m smpte240m ycgco bt2020nc bt2020c smpte2085 chroma-derived-nc chroma-derived-c ictcp ipt-c2 ycgco-re ycgco-ro
+    Color ranges: unknown tv pc
+    Alpha modes: unspecified premultiplied straight
+  out[0] 'default':
+    Pixel formats: yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+    Color spaces: unknown gbr bt709 fcc bt470bg smpte170m smpte240m ycgco bt2020nc bt2020c smpte2085 chroma-derived-nc chroma-derived-c ictcp ipt-c2 ycgco-re ycgco-ro
+    Color ranges: unknown tv pc
+    Alpha modes: unspecified premultiplied straight
+Filter 'Parsed_hwmap_1' formats:
+  in[0] 'default':
+    Pixel formats: yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+    Color spaces: unknown gbr bt709 fcc bt470bg smpte170m smpte240m ycgco bt2020nc bt2020c smpte2085 chroma-derived-nc chroma-derived-c ictcp ipt-c2 ycgco-re ycgco-ro
+    Color ranges: unknown tv pc
+    Alpha modes: unspecified premultiplied straight
+  out[0] 'default':
+    Pixel formats: yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+    Color spaces: unknown gbr bt709 fcc bt470bg smpte170m smpte240m ycgco bt2020nc bt2020c smpte2085 chroma-derived-nc chroma-derived-c ictcp ipt-c2 ycgco-re ycgco-ro
+    Color ranges: unknown tv pc
+    Alpha modes: unspecified premultiplied straight
+Filter 'Parsed_scale_vulkan_2' formats:
+  in[0] 'default':
+    Pixel formats: vulkan
+    Color spaces: unknown gbr bt709 fcc bt470bg smpte170m smpte240m ycgco bt2020nc bt2020c smpte2085 chroma-derived-nc chroma-derived-c ictcp ipt-c2 ycgco-re ycgco-ro
+    Color ranges: unknown tv pc
+    Alpha modes: unspecified premultiplied straight
+  out[0] 'default':
+    Pixel formats: vulkan
+    Color spaces: unknown gbr bt709 fcc bt470bg smpte170m smpte240m ycgco bt2020nc bt2020c smpte2085 chroma-derived-nc chroma-derived-c ictcp ipt-c2 ycgco-re ycgco-ro
+    Color ranges: unknown tv pc
+    Alpha modes: unspecified premultiplied straight
+Filter 'Parsed_hwdownload_3' formats:
+  in[0] 'default':
+    Pixel formats: vaapi dxva2_vld vdpau qsv mmal d3d11va_vld cuda videotoolbox_vld mediacodec d3d11 drm_prime opencl vulkan d3d12 amf ohcodec
+    Color spaces: unknown gbr bt709 fcc bt470bg smpte170m smpte240m ycgco bt2020nc bt2020c smpte2085 chroma-derived-nc chroma-derived-c ictcp ipt-c2 ycgco-re ycgco-ro
+    Color ranges: unknown tv pc
+    Alpha modes: unspecified premultiplied straight
+  out[0] 'default':
+    Pixel formats: yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le gray12be gray12le gray10be gray10le p016le p016be gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble
+    Color spaces: unknown gbr bt709 fcc bt470bg smpte170m smpte240m ycgco bt2020nc bt2020c smpte2085 chroma-derived-nc chroma-derived-c ictcp ipt-c2 ycgco-re ycgco-ro
+    Color ranges: unknown tv pc
+    Alpha modes: unspecified premultiplied straight
+Filter 'Parsed_format_4' formats:
+  in[0] 'default':
+    Pixel formats: nv12
+    Color spaces: unknown gbr bt709 fcc bt470bg smpte170m smpte240m ycgco bt2020nc bt2020c smpte2085 chroma-derived-nc chroma-derived-c ictcp ipt-c2 ycgco-re ycgco-ro
+    Color ranges: unknown tv pc
+    Alpha modes: unspecified premultiplied straight
+  out[0] 'default':
+    Pixel formats: nv12
+    Color spaces: unknown gbr bt709 fcc bt470bg smpte170m smpte240m ycgco bt2020nc bt2020c smpte2085 chroma-derived-nc chroma-derived-c ictcp ipt-c2 ycgco-re ycgco-ro
+    Color ranges: unknown tv pc
+    Alpha modes: unspecified premultiplied straight
+Filter 'Parsed_format_5' formats:
+  in[0] 'default':
+    Pixel formats: yuv420p
+    Color spaces: unknown gbr bt709 fcc bt470bg smpte170m smpte240m ycgco bt2020nc bt2020c smpte2085 chroma-derived-nc chroma-derived-c ictcp ipt-c2 ycgco-re ycgco-ro
+    Color ranges: unknown tv pc
+    Alpha modes: unspecified premultiplied straight
+  out[0] 'default':
+    Pixel formats: yuv420p
+    Color spaces: unknown gbr bt709 fcc bt470bg smpte170m smpte240m ycgco bt2020nc bt2020c smpte2085 chroma-derived-nc chroma-derived-c ictcp ipt-c2 ycgco-re ycgco-ro
+    Color ranges: unknown tv pc
+    Alpha modes: unspecified premultiplied straight
+Filter 'graph -1 input from stream 0:0' formats:
+  out[0] 'default':
+    Pixel formats: drm_prime
+    Color spaces: unknown
+    Color ranges: unknown tv
+    Alpha modes: unspecified premultiplied straight
+Filter 'out_#0:0' formats:
+  in[0] 'default':
+    Pixel formats: yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+    Color spaces: unknown gbr bt709 fcc bt470bg smpte170m smpte240m ycgco bt2020nc bt2020c smpte2085 chroma-derived-nc chroma-derived-c ictcp ipt-c2 ycgco-re ycgco-ro
+    Color ranges: unknown tv pc
+    Alpha modes: unspecified premultiplied straight
+Filter 'format' formats:
+  in[0] 'default':
+    Pixel formats: yuv420p
+    Color spaces: unknown gbr bt709 fcc bt470bg smpte170m smpte240m ycgco bt2020nc bt2020c smpte2085 chroma-derived-nc chroma-derived-c ictcp ipt-c2 ycgco-re ycgco-ro
+    Color ranges: unknown tv pc
+    Alpha modes: unspecified premultiplied straight
+  out[0] 'default':
+    Pixel formats: yuv420p
+    Color spaces: unknown gbr bt709 fcc bt470bg smpte170m smpte240m ycgco bt2020nc bt2020c smpte2085 chroma-derived-nc chroma-derived-c ictcp ipt-c2 ycgco-re ycgco-ro
+    Color ranges: unknown tv pc
+    Alpha modes: unspecified premultiplied straight
+[auto_scale_0 @ 0xffff400082a0] w:iw h:ih flags:'' interl:0
+[Parsed_format_5 @ 0xffff40006d50] auto-inserting filter 'auto_scale_0' between the filter 'Parsed_format_4' and the filter 'Parsed_format_5'
+[AVFilterGraph @ 0xffff40000fa0] query_formats: 9 queried, 36 merged, 26 already done, 0 delayed
+[Parsed_fps_0 @ 0xffff40002700] fps=5/1
+[Parsed_hwmap_1 @ 0xffff40002990] Configure hwmap drm_prime -> vulkan.
+[Parsed_scale_vulkan_2 @ 0xffff40002b20] Cannot reuse context, creating a new one
+[auto_scale_0 @ 0xffff400082a0] w:640 h:360 fmt:nv12 csp:unknown range:unknown sar:0/1 -> w:640 h:360 fmt:yuv420p csp:unknown range:unknown sar:0/1 flags:0x00000004
+[auto_scale_0 @ 0xffff400082a0] [framesync @ 0xffff400086b0] Selected 1/5 time base
+[auto_scale_0 @ 0xffff400082a0] [framesync @ 0xffff400086b0] Sync level 1
+[graph -1 input from stream 0:0 @ 0xffff400076b0] video frame properties congruent with link at pts_time: 0
+[Parsed_fps_0 @ 0xffff40002700] Read frame with in pts 0, out pts 0
+[h264 @ 0xaaaae783bfc0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[h264 @ 0xaaaae778e8c0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[h264 @ 0xaaaae77acb90] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[h264 @ 0xaaaae77caf40] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[h264 @ 0xaaaae77e92f0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[h264 @ 0xaaaae732dce0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[h264 @ 0xaaaae734c090] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[h264 @ 0xaaaae724bd50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[Parsed_fps_0 @ 0xffff40002700] Read frame with in pts 80000, out pts 0
+[Parsed_fps_0 @ 0xffff40002700] Set first pts to 0
+[Parsed_fps_0 @ 0xffff40002700] Dropping frame with pts 0
+[Parsed_fps_0 @ 0xffff40002700] Read frame with in pts 160000, out pts 1
+[Parsed_fps_0 @ 0xffff40002700] Writing frame with pts 0 to pts 0
+[hwmap @ 0xffff40001370] Filter input: drm_prime, 2304x1296 (0).
+[Vulkan @ 0xaaaae71f44d0] Unsupported DMABUF layer format 0x3231564e!
+[Parsed_hwmap_1 @ 0xffff40002990] Failed to map frame: -22.
+[h264 @ 0xaaaae78339b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[vf#0:0 @ 0xaaaae724c900] Error while filtering: Invalid argument
+[Parsed_fps_0 @ 0xffff40002700] Dropping frame with pts 1
+[Parsed_fps_0 @ 0xffff40002700] 3 frames in, 1 frames out; 2 frames dropped, 0 frames duplicated.
+[vf#0:0 @ 0xaaaae724c900] Task finished with error code: -22 (Invalid argument)
+[vf#0:0 @ 0xaaaae724c900] Terminating thread with return code -22 (Invalid argument)
+[vost#0:0/rawvideo @ 0xaaaae723b280] [enc:rawvideo @ 0xaaaae723b600] Encoder thread received EOF
+[vost#0:0/rawvideo @ 0xaaaae723b280] [enc:rawvideo @ 0xaaaae723b600] Could not open encoder before EOF
+[vost#0:0/rawvideo @ 0xaaaae723b280] Task finished with error code: -22 (Invalid argument)
+[vost#0:0/rawvideo @ 0xaaaae723b280] Terminating thread with return code -22 (Invalid argument)
+[vist#0:0/h264 @ 0xaaaae723ae90] [dec:h264 @ 0xaaaae724d520] Decoder returned EOF, finishing
+[h264 @ 0xaaaae783bfc0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[vist#0:0/h264 @ 0xaaaae723ae90] [dec:h264 @ 0xaaaae724d520] Terminating thread with return code 0 (success)
+[vist#0:0/h264 @ 0xaaaae723ae90] All consumers of this stream are done
+[in#0/h264 @ 0xaaaae7284460] All consumers are done
+[in#0/h264 @ 0xaaaae7284460] Terminating thread with return code 0 (success)
+[out#0/rawvideo @ 0xaaaae71ffff0] Nothing was written into output file, because at least one of its streams received no packets.
+frame=    0 fps=0.0 q=0.0 Lsize=       0KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:00.05    
+[AVIOContext @ 0xaaaae73aa690] Statistics: 0 bytes written, 0 seeks, 0 writeouts
+[in#0/h264 @ 0xaaaae7284460] Input file #0 (/research/cam2-10s.h264):
+[in#0/h264 @ 0xaaaae7284460]   Input stream #0:0 (video): 21 packets read (261825 bytes); 4 frames decoded; 0 decode errors; 
+[in#0/h264 @ 0xaaaae7284460]   Total: 21 packets (261825 bytes) demuxed
+[AVIOContext @ 0xaaaae72849c0] Statistics: 524288 bytes read, 0 seeks
+Conversion failed!
+
+Exiting with exit code -22

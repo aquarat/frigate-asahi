@@ -1,0 +1,99 @@
+ffmpeg version c78e613-vk-b57fbbe Copyright (c) 2000-2026 the FFmpeg developers
+  built with gcc 12 (Debian 12.2.0-14+deb12u1)
+  configuration: --prefix=/opt/ffmpeg-vk --enable-gpl --enable-version3 --enable-static --disable-shared --disable-doc --disable-debug --enable-pic --enable-openssl --enable-libx264 --enable-libopus --enable-libdrm --enable-libudev --enable-v4l2-request --enable-vulkan --enable-libshaderc --pkg-config-flags=--static --extra-cflags='-I/uapi -I/src/vk-headers' --extra-libs='-lstdc++ -lm -lpthread' --extra-version=vk-b57fbbe
+  libavutil      60. 26.100 / 60. 26.100
+  libavcodec     62. 28.100 / 62. 28.100
+  libavformat    62. 12.100 / 62. 12.100
+  libavdevice    62.  3.100 / 62.  3.100
+  libavfilter    11. 14.100 / 11. 14.100
+  libswscale      9.  5.100 /  9.  5.100
+  libswresample   6.  3.100 /  6.  3.100
+[Vulkan @ 0xaaaaaece8590] Supported layers:
+[Vulkan @ 0xaaaaaece8590] 	VK_LAYER_MESA_device_select
+[Vulkan @ 0xaaaaaece8590] 	VK_LAYER_MESA_overlay
+[Vulkan @ 0xaaaaaece8590] GPU listing:
+[Vulkan @ 0xaaaaaece8590]     0: Apple M1 (G13G B1) (integrated) (0x0)
+[Vulkan @ 0xaaaaaece8590] Device 0 selected: Apple M1 (G13G B1) (integrated) (0x0)
+[Vulkan @ 0xaaaaaece8590] Using device extension VK_KHR_push_descriptor
+[Vulkan @ 0xaaaaaece8590] Using device extension VK_EXT_physical_device_drm
+[Vulkan @ 0xaaaaaece8590] Using device extension VK_EXT_shader_object
+[Vulkan @ 0xaaaaaece8590] Using device extension VK_KHR_shader_subgroup_rotate
+[Vulkan @ 0xaaaaaece8590] Using device extension VK_EXT_host_image_copy
+[Vulkan @ 0xaaaaaece8590] Using device extension VK_KHR_workgroup_memory_explicit_layout
+[Vulkan @ 0xaaaaaece8590] Using device extension VK_KHR_shader_relaxed_extended_instruction
+[Vulkan @ 0xaaaaaece8590] Using device extension VK_EXT_shader_replicated_composites
+[Vulkan @ 0xaaaaaece8590] Using device extension VK_KHR_shader_expect_assume
+[Vulkan @ 0xaaaaaece8590] Using device extension VK_KHR_external_memory_fd
+[Vulkan @ 0xaaaaaece8590] Using device extension VK_EXT_external_memory_dma_buf
+[Vulkan @ 0xaaaaaece8590] Using device extension VK_EXT_image_drm_format_modifier
+[Vulkan @ 0xaaaaaece8590] Using device extension VK_KHR_external_semaphore_fd
+[Vulkan @ 0xaaaaaece8590] Queue families:
+[Vulkan @ 0xaaaaaece8590]     0: graphics compute transfer sparse (queues: 1)
+[Vulkan @ 0xaaaaaece8590] Using device: Apple M1 (G13G B1)
+[Vulkan @ 0xaaaaaece8590] Alignments:
+[Vulkan @ 0xaaaaaece8590]     optimalBufferCopyRowPitchAlignment: 1
+[Vulkan @ 0xaaaaaece8590]     minMemoryMapAlignment:              16384
+[Vulkan @ 0xaaaaaece8590]     nonCoherentAtomSize:                64
+[Vulkan @ 0xaaaaaece8590] Using queue family 0 (queues: 1) for graphics compute transfers
+[h264 @ 0xaaaaaed39570] Reinit context to 2304x1296, pix_fmt: yuv420p
+[vist#0:0/h264 @ 0xaaaaaed2ef80] Selecting decoder 'h264' because of requested hwaccel method v4l2request
+Input #0, h264, from '/research/cam2-10s.h264':
+  Duration: N/A, bitrate: N/A
+  Stream #0:0: Video: h264 (High), 1 reference frame, yuv420p(progressive, left), 2304x1296, 25 fps, 30 tbr, 1200k tbn
+[out#0/rawvideo @ 0xaaaaaed0abd0] No explicit maps, mapping streams automatically...
+[vost#0:0/rawvideo @ 0xaaaaaed2f3f0] Created video stream from input stream 0:0
+[Parsed_fps_0 @ 0xaaaaaed0af60] 0 frames in, 0 frames out; 0 frames dropped, 0 frames duplicated.
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> rawvideo (native))
+[vost#0:0/rawvideo @ 0xaaaaaed2f3f0] Starting thread...
+[vf#0:0 @ 0xaaaaaed40990] Starting thread...
+[vist#0:0/h264 @ 0xaaaaaed2ef80] [dec:h264 @ 0xaaaaaed41530] Starting thread...
+[in#0/h264 @ 0xaaaaaed784e0] Starting thread...
+Press [q] to stop, [?] for help
+[AVHWFramesContext @ 0xffff5407e570] Using V4L2 media driver avd (7.1.6) for S264
+[AVHWFramesContext @ 0xffff5407e570] Using CAPTURE buffer format NV12 (2304x1296)
+[h264 @ 0xaaaaaed3fd00] Reinit context to 2304x1296, pix_fmt: drm_prime
+[graph -1 input from stream 0:0 @ 0xffff640076b0] w:2304 h:1296 pixfmt:drm_prime tb:1/1200000 fr:15/1 sar:0/1 csp:unknown range:unknown alpha:unspecified
+[auto_scale_0 @ 0xffff640082a0] w:iw h:ih flags:'' interl:0
+[Parsed_format_5 @ 0xffff64006d50] auto-inserting filter 'auto_scale_0' between the filter 'Parsed_format_4' and the filter 'Parsed_format_5'
+[Parsed_fps_0 @ 0xffff64002700] fps=5/1
+[Parsed_scale_vulkan_2 @ 0xffff64002b20] Cannot reuse context, creating a new one
+[auto_scale_0 @ 0xffff640082a0] w:640 h:360 fmt:nv12 csp:unknown range:unknown sar:0/1 -> w:640 h:360 fmt:yuv420p csp:unknown range:unknown sar:0/1 flags:0x00000004
+[auto_scale_0 @ 0xffff640082a0] [framesync @ 0xffff640086b0] Selected 1/5 time base
+[auto_scale_0 @ 0xffff640082a0] [framesync @ 0xffff640086b0] Sync level 1
+[graph -1 input from stream 0:0 @ 0xffff640076b0] video frame properties congruent with link at pts_time: 0
+[Parsed_fps_0 @ 0xffff64002700] Set first pts to 0
+[scale_vulkan @ 0xffff64002bf0] Shader scale linked, size: 5208 SPIR-V, 5208 binary
+Output #0, rawvideo, to '/research/avdvk/B2.yuv':
+  Metadata:
+    encoder         : Lavf62.12.100
+  Stream #0:0: Video: rawvideo, 1 reference frame (I420 / 0x30323449), yuv420p(progressive), 640x360, q=2-31, 13824 kb/s, 5 fps, 5 tbn
+    Metadata:
+      encoder         : Lavc62.28.100 rawvideo
+[out#0/rawvideo @ 0xaaaaaed0abd0] Starting thread...
+frame=   35 fps=0.0 q=-0.0 size=   11264KiB time=00:00:07.00 bitrate=13182.1kbits/s speed=  14x elapsed=0:00:00.50    [in#0/h264 @ 0xaaaaaed784e0] EOF while reading input
+[in#0/h264 @ 0xaaaaaed784e0] Terminating thread with return code 0 (success)
+[vist#0:0/h264 @ 0xaaaaaed2ef80] [dec:h264 @ 0xaaaaaed41530] Decoder thread received EOF packet
+[vist#0:0/h264 @ 0xaaaaaed2ef80] [dec:h264 @ 0xaaaaaed41530] Decoder returned EOF, finishing
+[vist#0:0/h264 @ 0xaaaaaed2ef80] [dec:h264 @ 0xaaaaaed41530] Terminating thread with return code 0 (success)
+[auto_scale_0 @ 0xffff640082a0] [framesync @ 0xffff640086b0] Sync level 0
+[vf#0:0 @ 0xaaaaaed40990] Filtergraph returned EOF, finishing
+[vf#0:0 @ 0xaaaaaed40990] All consumers returned EOF
+[Parsed_fps_0 @ 0xffff64002700] 150 frames in, 50 frames out; 100 frames dropped, 0 frames duplicated.
+[vost#0:0/rawvideo @ 0xaaaaaed2f3f0] [enc:rawvideo @ 0xaaaaaed40520] Encoder thread received EOF
+[vost#0:0/rawvideo @ 0xaaaaaed2f3f0] Terminating thread with return code 0 (success)
+[out#0/rawvideo @ 0xaaaaaed0abd0] All streams finished
+[out#0/rawvideo @ 0xaaaaaed0abd0] Terminating thread with return code 0 (success)
+[vf#0:0 @ 0xaaaaaed40990] Terminating thread with return code 0 (success)
+[AVIOContext @ 0xaaaaaee81070] Statistics: 17280000 bytes written, 0 seeks, 66 writeouts
+[out#0/rawvideo @ 0xaaaaaed0abd0] Output file #0 (/research/avdvk/B2.yuv):
+[out#0/rawvideo @ 0xaaaaaed0abd0]   Output stream #0:0 (video): 50 frames encoded; 50 packets muxed (17280000 bytes); 
+[out#0/rawvideo @ 0xaaaaaed0abd0]   Total: 50 packets (17280000 bytes) muxed
+[out#0/rawvideo @ 0xaaaaaed0abd0] video:16875KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000000%
+frame=   50 fps=0.0 q=-0.0 Lsize=   16875KiB time=00:00:10.00 bitrate=13824.0kbits/s speed=15.6x elapsed=0:00:00.63    
+[in#0/h264 @ 0xaaaaaed784e0] Input file #0 (/research/cam2-10s.h264):
+[in#0/h264 @ 0xaaaaaed784e0]   Input stream #0:0 (video): 150 packets read (1404544 bytes); 150 frames decoded; 0 decode errors; 
+[in#0/h264 @ 0xaaaaaed784e0]   Total: 150 packets (1404544 bytes) demuxed
+[AVIOContext @ 0xaaaaaed789d0] Statistics: 1404544 bytes read, 0 seeks
+
+Exiting with exit code 0

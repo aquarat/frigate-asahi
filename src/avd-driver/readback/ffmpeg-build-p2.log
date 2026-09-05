@@ -1,0 +1,3 @@
+STRIP	ffmpeg
+STRIP	ffprobe
+BUILD-P2-OK

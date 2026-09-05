@@ -1,0 +1,63 @@
+Backend: Vulkan
+MESA: error: Opening /dev/dri/card2 failed: Permission denied
+MESA: error: Opening /dev/dri/card1 failed: Permission denied
+  Device 0: Apple M1 (G13G B1)
+    Driver version   : 26.1.8
+    API version      : 1.4.354
+    VRAM             : 7743 MB
+
+    Single-precision compute (GFLOPS)
+      float    : 2247.64
+      float2   : 2386.36
+      float4   : 2507.38
+
+    Half-precision compute fp16xfp16+fp16 (GFLOPS)
+      half     : 2263.03
+      half2    : 2378.46
+      half4    : 2410.74
+
+    Double-precision compute (GFLOPS)
+      double   : [unsupported] shaderFloat64 not supported! Skipped
+      double2  : [unsupported] shaderFloat64 not supported! Skipped
+      double4  : [unsupported] shaderFloat64 not supported! Skipped
+
+    Mixed-precision compute fp16xfp16+fp32 (GFLOPS)
+      mp       : 1956.74
+      mp2      : 2272.28
+      mp4      : 2507.24
+
+    BF16 compute bf16xbf16+fp32 (GFLOPS)
+      bf16     : [unsupported] VK_KHR_shader_bfloat16 / shaderBFloat16Type not supported! Skipped
+      bf16_2   : [unsupported] VK_KHR_shader_bfloat16 / shaderBFloat16Type not supported! Skipped
+      bf16_4   : [unsupported] VK_KHR_shader_bfloat16 / shaderBFloat16Type not supported! Skipped
+
+    Cooperative-matrix fp32xfp32+fp32 (TFLOPS)
+      coopmat_fp32 : [unsupported] No fp32xfp32+fp32 coopmat property! Skipped
+
+    Cooperative-matrix fp16xfp16+fp32 (TFLOPS)
+      coopmat_fp16 : [unsupported] No fp16xfp16+fp32 coopmat property! Skipped
+
+    Cooperative-matrix bf16xbf16+fp32 (TFLOPS)
+      coopmat_bf16 : [unsupported] No bf16xbf16+fp32 coopmat property! Skipped
+
+    Cooperative-matrix fp8(E4M3)xfp8(E4M3)+fp32 (TFLOPS)
+      coopmat_fp8_e4m3 : [unsupported] No fp8-E4M3 coopmat support (VK_EXT_shader_float8 or property)! Skipped
+
+    Cooperative-matrix fp8(E5M2)xfp8(E5M2)+fp32 (TFLOPS)
+      coopmat_fp8_e5m2 : [unsupported] No fp8-E5M2 coopmat support (VK_EXT_shader_float8 or property)! Skipped
+
+    Global memory bandwidth (GBPS)
+      float    : 51.05
+      float2   : 57.72
+      float4   : 57.81
+
+    Local memory bandwidth (GBPS)
+      float    : 787.19
+      float2   : 944.96
+      float4   : 1179.02
+
+    Image memory bandwidth (GBPS)
+      float4   : 40.04
+
+    Transfer bandwidth (GBPS)
+DONE

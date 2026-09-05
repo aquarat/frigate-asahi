@@ -1,0 +1,55 @@
+From c7d03bc25cf7668fe01278fff772203bd4c4b0c3 Mon Sep 17 00:00:00 2001
+From: Aquarat <blue@aquarat.co.uk>
+Date: Sat, 5 Sep 2026 18:58:19 +0100
+Subject: [PATCH 4/5] media: apple: avd: h264: scale the held-slice parse poll
+ timeout with the slice size
+
+For multi-slice frames (V4L2_BUF_FLAG_M2M_HOLD_CAPTURE_BUF) avd_h264_run()
+polls the VP's "slice bytes parsed" counter with a fixed 1 ms limit. The
+comment next to it already notes the VP takes about slice_size / 16 us,
+so anything above ~16 KiB per slice cannot make it: a 1920x1080 High
+frame split in 4 slices (50-100 KiB each) logs "VP2: timed out (00)!
+size: 0000c231 parsed: 0000b76e", the job is never finished and the
+watchdog resets the decoder, although the counter reaches the full size
+a moment later.
+
+Scale the poll limit with the slice size (4x the observed rate) and keep
+1 ms as the floor. The poll sleeps between reads and runs in the m2m job
+worker, so a longer limit only affects the failure case.
+
+Tested on Apple M1 (T8103): 1920x1080 4-slice and 2304x1296 8-slice High
+profile clips (75 frames each) go from watchdog timeout to bit-identical
+output; single-slice and small multi-slice clips are unchanged.
+
+Signed-off-by: Aquarat <blue@aquarat.co.uk>
+---
+ avd-h264.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/media/platform/apple/avd/avd-h264.c b/drivers/media/platform/apple/avd/avd-h264.c
+index 3496002..d61266f 100644
+--- a/drivers/media/platform/apple/avd/avd-h264.c
++++ b/drivers/media/platform/apple/avd/avd-h264.c
+@@ -718,10 +718,17 @@ static int avd_h264_run(struct avd_ctx *ctx)
+ 		else
+ 			reg = (0x1018 | ctx->vp_slot << 8);
+ 
+-		/* seems to be take ~ slice_size / 16 us */
++		/*
++		 * The VP consumes roughly 16 bytes/us, so a fixed 1 ms limit
++		 * only covers slices up to ~16 KiB; a 1080p/1296p frame split
++		 * in 4-8 slices has 50-100 KiB slices and timed out here with
++		 * the parse counter still advancing. Scale the limit with the
++		 * slice size (4x margin) and keep 1 ms as the floor.
++		 */
+ 		ret = readl_poll_timeout(
+ 			avd->ctrl + reg, slice_parsed,
+-			slice_parsed >= round_down(slice_size, 8), 5, 1000);
++			slice_parsed >= round_down(slice_size, 8), 5,
++			max_t(u32, 1000, slice_size / 4));
+ 
+ 		if (ret) {
+ 			dev_err(avd->dev, "VP%d: timed out (%02d)! size: %08x parsed: %08x",
+-- 
+2.55.0
+

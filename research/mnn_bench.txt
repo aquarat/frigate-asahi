@@ -1,0 +1,21 @@
+== CPU-fp32
+Forward type: CPU thread=4 precision=1 sparsity=0 sparseBlockOC=1 testQuantizedModel=0 enableKleidiAI=0
+[-INFO-]: precision!=2, use fp32 inference.
+[ - ] fox-person-cat-320.mnn      max =    6.769 ms  min =    6.594 ms  avg =    6.647 ms
+== CPU-fp16
+Forward type: CPU thread=4 precision=2 sparsity=0 sparseBlockOC=1 testQuantizedModel=0 enableKleidiAI=0
+[ - ] fox-person-cat-320.mnn      max =    4.742 ms  min =    4.678 ms  avg =    4.700 ms
+== OpenCL-fp32
+Forward type: OpenCL thread=4 precision=1 sparsity=0 sparseBlockOC=1 testQuantizedModel=0 enableKleidiAI=0
+[-INFO-]: precision!=2, use fp32 inference.
+[ - ] fox-person-cat-320.mnn      max =   43.070 ms  min =   35.419 ms  avg =   38.129 ms
+== OpenCL-fp16
+Forward type: OpenCL thread=4 precision=2 sparsity=0 sparseBlockOC=1 testQuantizedModel=0 enableKleidiAI=0
+[ - ] fox-person-cat-320.mnn      max =   35.140 ms  min =   27.948 ms  avg =   30.391 ms
+== Vulkan-fp32
+Forward type: Vulkan thread=4 precision=1 sparsity=0 sparseBlockOC=1 testQuantizedModel=0 enableKleidiAI=0
+[-INFO-]: precision!=2, use fp32 inference.
+[ - ] fox-person-cat-320.mnn      max =   28.829 ms  min =   19.583 ms  avg =   21.324 ms
+== Vulkan-fp16
+Forward type: Vulkan thread=4 precision=2 sparsity=0 sparseBlockOC=1 testQuantizedModel=0 enableKleidiAI=0
+[ - ] fox-person-cat-320.mnn      max =   33.061 ms  min =   17.894 ms  avg =   19.728 ms

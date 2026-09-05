@@ -1,0 +1,116 @@
+From 403fdd4b510631b8ae1ee25dc19f6dde296ebdf3 Mon Sep 17 00:00:00 2001
+From: Aaron <blue@aquarat.co.uk>
+Date: Sat, 5 Sep 2026 19:56:15 +0100
+Subject: [PATCH 4/4] avutil/hwcontext_vulkan: pass DRM plane offsets through
+ memoryOffset on Honeykrisp
+
+Mesa's Honeykrisp driver (Apple AGX, Mesa 26.1) ignores the
+VkSubresourceLayout.offset of VkImageDrmFormatModifierExplicitCreateInfoEXT
+when creating an image with VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT (only
+rowPitch is taken from the explicit layout) and places the plane at
+VkBindImageMemoryInfo.memoryOffset instead. vulkan_map_from_drm_frame_desc()
+signals the position of each plane only through the explicit layout and
+binds every image at memoryOffset 0, so on that driver any plane that does
+not start at offset 0 in its dma-buf - the chroma plane of an NV12 frame
+at pitch * height, for example - is read from offset 0 and the mapped frame
+has garbage chroma (luma correct, PSNR of the chroma planes ~12 dB against
+the CPU path).
+
+For single-plane layers the same position can be expressed as
+memoryOffset, which every driver honours (the spec requires both to work).
+Do that when the device is Honeykrisp: create the image with offset 0 in
+the explicit layout, bind it at memoryOffset = plane offset, check that the
+offset is a multiple of the image's memory alignment (128 bytes on this
+driver) and account for the offset in the size of the imported allocation
+so that VUID-VkBindImageMemoryInfo-size-01049 holds on strict drivers.
+Other drivers are unchanged.
+
+This is a driver bug and should also be fixed in Mesa (hk_image.c,
+hk_image_init: use pPlaneLayouts[plane].offset); the quirk lets existing
+Mesa releases work.
+
+Tested on Apple M1 (Honeykrisp, Mesa 26.1.8) with NV12 frames from the
+v4l2request decoder: "-vf hwmap,scale_vulkan=640:360,hwdownload" now gives
+the same chroma as the hwupload path (u/v 54 dB against swscale, luma
+unchanged).
+
+Signed-off-by: <fill in>
+---
+ libavutil/hwcontext_vulkan.c | 40 +++++++++++++++++++++++++++++++++---
+ 1 file changed, 37 insertions(+), 3 deletions(-)
+
+diff --git a/libavutil/hwcontext_vulkan.c b/libavutil/hwcontext_vulkan.c
+index 20becf9..0ad8930 100644
+--- a/libavutil/hwcontext_vulkan.c
++++ b/libavutil/hwcontext_vulkan.c
+@@ -3389,6 +3389,23 @@ static int vulkan_map_from_drm_frame_desc(AVHWFramesContext *hwfc, AVVkFrame **f
+     AVDRMFrameDescriptor expanded_desc;
+     VkBindImageMemoryInfo bind_info[AV_DRM_MAX_PLANES];
+     VkBindImagePlaneMemoryInfo plane_info[AV_DRM_MAX_PLANES];
++    int offset_via_bind = 0;
++
++    /*
++     * Mesa's Honeykrisp (Apple AGX) ignores VkSubresourceLayout.offset in
++     * VkImageDrmFormatModifierExplicitCreateInfoEXT (it only takes rowPitch
++     * from it) and places a plane at VkBindImageMemoryInfo.memoryOffset
++     * instead, so every plane of an imported frame that does not start at
++     * offset 0 (e.g. the chroma plane of NV12 at pitch * height) is read from
++     * the wrong place. For single-plane layers the same position can be
++     * expressed through memoryOffset, which every driver honours; do that on
++     * Honeykrisp. The offset must then be a multiple of the image's memory
++     * alignment, which is checked below.
++     */
++#if VK_HEADER_VERSION >= 290
++    if (p->dprops.driverID == VK_DRIVER_ID_MESA_HONEYKRISP)
++        offset_via_bind = 1;
++#endif
+ 
+     /* One VkImage is created per layer: split linear multi-plane layers
+      * (NV12, P010, ...) into one layer per plane first. */
+@@ -3516,7 +3533,8 @@ static int vulkan_map_from_drm_frame_desc(AVHWFramesContext *hwfc, AVVkFrame **f
+ 
+         /* Set the subresource layout based on the layer properties */
+         for (int j = 0; j < planes; j++) {
+-            ext_img_layouts[j].offset     = desc->layers[i].planes[j].offset;
++            ext_img_layouts[j].offset     = (offset_via_bind && planes == 1) ? 0 :
++                                            desc->layers[i].planes[j].offset;
+             ext_img_layouts[j].rowPitch   = desc->layers[i].planes[j].pitch;
+             ext_img_layouts[j].size       = 0; /* The specs say so for all 3 */
+             ext_img_layouts[j].arrayPitch = 0;
+@@ -3598,6 +3616,20 @@ static int vulkan_map_from_drm_frame_desc(AVHWFramesContext *hwfc, AVVkFrame **f
+         /* Only a single bit must be set, not a range, and it must match */
+         req2.memoryRequirements.memoryTypeBits = fdmp.memoryTypeBits;
+ 
++        if (offset_via_bind && desc->layers[i].nb_planes == 1) {
++            const uint64_t off = desc->layers[i].planes[0].offset;
++            if (off % req2.memoryRequirements.alignment) {
++                av_log(ctx, AV_LOG_ERROR, "DRM plane offset %"PRIu64" is not a "
++                       "multiple of the image alignment %"PRIu64"\n",
++                       off, (uint64_t)req2.memoryRequirements.alignment);
++                err = AVERROR(EINVAL);
++                close(idesc.fd);
++                goto fail;
++            }
++            /* The plane is bound at memoryOffset = off inside the dma-buf */
++            req2.memoryRequirements.size += off;
++        }
++
+         err = alloc_mem(ctx, &req2.memoryRequirements,
+                         VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
+                         (ded_req.prefersDedicatedAllocation ||
+@@ -3628,8 +3660,10 @@ static int vulkan_map_from_drm_frame_desc(AVHWFramesContext *hwfc, AVVkFrame **f
+             bind_info[bind_counts].image  = f->img[i];
+             bind_info[bind_counts].memory = f->mem[i];
+ 
+-            /* Offset is already signalled via pPlaneLayouts above */
+-            bind_info[bind_counts].memoryOffset = 0;
++            /* Offset is already signalled via pPlaneLayouts above, unless the
++             * driver quirk above moved it here */
++            bind_info[bind_counts].memoryOffset = (offset_via_bind && planes == 1) ?
++                                                  desc->layers[i].planes[j].offset : 0;
+ 
+             bind_counts++;
+         }
+-- 
+2.55.0
+

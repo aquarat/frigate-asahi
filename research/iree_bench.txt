@@ -1,0 +1,6 @@
+== fox_vulkan
+Load Average: 5.80, 4.34, 3.24
+BM_main_graph/process_time/real_time       33.6 ms        0.926 ms          128 items_per_second=29.8053/s
+== fox_vulkan_valhall
+Load Average: 5.21, 4.26, 3.22
+BM_main_graph/process_time/real_time       39.6 ms        0.940 ms          106 items_per_second=25.261/s

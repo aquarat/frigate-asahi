@@ -1,0 +1,102 @@
+#!/bin/sh
+# ffmpeg wrapper for Frigate on Apple silicon (Fedora Asahi host, frigate:latest container):
+# Apple AVD hardware decode (v4l2request) + zero-copy Vulkan (Honeykrisp) rescale.
+#
+# Point Frigate at this directory: `ffmpeg: path: /opt/ffmpeg-avd-vk` (Frigate execs <path>/bin/ffmpeg
+# and <path>/bin/ffprobe) and set `hwaccel_args: [-hwaccel, v4l2request]`.
+#
+# What it does
+#   1. Runs the real binary (/opt/ffmpeg-vk/bin/ffmpeg, a static bookworm build with v4l2request + Vulkan)
+#      under the HOST's dynamic loader with the host's /usr/lib64, so that Mesa's libvulkan_asahi.so
+#      (needs glibc 2.38+, Fedora libstdc++) can be loaded inside the Debian-based image. Expects the
+#      compose mounts  /usr/lib64 -> /host-lib64:ro,  /usr/lib/ld-linux-aarch64.so.1 -> /host-lib64-ld.so:ro,
+#      an ICD json at $VK_DRIVER_FILES (default /etc/vulkan-asahi/asahi_icd.container.json) and
+#      /dev/dri/renderD128 + /dev/video0 + /dev/media0 passed through. If the loader mounts are absent
+#      the real binary is exec'd directly (works on the host, or CPU-only inside the image).
+#   2. Only when argv contains `-hwaccel v4l2request` (from Frigate's hwaccel_args) AND every `-vf` in the
+#      command is Frigate's detect-role scaler `fps=N,scale=W:H` AND the command outputs `-f rawvideo`:
+#        - inserts  -init_hw_device vulkan=vk -filter_hw_device vk -hwaccel_output_format drm_prime
+#          right after `-hwaccel v4l2request` (decoded frames stay in the AVD's dma-bufs),
+#        - rewrites each such -vf to
+#            fps=N,hwmap,scale_vulkan=w=max(iw/2\,W):h=max(ih/2\,H),scale_vulkan=W:H,hwdownload,format=nv12,format=yuv420p
+#          (AVD_VK_SCALE=single: fps=N,hwmap,scale_vulkan=W:H,hwdownload,format=nv12,format=yuv420p).
+#          The two-stage form halves the frame first (bilinear is exact at 2x) and then scales to W:H,
+#          which keeps luma at ~31.6 dB vs swscale's bicubic instead of ~25.5 dB; small sources
+#          (iw/2 < W) degenerate to a single stage.
+#      The record output (`-c:v copy`) in the same process is untouched: it never decodes.
+#   3. Anything else (ffprobe, exports, previews, a `-vf` it does not recognise, an explicit
+#      -hwaccel_output_format / -init_hw_device already present) is passed through unchanged; with
+#      `-hwaccel v4l2request` and no rewrite ffmpeg still decodes on the AVD and reads the frames back
+#      to system memory (cacheable buffers, patches/ffmpeg/0001-0002), which every consumer understands.
+#   4. Logs the final command line to stderr (Frigate shows it in the camera's ffmpeg log) when a
+#      rewrite happened, or always with AVD_VK_DEBUG=1.
+#   Knobs (compose `environment:`): AVD_VK_REWRITE=0 disables step 2 entirely (hardware decode with
+#   read-back + swscale, the /opt/ffmpeg-avd behaviour); AVD_VK_SCALE=single|2stage picks the scaler chain.
+set -u
+REAL=${AVD_VK_FFMPEG:-/opt/ffmpeg-vk/bin/ffmpeg}
+# The loader is exec'd through libexec/ffmpeg, a symlink to /host-lib64-ld.so, so the process is
+# NAMED "ffmpeg": Frigate's record maintainer (record/maintainer.py, psutil process.name() == "ffmpeg")
+# only treats cache segments as in-use when the process holding them is called ffmpeg; under the
+# loader's own name it deleted every in-progress segment (found 2026-09-05 after the first switch).
+LOADER=${AVD_VK_LOADER:-/opt/ffmpeg-avd-vk/libexec/ffmpeg}
+[ -x "$LOADER" ] || LOADER=/host-lib64-ld.so
+LIBDIR=${AVD_VK_LIBDIR:-/host-lib64}
+export VK_DRIVER_FILES=${VK_DRIVER_FILES:-/etc/vulkan-asahi/asahi_icd.container.json}
+export VK_ICD_FILENAMES=${VK_ICD_FILENAMES:-$VK_DRIVER_FILES}
+MODE=${AVD_VK_SCALE:-2stage}
+TAG="[ffmpeg-avd-vk]"
+
+# --- pass 1: classify the command ---------------------------------------------------------------
+hw=0 rawvideo=0 vf_ok=0 vf_bad=0 explicit=0 prev=
+for a in "$@"; do
+  case "$prev" in
+    -hwaccel) [ "$a" = v4l2request ] && hw=1 ;;
+    -f)       [ "$a" = rawvideo ] && rawvideo=1 ;;
+    -vf)
+      case "$a" in
+        fps=*,scale=*:*)
+          n=${a#fps=}; n=${n%%,*}; wh=${a##*,scale=}; w=${wh%%:*}; h=${wh#*:}
+          case "$n$w$h" in *[!0-9.]*|'') vf_bad=$((vf_bad+1)) ;; *) vf_ok=$((vf_ok+1)) ;; esac ;;
+        *) vf_bad=$((vf_bad+1)) ;;
+      esac ;;
+  esac
+  case "$a" in -hwaccel_output_format|-init_hw_device|-filter_hw_device|-filter_complex|-lavfi) explicit=1 ;; esac
+  prev=$a
+done
+
+rewrite=0
+if [ "${AVD_VK_REWRITE:-1}" != 0 ] && [ $hw -eq 1 ] && [ $rawvideo -eq 1 ] && [ $vf_ok -ge 1 ] && [ $vf_bad -eq 0 ] && [ $explicit -eq 0 ]; then
+  rewrite=1
+fi
+
+# --- pass 2: rebuild argv -------------------------------------------------------------------------
+if [ $rewrite -eq 1 ]; then
+  count=$#; i=0; prev=
+  while [ $i -lt $count ]; do
+    a=$1; shift; i=$((i+1))
+    if [ "$prev" = -hwaccel ] && [ "$a" = v4l2request ]; then
+      set -- "$@" "$a" -init_hw_device vulkan=vk -filter_hw_device vk -hwaccel_output_format drm_prime
+    elif [ "$prev" = -vf ]; then
+      n=${a#fps=}; n=${n%%,*}; wh=${a##*,scale=}; w=${wh%%:*}; h=${wh#*:}
+      if [ "$MODE" = single ]; then
+        set -- "$@" "fps=$n,hwmap,scale_vulkan=$w:$h,hwdownload,format=nv12,format=yuv420p"
+      else
+        set -- "$@" "fps=$n,hwmap,scale_vulkan=w=max(iw/2\\,$w):h=max(ih/2\\,$h),scale_vulkan=$w:$h,hwdownload,format=nv12,format=yuv420p"
+      fi
+    else
+      set -- "$@" "$a"
+    fi
+    prev=$a
+  done
+fi
+
+# --- exec -----------------------------------------------------------------------------------------
+if [ -x "$LOADER" ] && [ -d "$LIBDIR" ]; then
+  set -- "$LOADER" --library-path "$LIBDIR" "$REAL" "$@"
+else
+  set -- "$REAL" "$@"
+fi
+if [ $rewrite -eq 1 ] || [ "${AVD_VK_DEBUG:-0}" != 0 ]; then
+  echo "$TAG rewrite=$rewrite (hwaccel=$hw rawvideo=$rawvideo vf=$vf_ok/$((vf_ok+vf_bad)) explicit=$explicit scale=$MODE) exec:$(printf ' %s' "$@")" >&2
+fi
+exec "$@"

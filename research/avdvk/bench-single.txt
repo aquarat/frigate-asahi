@@ -1,0 +1,15 @@
+sw-r1                  #1 md5=ee810b0f90e2 user=0.63s sys=0.01s wall=0:00.31 maxrss=58MB rc=0
+sw-r2                  #1 md5=ee810b0f90e2 user=0.58s sys=0.01s wall=0:00.30 maxrss=58MB rc=0
+sw-r3                  #1 md5=ee810b0f90e2 user=0.62s sys=0.01s wall=0:00.30 maxrss=58MB rc=0
+sw70-r1                #1 md5=ee810b0f90e2 user=0.59s sys=0.02s wall=0:00.30 maxrss=91MB rc=0
+sw70-r2                #1 md5=ee810b0f90e2 user=0.76s sys=0.02s wall=0:00.42 maxrss=70MB rc=0
+sw70-r3                #1 md5=ee810b0f90e2 user=0.63s sys=0.02s wall=0:00.55 maxrss=66MB rc=0
+hwcpu-r1               #1 md5=ee810b0f90e2 user=0.40s sys=0.08s wall=0:00.63 maxrss=119MB rc=0
+hwcpu-r2               #1 md5=ee810b0f90e2 user=0.40s sys=0.09s wall=0:00.65 maxrss=119MB rc=0
+hwcpu-r3               #1 md5=ee810b0f90e2 user=0.41s sys=0.12s wall=0:00.65 maxrss=118MB rc=0
+hwvk-r1                #1 md5=73811bb3fe93 user=0.15s sys=0.06s wall=0:00.66 maxrss=174MB rc=0
+hwvk-r2                #1 md5=73811bb3fe93 user=0.18s sys=0.05s wall=0:00.69 maxrss=179MB rc=0
+hwvk-r3                #1 md5=73811bb3fe93 user=0.17s sys=0.06s wall=0:00.69 maxrss=176MB rc=0
+hwvk2-r1               #1 md5=fea8b0b44cb8 user=0.21s sys=0.08s wall=0:00.74 maxrss=178MB rc=0
+hwvk2-r2               #1 md5=fea8b0b44cb8 user=0.19s sys=0.08s wall=0:00.72 maxrss=177MB rc=0
+hwvk2-r3               #1 md5=fea8b0b44cb8 user=0.23s sys=0.07s wall=0:00.77 maxrss=176MB rc=0

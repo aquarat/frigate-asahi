@@ -1,0 +1,60 @@
+From 44e9fc3e53438f1f408e6dcc248b1d8b0a716732 Mon Sep 17 00:00:00 2001
+From: Aquarat <blue@aquarat.co.uk>
+Date: Sat, 5 Sep 2026 18:53:27 +0100
+Subject: [PATCH 1/5] media: apple: avd: h264: fix transform_8x8_mode_flag
+ encoding
+
+stream_hdr() passes the raw V4L2 PPS flag value
+(V4L2_H264_PPS_FLAG_TRANSFORM_8X8_MODE == 0x40) into
+AVD_HDR_COMMON_LUMA_TBS(), i.e. FIELD_PREP(GENMASK(8, 7), 0x40). That
+evaluates to 0 (FIELD_PREP only checks constant values), so bit 7 of
+hdr_2c_sps_param is never set and the VP decodes every High profile
+stream that uses 8x8 transforms as 4x4-only. On T8103 the hardware
+raises DECODE_STATUS_ERR on the first frame ("H2 00 error" followed by
+"Frame processing timed out! Vp: 2 (00)").
+
+Use a boolean single-bit field for the flag, as eiln's hardware-verified
+HAL does (boolify(pps.transform_8x8_mode_flag) << 7).
+
+Backport of asahi-7.1.8-1 commit 8e8d72a673ab ("fixup! media: apple:
+avd: define static values and bitmasks"), H.264 part, to asahi-7.1.6-1.
+
+Tested on Apple M1 (T8103), kernel 7.1.6-400.asahi.fc44.aarch64+16k:
+four 8x8-transform clips (320x240 to 1280x720) go from hardware error to
+bit-identical output versus software decode; no regressions in a
+26-clip matrix.
+
+Signed-off-by: Aquarat <blue@aquarat.co.uk>
+---
+ avd-h264.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/media/platform/apple/avd/avd-h264.c b/drivers/media/platform/apple/avd/avd-h264.c
+index bfa4348..e97dc75 100644
+--- a/drivers/media/platform/apple/avd/avd-h264.c
++++ b/drivers/media/platform/apple/avd/avd-h264.c
+@@ -29,6 +29,12 @@
+ #define H264_FLAG_ENTROPY_CODING_MODE(v)	FIELD_PREP(BIT(20), !!(v))
+ #define H264_FLAG_NOT_IDR(v)			FIELD_PREP(BIT(21), !!(v))
+ 
++/*
++ * hdr_2c bit 7: transform_8x8_mode_flag. Must be a boolean; passing the raw
++ * V4L2 flag value (0x40) through a 2-bit FIELD_PREP masks it to zero.
++ */
++#define H264_TRANSFORM_8X8_MODE(v)		FIELD_PREP(BIT(7), !!(v))
++
+ 
+ struct avd_h264_run {
+ 	struct avd_run base;
+@@ -216,7 +222,7 @@ static void stream_hdr(struct avd_ctx *ctx, struct avd_h264_run *run)
+ 		| AVD_HDR_COMMON_BIT_DEPTH_C(sps->bit_depth_chroma_minus8)
+ 		| AVD_HDR_COMMON_MIN_LUMA_CBS(1)
+ 		| AVD_HDR_COMMON_LUMA_CBS(1)
+-		| AVD_HDR_COMMON_LUMA_TBS(pps->flags & V4L2_H264_PPS_FLAG_TRANSFORM_8X8_MODE)
++		| H264_TRANSFORM_8X8_MODE(pps->flags & V4L2_H264_PPS_FLAG_TRANSFORM_8X8_MODE)
+ 		| AVD_HDR_COMMON_FLAG0(sps->flags & V4L2_H264_SPS_FLAG_DIRECT_8X8_INFERENCE),
+ 		"hdr_2c_sps_param");
+ 
+-- 
+2.55.0
+

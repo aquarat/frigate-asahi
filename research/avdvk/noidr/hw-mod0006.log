@@ -1,0 +1,27 @@
+ffmpeg version 403fdd4-vk-b57fbbe Copyright (c) 2000-2026 the FFmpeg developers
+  built with gcc 12 (Debian 12.2.0-14+deb12u1)
+  configuration: --prefix=/opt/ffmpeg-vk --enable-gpl --enable-version3 --enable-static --disable-shared --disable-doc --disable-debug --enable-pic --enable-openssl --enable-libx264 --enable-libopus --enable-libdrm --enable-libudev --enable-v4l2-request --enable-vulkan --enable-libshaderc --pkg-config-flags=--static --extra-cflags='-I/uapi -I/src/vk-headers' --extra-libs='-lstdc++ -lm -lpthread' --extra-version=vk-b57fbbe
+  libavutil      60. 26.100 / 60. 26.100
+  libavcodec     62. 28.100 / 62. 28.100
+  libavformat    62. 12.100 / 62. 12.100
+  libavdevice    62.  3.100 / 62.  3.100
+  libavfilter    11. 14.100 / 11. 14.100
+  libswscale      9.  5.100 /  9.  5.100
+  libswresample   6.  3.100 /  6.  3.100
+Input #0, h264, from '/research/cam2-10s-noidr.h264':
+  Duration: N/A, bitrate: N/A
+  Stream #0:0: Video: h264 (High), yuv420p(progressive), 2304x1296, 25 fps, 30 tbr, 1200k tbn
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> rawvideo (native))
+Press [q] to stop, [?] for help
+[AVHWFramesContext @ 0xffff04046050] Using V4L2 media driver avd (7.1.6) for S264
+[V4L2RequestContext @ 0xffff040720e0] Failed waiting on OUTPUT buffer 0
+[vist#0:0/h264 @ 0xaaaae774aed0] [dec:h264 @ 0xaaaae775c550] Decoding error: Invalid data found when processing input
+Output #0, framemd5, to '/research/avdvk/noidr/hw-mod0006.framemd5':
+  Metadata:
+    encoder         : Lavf62.12.100
+  Stream #0:0: Video: rawvideo (I420 / 0x30323449), yuv420p(progressive), 640x360, q=2-31, 41472 kb/s, 15 fps, 15 tbn
+    Metadata:
+      encoder         : Lavc62.28.100 rawvideo
+frame=   60 fps= 24 q=-0.0 size=       5KiB time=00:00:04.00 bitrate=   9.9kbits/s speed= 1.6x elapsed=0:00:02.50    [out#0/framemd5 @ 0xaaaae770ffe0] video:40500KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  120 fps= 44 q=-0.0 Lsize=      10KiB time=00:00:08.00 bitrate=   9.8kbits/s speed=2.95x elapsed=0:00:02.71    
